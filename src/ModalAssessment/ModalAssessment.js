@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Modal, Button, Card } from 'react-bootstrap';
+import { Modal, Button, Card, Form } from 'react-bootstrap';
+import FormRadio from '../FormRadio/FormRadio'
 
 class ModalAssessment extends Component {
 
@@ -33,17 +34,21 @@ class ModalAssessment extends Component {
           </Card.Body>
         </Card>
 
-        <Modal size="lg" show={this.state.show} onHide={this.handleClose}>
+        <Modal size="xl" show={this.state.show} onHide={this.handleClose}>
           <Modal.Header closeButton>
-            <Modal.Title>Modal heading</Modal.Title>
+            <Modal.Title>Initial Self-Assessment</Modal.Title>
           </Modal.Header>
-          <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+          <Modal.Body>
+            <Form>
+              <FormRadio />
+            </Form>
+          </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={this.handleClose}>
-              Close
+              Cancel
           </Button>
             <Button variant="primary" onClick={this.handleClose}>
-              Save Changes
+              Submit
           </Button>
           </Modal.Footer>
         </Modal>

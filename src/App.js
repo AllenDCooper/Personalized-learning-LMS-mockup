@@ -2,7 +2,6 @@ import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import AccordionUnit from './Accordion/Accordion'
-import ModalAssessment from './ModalAssessment/ModalAssessment'
 import { Container, Jumbotron } from 'react-bootstrap'
 
 function App() {

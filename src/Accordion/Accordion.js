@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Accordion, Card, Button, Modal } from 'react-bootstrap';
+import { Accordion, Card } from 'react-bootstrap';
 import ModalAssessment from '../ModalAssessment/ModalAssessment';
 
 class AccordionUnit extends Component {
