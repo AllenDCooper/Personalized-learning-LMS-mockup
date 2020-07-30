@@ -9,55 +9,67 @@ class FormRadio extends Component {
 
     return (
       questionArr.map((item, index) => (
-        <div key={`item-${index}`} style={{marginBottom: "30px"}}>
+        <div key={`item-${index + 1}`} style={{marginBottom: "40px"}}>
           <h6>{item}</h6>
           <Form.Check
             custom
             inline
             label="Strongly Agree"
             type="radio"
-            id={`custom-inline-radio-1-${index}`}
-            name={`custom-inline-radio-${index}`}
+            id={`item-1-${index + 1}`}
+            name={`item${index + 1}`}
+            value="6"
+            onChange={this.props.updateScore}
           />
           <Form.Check
             custom
             inline
             label="Agree"
             type="radio"
-            id={`custom-inline-radio-2-${index}`}
-            name={`custom-inline-radio-${index}`}
+            id={`item-2-${index + 1}`}
+            name={`item${index + 1}`}
+            value="5"
+            onChange={this.props.updateScore}
           />
           <Form.Check
             custom
             inline
             label="Somewhat Agree"
             type="radio"
-            id={`custom-inline-radio-3-${index}`}
-            name={`custom-inline-radio-${index}`}
+            id={`item-3-${index + 1}`}
+            name={`item${index + 1}`}
+            value="4"
+            onChange={this.props.updateScore}
           />
           <Form.Check
             custom
             inline
             label="Somewhat Disagree"
             type="radio"
-            id={`custom-inline-radio-4-${index}`}
-            name={`custom-inline-radio-${index}`}
+            id={`item-4-${index + 1}`}
+            name={`item${index + 1}`}
+            value="3"
+            onChange={this.props.updateScore}
           />
           <Form.Check
             custom
             inline
             label="Disagree"
             type="radio"
-            id={`custom-inline-radio-5-${index}`}
-            name={`custom-inline-radio-${index}`}
+            id={`item-5-${index + 1}`}
+            name={`item${index + 1}`}
+            value="2"
+            onChange={this.props.updateScore}
           />
           <Form.Check
             custom
             inline
             label="Strongly Disagree"
             type="radio"
-            id={`custom-inline-radio-6-${index}`}
-            name={`custom-inline-radio-${index}`}
+            id={`item-6-${index + 1}`}
+            name={`item${index + 1}`}
+            value="1"
+            onChange={this.props.updateScore}
           />
         </div>
       )

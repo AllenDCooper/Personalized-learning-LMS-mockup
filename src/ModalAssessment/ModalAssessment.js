@@ -6,7 +6,17 @@ class ModalAssessment extends Component {
 
   state = {
     show: false,
-    setShow: false
+    setShow: false,
+    item1: null,
+    item2: null,
+    item3: null,
+    item4: null,
+    item5: null,
+    item6: null,
+    item7: null,
+    item8: null,
+    item9: null,
+    item10: null,
   }
 
   handleClose = () => {
@@ -15,6 +25,7 @@ class ModalAssessment extends Component {
       setShow: false
     });
     console.log(this.state.setShow);
+    alert(`Total Scores = ${JSON.stringify(this.state)}`)
   };
 
   handleShow = () => {
@@ -24,6 +35,18 @@ class ModalAssessment extends Component {
     });
     console.log(this.state.setShow);
   };
+
+  updateScore = (event) => {
+    const name = event.target.name;
+    const value = event.target.value
+
+    this.setState({
+      [name]: value
+    });
+
+    const answerStr = JSON.stringify(this.state)
+    console.log(`Updated state ${answerStr}`)
+  }
 
   render() {
     return (
@@ -40,7 +63,7 @@ class ModalAssessment extends Component {
           </Modal.Header>
           <Modal.Body>
             <Form>
-              <FormRadio />
+              <FormRadio updateScore={this.updateScore} />
             </Form>
           </Modal.Body>
           <Modal.Footer>
