@@ -1,17 +1,21 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import Accordion from './Accordion/Accordion'
+import AccordionUnit from './Accordion/Accordion'
+import ModalAssessment from './ModalAssessment/ModalAssessment'
+import { Container, Jumbotron } from 'react-bootstrap'
 
 function App() {
   return (
     <div>
-      <header>
-        <h1>App</h1>
-      </header>
-      <div>
-        <Accordion />
-      </div>
+      <Container>
+        <Jumbotron>
+          <h1>App</h1>
+        </Jumbotron>
+        <section>
+          <AccordionUnit />
+        </section>
+      </Container>
     </div>
   );
 }
