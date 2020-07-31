@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import { Container, Jumbotron, Accordion, Card } from 'react-bootstrap'
+import { Container, Jumbotron, Accordion, Card, Button } from 'react-bootstrap'
 import ModalAssessment from './ModalAssessment/ModalAssessment';
 
 class App extends Component {
@@ -56,6 +56,12 @@ class App extends Component {
     alert(`Total Scores = ${JSON.stringify(this.state)}`)
   }
 
+  handleReset = () => {
+    this.setState({
+      takenAssessment: null
+    })
+  }
+
   render() {
     const timeManagementScore = this.state.item1 + this.state.item2 + this.state.item3 + this.state.item4 + this.state.item5 + this.state.item6 + this.state.item7
 
@@ -69,6 +75,9 @@ class App extends Component {
           <Container>
             <Jumbotron>
               <h1>App</h1>
+              <Button variant="primary" onClick={this.handleReset}>
+                Reset
+              </Button>
             </Jumbotron>
             <section>
               <Accordion>
@@ -95,6 +104,9 @@ class App extends Component {
           <Container>
             <Jumbotron>
               <h1>App</h1>
+              <Button variant="primary" onClick={this.handleReset}>
+                Reset
+              </Button>
             </Jumbotron>
             <section>
               <Accordion>
@@ -121,6 +133,9 @@ class App extends Component {
           <Container>
             <Jumbotron>
               <h1>App</h1>
+              <Button variant="primary" onClick={this.handleReset}>
+                Reset
+              </Button>
             </Jumbotron>
             <section>
               <Accordion>
@@ -147,6 +162,9 @@ class App extends Component {
           <Container>
             <Jumbotron>
               <h1>App</h1>
+              <Button variant="primary" onClick={this.handleReset}>
+                Reset
+              </Button>
             </Jumbotron>
             <section>
               <Accordion>
