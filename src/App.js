@@ -6,6 +6,12 @@ import ModalAssessment from './ModalAssessment/ModalAssessment';
 
 class App extends Component {
 
+  constructor() {
+    super();
+    this.updateScore = this.updateScore.bind(this);
+    this.alertScore = this.alertScore.bind(this);
+  }
+
   state = {
     item1: null,
     item2: null,
@@ -17,6 +23,17 @@ class App extends Component {
     item8: null,
     item9: null,
     item10: null,
+    item11: null,
+    item12: null,
+    item13: null,
+    item14: null,
+    item15: null,
+    item16: null,
+    item17: null,
+    item18: null,
+    item19: null,
+    item20: null,
+    item21: null,
   }
 
   updateScore = (event) => {
@@ -24,7 +41,7 @@ class App extends Component {
     const value = event.target.value
 
     this.setState({
-      [name]: value
+      [name]: parseInt(value)
     });
 
     const answerStr = JSON.stringify(this.state)
