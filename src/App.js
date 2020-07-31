@@ -13,7 +13,8 @@ class App extends Component {
   }
 
   state = {
-    takenAssessment: null,
+    takenAssessment: false,
+    seeAll: false,
     item1: null,
     item2: null,
     item3: null,
@@ -62,6 +63,12 @@ class App extends Component {
     })
   }
 
+  handleSeeAll = () => {
+    this.setState({
+      seeAll: this.state.seeAll === false ? true : false
+    })
+  }
+
   render() {
     const timeManagementScore = this.state.item1 + this.state.item2 + this.state.item3 + this.state.item4 + this.state.item5 + this.state.item6 + this.state.item7
 
@@ -69,14 +76,17 @@ class App extends Component {
 
     const connectingWithOthersScore = this.state.item15 + this.state.item16 + this.state.item17 + this.state.item18 + this.state.item19 + this.state.item20 + this.state.item21
 
-    if (this.state.takenAssessment && timeManagementScore <= noteTakingScore && timeManagementScore <= connectingWithOthersScore) {
+    if (this.state.seeAll === false && this.state.takenAssessment && timeManagementScore <= noteTakingScore && timeManagementScore <= connectingWithOthersScore) {
       return (
         <div>
           <Container>
             <Jumbotron>
               <h1>App</h1>
-              <Button variant="primary" onClick={this.handleReset}>
+              <Button variant="primary" onClick={this.handleReset} style={{ marginRight: "20px" }}>
                 Reset
+              </Button>
+              <Button variant="primary" onClick={this.handleSeeAll}>
+                Toggle See All
               </Button>
             </Jumbotron>
             <section>
@@ -98,14 +108,17 @@ class App extends Component {
           </Container>
         </div>
       )
-    } else if (this.state.takenAssessment && noteTakingScore < timeManagementScore && noteTakingScore <= connectingWithOthersScore) {
+    } else if (this.state.seeAll === false && this.state.takenAssessment && noteTakingScore < timeManagementScore && noteTakingScore <= connectingWithOthersScore) {
       return (
         <div>
           <Container>
             <Jumbotron>
               <h1>App</h1>
-              <Button variant="primary" onClick={this.handleReset}>
+              <Button variant="primary" onClick={this.handleReset} style={{ marginRight: "20px" }}>
                 Reset
+              </Button>
+              <Button variant="primary" onClick={this.handleSeeAll}>
+                Toggle See All
               </Button>
             </Jumbotron>
             <section>
@@ -127,14 +140,17 @@ class App extends Component {
           </Container>
         </div>
       )
-    } else if (this.state.takenAssessment && connectingWithOthersScore < timeManagementScore && connectingWithOthersScore < noteTakingScore) {
+    } else if (this.state.seeAll === false && this.state.takenAssessment && connectingWithOthersScore < timeManagementScore && connectingWithOthersScore < noteTakingScore) {
       return (
         <div>
           <Container>
             <Jumbotron>
               <h1>App</h1>
-              <Button variant="primary" onClick={this.handleReset}>
+              <Button variant="primary" onClick={this.handleReset} style={{ marginRight: "20px" }}>
                 Reset
+              </Button>
+              <Button variant="primary" onClick={this.handleSeeAll}>
+                Toggle See All
               </Button>
             </Jumbotron>
             <section>
@@ -156,14 +172,17 @@ class App extends Component {
           </Container>
         </div>
       )
-    } else {
+    } else if (this.state.seeAll === false) {
       return (
         <div>
           <Container>
             <Jumbotron>
               <h1>App</h1>
-              <Button variant="primary" onClick={this.handleReset}>
+              <Button variant="primary" onClick={this.handleReset} style={{ marginRight: "20px" }}>
                 Reset
+              </Button>
+              <Button variant="primary" onClick={this.handleSeeAll}>
+                Toggle See All
               </Button>
             </Jumbotron>
             <section>
@@ -183,6 +202,70 @@ class App extends Component {
           </Container>
         </div>
       );
+    } else {
+      return (
+        <div>
+          <Container>
+            <Jumbotron>
+              <h1>App</h1>
+              <Button variant="primary" onClick={this.handleReset} style={{ marginRight: "20px" }}>
+                Reset
+              </Button>
+              <Button variant="primary" onClick={this.handleSeeAll}>
+                Toggle See All
+              </Button>
+            </Jumbotron>
+            <section>
+              <Accordion>
+                <Card>
+                  <Accordion.Toggle as={Card.Header} eventKey="0">
+                    Self-Assessment (Initial)
+                  </Accordion.Toggle>
+                  <Accordion.Collapse eventKey="0">
+                    <div>
+                      <ModalAssessment updateScore={this.updateScore} submitScore={this.submitScore} />
+                    </div>
+                  </Accordion.Collapse>
+                </Card>
+                <Card>
+                  <Accordion.Toggle as={Card.Header} eventKey="4">
+                    Organization and Time Management
+                  </Accordion.Toggle>
+                  <Accordion.Collapse eventKey="4">
+                    <div>
+                      <Card.Body>Activity 1</Card.Body>
+                      <Card.Body>Activity 2</Card.Body>
+                      <Card.Body>Activity 3</Card.Body>
+                    </div>
+                  </Accordion.Collapse>
+                </Card>
+                <Card>
+                  <Accordion.Toggle as={Card.Header} eventKey="6">
+                    Note Taking
+                </Accordion.Toggle>
+                  <Accordion.Collapse eventKey="6">
+                    <div>
+                      <Card.Body>Activity 1</Card.Body>
+                      <Card.Body>Activity 2</Card.Body>
+                      <Card.Body>Activity 3</Card.Body>
+                    </div>
+                  </Accordion.Collapse>
+                </Card>
+                <Card>
+                  <Accordion.Toggle as={Card.Header} eventKey="0">
+                    Self-Assessment (Initial)
+                </Accordion.Toggle>
+                  <Accordion.Collapse eventKey="0">
+                    <div>
+                      <ModalAssessment updateScore={this.updateScore} submitScore={this.submitScore} />
+                    </div>
+                  </Accordion.Collapse>
+                </Card>
+              </Accordion>
+            </section>
+          </Container>
+        </div>
+      )
     }
   }
 }
