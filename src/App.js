@@ -9,10 +9,11 @@ class App extends Component {
   constructor() {
     super();
     this.updateScore = this.updateScore.bind(this);
-    this.alertScore = this.alertScore.bind(this);
+    this.submitScore = this.submitScore.bind(this);
   }
 
   state = {
+    takenAssessment: null,
     item1: null,
     item2: null,
     item3: null,
@@ -48,178 +49,123 @@ class App extends Component {
     console.log(`Updated state ${answerStr}`)
   }
 
-  alertScore = () => {
+  submitScore = () => {
+    this.setState({
+      takenAssessment: true
+    });
     alert(`Total Scores = ${JSON.stringify(this.state)}`)
   }
 
   render() {
-    return (
-      <div>
-        <Container>
-          <Jumbotron>
-            <h1>App</h1>
-          </Jumbotron>
-          <section>
-            <Accordion>
-              <Card>
-                <Accordion.Toggle as={Card.Header} eventKey="0">
-                  Self-Assessment (Initial)
+    const timeManagementScore = this.state.item1 + this.state.item2 + this.state.item3 + this.state.item4 + this.state.item5 + this.state.item6 + this.state.item7
+
+    const noteTakingScore = this.state.item8 + this.state.item9 + this.state.item10 + this.state.item11 + this.state.item12 + this.state.item13 + this.state.item14
+
+    const connectingWithOthersScore = this.state.item15 + this.state.item16 + this.state.item17 + this.state.item18 + this.state.item19 + this.state.item20 + this.state.item21
+
+    if (this.state.takenAssessment && timeManagementScore <= noteTakingScore && timeManagementScore <= connectingWithOthersScore) {
+      return (
+        <div>
+          <Container>
+            <Jumbotron>
+              <h1>App</h1>
+            </Jumbotron>
+            <section>
+              <Accordion>
+                <Card>
+                  <Accordion.Toggle as={Card.Header} eventKey="4">
+                    Organization and Time Management
+                  </Accordion.Toggle>
+                  <Accordion.Collapse eventKey="4">
+                    <div>
+                      <Card.Body>Activity 1</Card.Body>
+                      <Card.Body>Activity 2</Card.Body>
+                      <Card.Body>Activity 3</Card.Body>
+                    </div>
+                  </Accordion.Collapse>
+                </Card>
+              </Accordion>
+            </section>
+          </Container>
+        </div>
+      )
+    } else if (this.state.takenAssessment && noteTakingScore < timeManagementScore && noteTakingScore <= connectingWithOthersScore) {
+      return (
+        <div>
+          <Container>
+            <Jumbotron>
+              <h1>App</h1>
+            </Jumbotron>
+            <section>
+              <Accordion>
+                <Card>
+                  <Accordion.Toggle as={Card.Header} eventKey="6">
+                    Note Taking
                 </Accordion.Toggle>
-                <Accordion.Collapse eventKey="0">
-                  <div>
-                    <ModalAssessment updateScore={this.updateScore} alertScore={this.alertScore} />
-                  </div>
-                </Accordion.Collapse>
-              </Card>
-              <Card>
-                <Accordion.Toggle as={Card.Header} eventKey="1">
-                  Critical Thinking and Goal Setting
+                  <Accordion.Collapse eventKey="6">
+                    <div>
+                      <Card.Body>Activity 1</Card.Body>
+                      <Card.Body>Activity 2</Card.Body>
+                      <Card.Body>Activity 3</Card.Body>
+                    </div>
+                  </Accordion.Collapse>
+                </Card>
+              </Accordion>
+            </section>
+          </Container>
+        </div>
+      )
+    } else if (this.state.takenAssessment && connectingWithOthersScore < timeManagementScore && connectingWithOthersScore < noteTakingScore) {
+      return (
+        <div>
+          <Container>
+            <Jumbotron>
+              <h1>App</h1>
+            </Jumbotron>
+            <section>
+              <Accordion>
+                <Card>
+                  <Accordion.Toggle as={Card.Header} eventKey="10">
+                    Connecting with Others
                 </Accordion.Toggle>
-                <Accordion.Collapse eventKey="1">
-                  <div>
-                    <Card.Body>Activity 1.1</Card.Body>
-                    <Card.Body>Activity 1.2</Card.Body>
-                    <Card.Body>Activity 1.3</Card.Body>
-                  </div>
-                </Accordion.Collapse>
-              </Card>
-              <Card>
-                <Accordion.Toggle as={Card.Header} eventKey="2">
-                  Motivation, Decision Making, and Personal Responsibility
+                  <Accordion.Collapse eventKey="10">
+                    <div>
+                      <Card.Body>Activity 10.1</Card.Body>
+                      <Card.Body>Activity 10.2</Card.Body>
+                      <Card.Body>Activity 10.3</Card.Body>
+                    </div>
+                  </Accordion.Collapse>
+                </Card>
+              </Accordion>
+            </section>
+          </Container>
+        </div>
+      )
+    } else {
+      return (
+        <div>
+          <Container>
+            <Jumbotron>
+              <h1>App</h1>
+            </Jumbotron>
+            <section>
+              <Accordion>
+                <Card>
+                  <Accordion.Toggle as={Card.Header} eventKey="0">
+                    Self-Assessment (Initial)
                 </Accordion.Toggle>
-                <Accordion.Collapse eventKey="2">
-                  <div>
-                    <Card.Body>Activity 2.1</Card.Body>
-                    <Card.Body>Activity 2.2</Card.Body>
-                    <Card.Body>Activity 2.3</Card.Body>
-                  </div>
-                </Accordion.Collapse>
-              </Card>
-              <Card>
-                <Accordion.Toggle as={Card.Header} eventKey="3">
-                  Learning Preferences
-                </Accordion.Toggle>
-                <Accordion.Collapse eventKey="3">
-                  <div>
-                    <Card.Body>Activity 3.1</Card.Body>
-                    <Card.Body>Activity 3.2</Card.Body>
-                    <Card.Body>Activity 3.3</Card.Body>
-                  </div>
-                </Accordion.Collapse>
-              </Card>
-              <Card>
-                <Accordion.Toggle as={Card.Header} eventKey="4">
-                  Organization and Time Management
-                </Accordion.Toggle>
-                <Accordion.Collapse eventKey="4">
-                  <div>
-                    <Card.Body>Activity 4.1</Card.Body>
-                    <Card.Body>Activity 4.2</Card.Body>
-                    <Card.Body>Activity 4.3</Card.Body>
-                  </div>
-                </Accordion.Collapse>
-              </Card>
-              <Card>
-                <Accordion.Toggle as={Card.Header} eventKey="5">
-                  Reading
-                </Accordion.Toggle>
-                <Accordion.Collapse eventKey="5">
-                  <div>
-                    <Card.Body>Activity 5.1</Card.Body>
-                    <Card.Body>Activity 5.2</Card.Body>
-                    <Card.Body>Activity 5.3</Card.Body>
-                  </div>
-                </Accordion.Collapse>
-              </Card>
-              <Card>
-                <Accordion.Toggle as={Card.Header} eventKey="6">
-                  Note Taking
-                </Accordion.Toggle>
-                <Accordion.Collapse eventKey="6">
-                  <div>
-                    <Card.Body>Activity 6.1</Card.Body>
-                    <Card.Body>Activity 6.2</Card.Body>
-                    <Card.Body>Activity 6.3</Card.Body>
-                  </div>
-                </Accordion.Collapse>
-              </Card>
-              <Card>
-                <Accordion.Toggle as={Card.Header} eventKey="7">
-                  Memory and Studying
-                </Accordion.Toggle>
-                <Accordion.Collapse eventKey="7">
-                  <div>
-                    <Card.Body>Activity 7.1</Card.Body>
-                    <Card.Body>Activity 7.2</Card.Body>
-                    <Card.Body>Activity 7.3</Card.Body>
-                  </div>
-                </Accordion.Collapse>
-              </Card>
-              <Card>
-                <Accordion.Toggle as={Card.Header} eventKey="8">
-                  Test Taking
-                </Accordion.Toggle>
-                <Accordion.Collapse eventKey="8">
-                  <div>
-                    <Card.Body>Activity 8.1</Card.Body>
-                    <Card.Body>Activity 8.2</Card.Body>
-                    <Card.Body>Activity 8.3</Card.Body>
-                  </div>
-                </Accordion.Collapse>
-              </Card>
-              <Card>
-                <Accordion.Toggle as={Card.Header} eventKey="9">
-                  Information Literacy and Communication
-                </Accordion.Toggle>
-                <Accordion.Collapse eventKey="9">
-                  <div>
-                    <Card.Body>Activity 9.1</Card.Body>
-                    <Card.Body>Activity 9.2</Card.Body>
-                    <Card.Body>Activity 9.3</Card.Body>
-                  </div>
-                </Accordion.Collapse>
-              </Card>
-              <Card>
-                <Accordion.Toggle as={Card.Header} eventKey="10">
-                  Connecting with Others
-                </Accordion.Toggle>
-                <Accordion.Collapse eventKey="10">
-                  <div>
-                    <Card.Body>Activity 10.1</Card.Body>
-                    <Card.Body>Activity 10.2</Card.Body>
-                    <Card.Body>Activity 10.3</Card.Body>
-                  </div>
-                </Accordion.Collapse>
-              </Card>
-              <Card>
-                <Accordion.Toggle as={Card.Header} eventKey="11">
-                  Personal and Financial Health
-                </Accordion.Toggle>
-                <Accordion.Collapse eventKey="11">
-                  <div>
-                    <Card.Body>Activity 11.1</Card.Body>
-                    <Card.Body>Activity 11.2</Card.Body>
-                    <Card.Body>Activity 11.3</Card.Body>
-                  </div>
-                </Accordion.Collapse>
-              </Card>
-              <Card>
-                <Accordion.Toggle as={Card.Header} eventKey="12">
-                  Academic and Career Planning
-                </Accordion.Toggle>
-                <Accordion.Collapse eventKey="12">
-                  <div>
-                    <Card.Body>Activity 12.1</Card.Body>
-                    <Card.Body>Activity 12.2</Card.Body>
-                    <Card.Body>Activity 12.3</Card.Body>
-                  </div>
-                </Accordion.Collapse>
-              </Card>
-            </Accordion>
-          </section>
-        </Container>
-      </div>
-    );
+                  <Accordion.Collapse eventKey="0">
+                    <div>
+                      <ModalAssessment updateScore={this.updateScore} submitScore={this.submitScore} />
+                    </div>
+                  </Accordion.Collapse>
+                </Card>
+              </Accordion>
+            </section>
+          </Container>
+        </div>
+      );
+    }
   }
 }
 export default App;

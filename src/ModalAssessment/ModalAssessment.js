@@ -18,7 +18,6 @@ class ModalAssessment extends Component {
       setShow1: false
     });
     console.log(this.state.setShow1);
-    this.props.alertScore();
   };
 
   handleSubmit1 = () => {
@@ -44,7 +43,6 @@ class ModalAssessment extends Component {
       setShow2: false
     });
     console.log(this.state.setShow2);
-    this.props.alertScore();
   };
 
   handleSubmit2 = () => {
@@ -53,7 +51,6 @@ class ModalAssessment extends Component {
       setShow2: false
     });
     console.log(this.state.setShow2);
-    this.props.alertScore();
     this.handleShow3()
   };
 
@@ -71,7 +68,6 @@ class ModalAssessment extends Component {
       setShow3: false
     });
     console.log(this.state.setShow3);
-    this.props.alertScore();
   };
 
   handleSubmit3 = () => {
@@ -80,7 +76,7 @@ class ModalAssessment extends Component {
       setShow3: false
     });
     console.log(this.state.setShow3);
-    this.props.alertScore();
+    this.props.submitScore();
   };
 
   handleShow3 = () => {
