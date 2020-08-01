@@ -122,29 +122,29 @@ class App extends Component {
     const criticalThinkingScore = this.state.item1 + this.state.item35 + this.state.item43 + this.state.item60 + this.state.item69 + this.state.item77
 
     const motivationScore = this.state.item2 + this.state.item9 + this.state.item17 + this.state.item28 + this.state.item44 + (7 - this.state.item61) + this.state.item70 + (7 - this.state.item78)
-    
-    const learningScore = this.state.item3 + this.state.item10+(7-this.state.item22)+this.state.item29+this.state.item36+(7-this.state.item45)+(7-this.state.item52)+this.state.item62+this.state.item79
 
-    const timeManagementScore = (7-this.state.item11)+(7-this.state.item23)+this.state.item30+(7-this.state.item46)+(7-this.state.item46)+(7-this.state.item53)+(7-this.state.item63)+(7-this.state.item71)
+    const learningScore = this.state.item3 + this.state.item10 + (7 - this.state.item22) + this.state.item29 + this.state.item36 + (7 - this.state.item45) + (7 - this.state.item52) + this.state.item62 + this.state.item79
 
-    const readingScore = this.state.item4+this.state.item12+this.state.item37+this.state.item47+this.state.item54+this.state.item72+this.state.item80
+    const timeManagementScore = (7 - this.state.item11) + (7 - this.state.item23) + this.state.item30 + (7 - this.state.item46) + (7 - this.state.item46) + (7 - this.state.item53) + (7 - this.state.item63) + (7 - this.state.item71)
 
-    const noteTakingScore = this.state.item5+this.state.item18+this.state.item24+this.state.item31+this.state.item38+this.state.item55+this.state.item64
+    const readingScore = this.state.item4 + this.state.item12 + this.state.item37 + this.state.item47 + this.state.item54 + this.state.item72 + this.state.item80
 
-    const memoryScore = this.state.item6+this.state.item19+this.state.item39+this.state.item56+this.state.item65+this.state.item81
+    const noteTakingScore = this.state.item5 + this.state.item18 + this.state.item24 + this.state.item31 + this.state.item38 + this.state.item55 + this.state.item64
 
-    const testTakingScore = this.state.item13+this.state.item25+this.state.item40+this.state.item48+this.state.item66+this.state.item73+this.state.item82
+    const memoryScore = this.state.item6 + this.state.item19 + this.state.item39 + this.state.item56 + this.state.item65 + this.state.item81
 
-    const commScore = this.state.item7+this.state.item20+this.state.item26+this.state.item49+this.state.item67+this.state.item74+this.state.item83
+    const testTakingScore = this.state.item13 + this.state.item25 + this.state.item40 + this.state.item48 + this.state.item66 + this.state.item73 + this.state.item82
 
-    const connectingScore = this.state.item14+this.state.item32+this.state.item41+this.state.item50+this.state.item57+this.state.item75+this.state.item84
+    const commScore = this.state.item7 + this.state.item20 + this.state.item26 + this.state.item49 + this.state.item67 + this.state.item74 + this.state.item83
 
-    const healthScore = this.state.item15+this.state.item27+this.state.item33+this.state.item42+this.state.item58+this.state.item68+this.state.item58
+    const connectingScore = this.state.item14 + this.state.item32 + this.state.item41 + this.state.item50 + this.state.item57 + this.state.item75 + this.state.item84
 
-    const planningScore = this.state.item8+this.state.item16+(7-this.state.item21)+this.state.item34+this.state.item51+(7-this.state.item59)+(7-this.state.item76)
+    const healthScore = this.state.item15 + this.state.item27 + this.state.item33 + this.state.item42 + this.state.item58 + this.state.item68 + this.state.item58
+
+    const planningScore = this.state.item8 + this.state.item16 + (7 - this.state.item21) + this.state.item34 + this.state.item51 + (7 - this.state.item59) + (7 - this.state.item76)
 
     // store the aggregate raw scores for each scale into an array
-    const answerArr = [{name: "criticalThinkingScore", value: criticalThinkingScore}, {name: "motivationScore", value: motivationScore}, {name: "learningScore", value: learningScore}, {name: "timeManagementScore", value: timeManagementScore}, {name: "readingScore", value: readingScore}, {name: "noteTakingScore", value: noteTakingScore}, {name: "memoryScore", value: memoryScore}, {name: "testTakingScore", value: testTakingScore}, {name: "commScore", value: commScore}, {name: "connectingScore", value: connectingScore}, {name: "healthScore", value: healthScore}, {name: "planningScore", value: planningScore}]
+    const answerArr = [{ name: "criticalThinkingScore", value: criticalThinkingScore }, { name: "motivationScore", value: motivationScore }, { name: "learningScore", value: learningScore }, { name: "timeManagementScore", value: timeManagementScore }, { name: "readingScore", value: readingScore }, { name: "noteTakingScore", value: noteTakingScore }, { name: "memoryScore", value: memoryScore }, { name: "testTakingScore", value: testTakingScore }, { name: "commScore", value: commScore }, { name: "connectingScore", value: connectingScore }, { name: "healthScore", value: healthScore }, { name: "planningScore", value: planningScore }]
 
     // sort the array from smallest to largest
     const sortedValues = this.sortValues(answerArr)
@@ -178,11 +178,11 @@ class App extends Component {
 
   sortValues = (arr) => {
     console.log(arr)
-    arr.sort(function (a, b) { 
+    arr.sort(function (a, b) {
       return a.value - b.value
     })
     let newArr = []
-    for (let i=0; i<arr.length; i++) {
+    for (let i = 0; i < arr.length; i++) {
       newArr.push(arr[i])
     }
     return newArr
@@ -191,14 +191,14 @@ class App extends Component {
   getScales = (sortedArr) => {
     console.log(sortedArr)
     let newArr = []
-    for (let i=0; i<sortedArr.length; i++) {
+    for (let i = 0; i < sortedArr.length; i++) {
       newArr.push(sortedArr[i])
     }
     return newArr
   }
   render() {
 
-    
+
     if (this.state.seeAll === false && this.state.takenAssessment) {
       return (
         <div>
@@ -278,10 +278,58 @@ class App extends Component {
                   </Accordion.Collapse>
                 </Card>
                 <Card>
+                  <Accordion.Toggle as={Card.Header} eventKey="1">
+                    Critical Thinking and Goal Setting
+                      </Accordion.Toggle>
+                  <Accordion.Collapse eventKey="1">
+                    <div>
+                      <Card.Body>Activity 1</Card.Body>
+                      <Card.Body>Activity 2</Card.Body>
+                      <Card.Body>Activity 3</Card.Body>
+                    </div>
+                  </Accordion.Collapse>
+                </Card>
+                <Card>
+                  <Accordion.Toggle as={Card.Header} eventKey="2">
+                    Motivation and Decision Making
+                      </Accordion.Toggle>
+                  <Accordion.Collapse eventKey="2">
+                    <div>
+                      <Card.Body>Activity 1</Card.Body>
+                      <Card.Body>Activity 2</Card.Body>
+                      <Card.Body>Activity 3</Card.Body>
+                    </div>
+                  </Accordion.Collapse>
+                </Card>
+                <Card>
+                  <Accordion.Toggle as={Card.Header} eventKey="3">
+                    LearningPreferences
+                      </Accordion.Toggle>
+                  <Accordion.Collapse eventKey="3">
+                    <div>
+                      <Card.Body>Activity 1</Card.Body>
+                      <Card.Body>Activity 2</Card.Body>
+                      <Card.Body>Activity 3</Card.Body>
+                    </div>
+                  </Accordion.Collapse>
+                </Card>
+                <Card>
                   <Accordion.Toggle as={Card.Header} eventKey="4">
                     Organization and Time Management
-                  </Accordion.Toggle>
+                      </Accordion.Toggle>
                   <Accordion.Collapse eventKey="4">
+                    <div>
+                      <Card.Body>Activity 1</Card.Body>
+                      <Card.Body>Activity 2</Card.Body>
+                      <Card.Body>Activity 3</Card.Body>
+                    </div>
+                  </Accordion.Collapse>
+                </Card>
+                <Card>
+                  <Accordion.Toggle as={Card.Header} eventKey="5">
+                    Reading
+                      </Accordion.Toggle>
+                  <Accordion.Collapse eventKey="5">
                     <div>
                       <Card.Body>Activity 1</Card.Body>
                       <Card.Body>Activity 2</Card.Body>
@@ -292,8 +340,80 @@ class App extends Component {
                 <Card>
                   <Accordion.Toggle as={Card.Header} eventKey="6">
                     Note Taking
-                </Accordion.Toggle>
+                      </Accordion.Toggle>
                   <Accordion.Collapse eventKey="6">
+                    <div>
+                      <Card.Body>Activity 1</Card.Body>
+                      <Card.Body>Activity 2</Card.Body>
+                      <Card.Body>Activity 3</Card.Body>
+                    </div>
+                  </Accordion.Collapse>
+                </Card>
+                <Card>
+                  <Accordion.Toggle as={Card.Header} eventKey="7">
+                    Memory and Studying
+                      </Accordion.Toggle>
+                  <Accordion.Collapse eventKey="7">
+                    <div>
+                      <Card.Body>Activity 1</Card.Body>
+                      <Card.Body>Activity 2</Card.Body>
+                      <Card.Body>Activity 3</Card.Body>
+                    </div>
+                  </Accordion.Collapse>
+                </Card>
+                <Card>
+                  <Accordion.Toggle as={Card.Header} eventKey="8">
+                    Test Taking
+                      </Accordion.Toggle>
+                  <Accordion.Collapse eventKey="8">
+                    <div>
+                      <Card.Body>Activity 1</Card.Body>
+                      <Card.Body>Activity 2</Card.Body>
+                      <Card.Body>Activity 3</Card.Body>
+                    </div>
+                  </Accordion.Collapse>
+                </Card>
+                <Card>
+                  <Accordion.Toggle as={Card.Header} eventKey="9">
+                    Information Literacy and Communication
+                      </Accordion.Toggle>
+                  <Accordion.Collapse eventKey="9">
+                    <div>
+                      <Card.Body>Activity 1</Card.Body>
+                      <Card.Body>Activity 2</Card.Body>
+                      <Card.Body>Activity 3</Card.Body>
+                    </div>
+                  </Accordion.Collapse>
+                </Card>
+                <Card>
+                  <Accordion.Toggle as={Card.Header} eventKey="10">
+                    Connecting with Others
+                      </Accordion.Toggle>
+                  <Accordion.Collapse eventKey="10">
+                    <div>
+                      <Card.Body>Activity 1</Card.Body>
+                      <Card.Body>Activity 2</Card.Body>
+                      <Card.Body>Activity 3</Card.Body>
+                    </div>
+                  </Accordion.Collapse>
+                </Card>
+                <Card>
+                  <Accordion.Toggle as={Card.Header} eventKey="11">
+                    Personal and Financial Health
+                      </Accordion.Toggle>
+                  <Accordion.Collapse eventKey="11">
+                    <div>
+                      <Card.Body>Activity 1</Card.Body>
+                      <Card.Body>Activity 2</Card.Body>
+                      <Card.Body>Activity 3</Card.Body>
+                    </div>
+                  </Accordion.Collapse>
+                </Card>
+                <Card>
+                  <Accordion.Toggle as={Card.Header} eventKey="12">
+                    Academic and Career Planning
+                      </Accordion.Toggle>
+                  <Accordion.Collapse eventKey="12">
                     <div>
                       <Card.Body>Activity 1</Card.Body>
                       <Card.Body>Activity 2</Card.Body>
