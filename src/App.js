@@ -117,6 +117,95 @@ class App extends Component {
     console.log(`Updated state ${answerStr}`)
   }
 
+  randomScore = () => {
+    this.setState({
+      item1: (Math.floor(Math.random() * 6) + 1),
+      item2: (Math.floor(Math.random() * 6) + 1),
+      item3: (Math.floor(Math.random() * 6) + 1),
+      item4: (Math.floor(Math.random() * 6) + 1),
+      item5: (Math.floor(Math.random() * 6) + 1),
+      item6: (Math.floor(Math.random() * 6) + 1),
+      item7: (Math.floor(Math.random() * 6) + 1),
+      item8: (Math.floor(Math.random() * 6) + 1),
+      item9: (Math.floor(Math.random() * 6) + 1),
+      item10: (Math.floor(Math.random() * 6) + 1),
+      item11: (Math.floor(Math.random() * 6) + 1),
+      item12: (Math.floor(Math.random() * 6) + 1),
+      item13: (Math.floor(Math.random() * 6) + 1),
+      item14: (Math.floor(Math.random() * 6) + 1),
+      item15: (Math.floor(Math.random() * 6) + 1),
+      item16: (Math.floor(Math.random() * 6) + 1),
+      item17: (Math.floor(Math.random() * 6) + 1),
+      item18: (Math.floor(Math.random() * 6) + 1),
+      item19: (Math.floor(Math.random() * 6) + 1),
+      item20: (Math.floor(Math.random() * 6) + 1),
+      item21: (Math.floor(Math.random() * 6) + 1),
+      item22: (Math.floor(Math.random() * 6) + 1),
+      item23: (Math.floor(Math.random() * 6) + 1),
+      item24: (Math.floor(Math.random() * 6) + 1),
+      item25: (Math.floor(Math.random() * 6) + 1),
+      item26: (Math.floor(Math.random() * 6) + 1),
+      item27: (Math.floor(Math.random() * 6) + 1),
+      item28: (Math.floor(Math.random() * 6) + 1),
+      item29: (Math.floor(Math.random() * 6) + 1),
+      item30: (Math.floor(Math.random() * 6) + 1),
+      item31: (Math.floor(Math.random() * 6) + 1),
+      item32: (Math.floor(Math.random() * 6) + 1),
+      item33: (Math.floor(Math.random() * 6) + 1),
+      item34: (Math.floor(Math.random() * 6) + 1),
+      item35: (Math.floor(Math.random() * 6) + 1),
+      item36: (Math.floor(Math.random() * 6) + 1),
+      item37: (Math.floor(Math.random() * 6) + 1),
+      item38: (Math.floor(Math.random() * 6) + 1),
+      item39: (Math.floor(Math.random() * 6) + 1),
+      item40: (Math.floor(Math.random() * 6) + 1),
+      item41: (Math.floor(Math.random() * 6) + 1),
+      item42: (Math.floor(Math.random() * 6) + 1),
+      item43: (Math.floor(Math.random() * 6) + 1),
+      item44: (Math.floor(Math.random() * 6) + 1),
+      item45: (Math.floor(Math.random() * 6) + 1),
+      item46: (Math.floor(Math.random() * 6) + 1),
+      item47: (Math.floor(Math.random() * 6) + 1),
+      item48: (Math.floor(Math.random() * 6) + 1),
+      item49: (Math.floor(Math.random() * 6) + 1),
+      item50: (Math.floor(Math.random() * 6) + 1),
+      item51: (Math.floor(Math.random() * 6) + 1),
+      item52: (Math.floor(Math.random() * 6) + 1),
+      item53: (Math.floor(Math.random() * 6) + 1),
+      item54: (Math.floor(Math.random() * 6) + 1),
+      item55: (Math.floor(Math.random() * 6) + 1),
+      item56: (Math.floor(Math.random() * 6) + 1),
+      item57: (Math.floor(Math.random() * 6) + 1),
+      item58: (Math.floor(Math.random() * 6) + 1),
+      item59: (Math.floor(Math.random() * 6) + 1),
+      item60: (Math.floor(Math.random() * 6) + 1),
+      item61: (Math.floor(Math.random() * 6) + 1),
+      item62: (Math.floor(Math.random() * 6) + 1),
+      item63: (Math.floor(Math.random() * 6) + 1),
+      item64: (Math.floor(Math.random() * 6) + 1),
+      item65: (Math.floor(Math.random() * 6) + 1),
+      item66: (Math.floor(Math.random() * 6) + 1),
+      item67: (Math.floor(Math.random() * 6) + 1),
+      item68: (Math.floor(Math.random() * 6) + 1),
+      item69: (Math.floor(Math.random() * 6) + 1),
+      item70: (Math.floor(Math.random() * 6) + 1),
+      item71: (Math.floor(Math.random() * 6) + 1),
+      item72: (Math.floor(Math.random() * 6) + 1),
+      item73: (Math.floor(Math.random() * 6) + 1),
+      item74: (Math.floor(Math.random() * 6) + 1),
+      item75: (Math.floor(Math.random() * 6) + 1),
+      item76: (Math.floor(Math.random() * 6) + 1),
+      item77: (Math.floor(Math.random() * 6) + 1),
+      item78: (Math.floor(Math.random() * 6) + 1),
+      item79: (Math.floor(Math.random() * 6) + 1),
+      item80: (Math.floor(Math.random() * 6) + 1),
+      item81: (Math.floor(Math.random() * 6) + 1),
+      item82: (Math.floor(Math.random() * 6) + 1),
+      item83: (Math.floor(Math.random() * 6) + 1),
+      item84: (Math.floor(Math.random() * 6) + 1)
+    })
+    this.submitScore()
+  }
   submitScore = () => {
     // sum individual item scores to create aggregate raw scores for each scale
     const criticalThinkingScore = this.state.item1 + this.state.item35 + this.state.item43 + this.state.item60 + this.state.item69 + this.state.item77
@@ -208,8 +297,11 @@ class App extends Component {
               <Button variant="primary" onClick={this.handleReset} style={{ marginRight: "20px" }}>
                 Reset
               </Button>
-              <Button variant="primary" onClick={this.handleSeeAll}>
+              <Button variant="primary" onClick={this.handleSeeAll} style={{ marginRight: "20px" }}>
                 Toggle See All
+              </Button>
+              <Button variant="secondary" onClick={this.randomScore}>
+                Random Score
               </Button>
             </Jumbotron>
             <section>
@@ -231,8 +323,11 @@ class App extends Component {
               <Button variant="primary" onClick={this.handleReset} style={{ marginRight: "20px" }}>
                 Reset
               </Button>
-              <Button variant="primary" onClick={this.handleSeeAll}>
+              <Button variant="primary" onClick={this.handleSeeAll} style={{ marginRight: "20px" }}>
                 Toggle See All
+              </Button>
+              <Button variant="secondary" onClick={this.randomScore}>
+                Random Score
               </Button>
             </Jumbotron>
             <section>
@@ -261,8 +356,11 @@ class App extends Component {
               <Button variant="primary" onClick={this.handleReset} style={{ marginRight: "20px" }}>
                 Reset
               </Button>
-              <Button variant="primary" onClick={this.handleSeeAll}>
+              <Button variant="primary" onClick={this.handleSeeAll} style={{ marginRight: "20px" }}>
                 Toggle See All
+              </Button>
+              <Button variant="secondary" onClick={this.randomScore}>
+                Random Score
               </Button>
             </Jumbotron>
             <section>
