@@ -140,7 +140,7 @@ class AccordionUnit extends Component {
           </Accordion.Collapse>
         </Card>
       )
-    } else if (this.props.score.name === "connectingSCore") {
+    } else if (this.props.score.name === "connectingScore") {
       return (
         <Card>
           <Accordion.Toggle as={Card.Header} eventKey="10">

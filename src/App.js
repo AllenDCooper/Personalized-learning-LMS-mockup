@@ -1,9 +1,10 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import { Container, Jumbotron, Accordion, Card, Button } from 'react-bootstrap'
+import { Container, Jumbotron, Accordion, Card, Button } from 'react-bootstrap';
 import ModalAssessment from './ModalAssessment/ModalAssessment';
-import AccordionUnit from './AccordionUnit/AccordionUnit'
+import AccordionUnit from './AccordionUnit/AccordionUnit';
+import Scorecard from './Scorecard/Scorecard';
 
 class App extends Component {
 
@@ -19,6 +20,7 @@ class App extends Component {
     goalOne: null,
     goalTwo: null,
     goalThree: null,
+    scoreArr: [],
     item1: null,
     item2: null,
     item3: null,
@@ -203,10 +205,12 @@ class App extends Component {
       item82: (Math.floor(Math.random() * 6) + 1),
       item83: (Math.floor(Math.random() * 6) + 1),
       item84: (Math.floor(Math.random() * 6) + 1)
-    })
-    this.submitScore()
+    },
+    () => {this.submitScore()}
+    )
   }
   submitScore = () => {
+    console.log(`item: ${this.state.item1}`)
     // sum individual item scores to create aggregate raw scores for each scale
     const criticalThinkingScore = this.state.item1 + this.state.item35 + this.state.item43 + this.state.item60 + this.state.item69 + this.state.item77
 
@@ -247,14 +251,103 @@ class App extends Component {
       takenAssessment: true,
       goalOne: goalOne,
       goalTwo: goalTwo,
-      goalThree: goalThree
+      goalThree: goalThree,
+      scoreArr: [criticalThinkingScore, motivationScore, learningScore, timeManagementScore, readingScore, noteTakingScore, memoryScore, testTakingScore, commScore, connectingScore, healthScore, planningScore]
     });
-    alert(`Total Scores = ${JSON.stringify(this.state)}`)
+    console.log(`Total Scores = ${JSON.stringify(this.state)}`)
   }
 
   handleReset = () => {
     this.setState({
-      takenAssessment: null
+      takenAssessment: null,
+      goalOne: null,
+    goalTwo: null,
+    goalThree: null,
+    scoreArr: [],
+    item1: null,
+    item2: null,
+    item3: null,
+    item4: null,
+    item5: null,
+    item6: null,
+    item7: null,
+    item8: null,
+    item9: null,
+    item10: null,
+    item11: null,
+    item12: null,
+    item13: null,
+    item14: null,
+    item15: null,
+    item16: null,
+    item17: null,
+    item18: null,
+    item19: null,
+    item20: null,
+    item21: null,
+    item22: null,
+    item23: null,
+    item24: null,
+    item25: null,
+    item26: null,
+    item27: null,
+    item28: null,
+    item29: null,
+    item30: null,
+    item31: null,
+    item32: null,
+    item33: null,
+    item34: null,
+    item35: null,
+    item36: null,
+    item37: null,
+    item38: null,
+    item39: null,
+    item40: null,
+    item41: null,
+    item42: null,
+    item43: null,
+    item44: null,
+    item45: null,
+    item46: null,
+    item47: null,
+    item48: null,
+    item49: null,
+    item50: null,
+    item51: null,
+    item52: null,
+    item53: null,
+    item54: null,
+    item55: null,
+    item56: null,
+    item57: null,
+    item58: null,
+    item59: null,
+    item60: null,
+    item61: null,
+    item62: null,
+    item63: null,
+    item64: null,
+    item65: null,
+    item66: null,
+    item67: null,
+    item68: null,
+    item69: null,
+    item70: null,
+    item71: null,
+    item72: null,
+    item73: null,
+    item74: null,
+    item75: null,
+    item76: null,
+    item77: null,
+    item78: null,
+    item79: null,
+    item80: null,
+    item81: null,
+    item82: null,
+    item83: null,
+    item84: null
     })
   }
 
@@ -304,6 +397,7 @@ class App extends Component {
                 Random Score
               </Button>
             </Jumbotron>
+            <Scorecard scoreArr={this.state.scoreArr}/>
             <section>
               <Accordion>
                 <AccordionUnit score={this.state.goalOne} />
@@ -331,6 +425,7 @@ class App extends Component {
               </Button>
             </Jumbotron>
             <section>
+              <Scorecard scoreArr={this.state.scoreArr}/>
               <Accordion>
                 <Card>
                   <Accordion.Toggle as={Card.Header} eventKey="0">
@@ -363,6 +458,7 @@ class App extends Component {
                 Random Score
               </Button>
             </Jumbotron>
+            <Scorecard scoreArr={this.state.scoreArr}/>
             <section>
               <Accordion>
                 <Card>
