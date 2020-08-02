@@ -5,6 +5,7 @@ import { Container, Jumbotron, Accordion, Card, Button } from 'react-bootstrap';
 import ModalAssessment from './ModalAssessment/ModalAssessment';
 import AccordionUnit from './AccordionUnit/AccordionUnit';
 import Scorecard from './Scorecard/Scorecard';
+import normTable from './normTable.js';
 
 class App extends Component {
 
@@ -22,6 +23,7 @@ class App extends Component {
     goalTwo: null,
     goalThree: null,
     scoreArr: [],
+    rawScoreArr: [],
     item1: null,
     item2: null,
     item3: null,
@@ -210,50 +212,79 @@ class App extends Component {
       () => { this.submitScore() }
     )
   }
+
+  convertToPercentile = (value, scaleNum) => {
+    for (var i = 0; i < normTable[(scaleNum-1)].length; i++) {
+      if (value === parseInt(Object.keys(normTable[(scaleNum-1)][i]))) {
+        return Object.values(normTable[(scaleNum-1)][i])
+      } 
+    }
+  }
+
   submitScore = () => {
     console.log(`item: ${this.state.item1}`)
     // sum individual item scores to create aggregate raw scores for each scale
-    const criticalThinkingScore = this.state.item1 + this.state.item35 + this.state.item43 + this.state.item60 + this.state.item69 + this.state.item77
+    const criticalThinkingRawScore = this.state.item1 + this.state.item35 + this.state.item43 + this.state.item60 + this.state.item69 + this.state.item77
 
-    const motivationScore = this.state.item2 + this.state.item9 + this.state.item17 + this.state.item28 + this.state.item44 + (7 - this.state.item61) + this.state.item70 + (7 - this.state.item78)
+    const motivationRawScore = this.state.item2 + this.state.item9 + this.state.item17 + this.state.item28 + this.state.item44 + (7 - this.state.item61) + this.state.item70 + (7 - this.state.item78)
 
-    const learningScore = this.state.item3 + this.state.item10 + (7 - this.state.item22) + this.state.item29 + this.state.item36 + (7 - this.state.item45) + (7 - this.state.item52) + this.state.item62 + this.state.item79
+    const learningRawScore = this.state.item3 + this.state.item10 + (7 - this.state.item22) + this.state.item29 + this.state.item36 + (7 - this.state.item45) + (7 - this.state.item52) + this.state.item62 + this.state.item79
 
-    const timeManagementScore = (7 - this.state.item11) + (7 - this.state.item23) + this.state.item30 + (7 - this.state.item46) + (7 - this.state.item46) + (7 - this.state.item53) + (7 - this.state.item63) + (7 - this.state.item71)
+    const timeManagementRawScore = (7 - this.state.item11) + (7 - this.state.item23) + this.state.item30 + (7 - this.state.item46) + (7 - this.state.item46) + (7 - this.state.item53) + (7 - this.state.item63) + (7 - this.state.item71)
 
-    const readingScore = this.state.item4 + this.state.item12 + this.state.item37 + this.state.item47 + this.state.item54 + this.state.item72 + this.state.item80
+    const readingRawScore = this.state.item4 + this.state.item12 + this.state.item37 + this.state.item47 + this.state.item54 + this.state.item72 + this.state.item80
 
-    const noteTakingScore = this.state.item5 + this.state.item18 + this.state.item24 + this.state.item31 + this.state.item38 + this.state.item55 + this.state.item64
+    const noteTakingRawScore = this.state.item5 + this.state.item18 + this.state.item24 + this.state.item31 + this.state.item38 + this.state.item55 + this.state.item64
 
-    const memoryScore = this.state.item6 + this.state.item19 + this.state.item39 + this.state.item56 + this.state.item65 + this.state.item81
+    const memoryRawScore = this.state.item6 + this.state.item19 + this.state.item39 + this.state.item56 + this.state.item65 + this.state.item81
 
-    const testTakingScore = this.state.item13 + this.state.item25 + this.state.item40 + this.state.item48 + this.state.item66 + this.state.item73 + this.state.item82
+    const testTakingRawScore = this.state.item13 + this.state.item25 + this.state.item40 + this.state.item48 + this.state.item66 + this.state.item73 + this.state.item82
 
-    const commScore = this.state.item7 + this.state.item20 + this.state.item26 + this.state.item49 + this.state.item67 + this.state.item74 + this.state.item83
+    const commRawScore = this.state.item7 + this.state.item20 + this.state.item26 + this.state.item49 + this.state.item67 + this.state.item74 + this.state.item83
 
-    const connectingScore = this.state.item14 + this.state.item32 + this.state.item41 + this.state.item50 + this.state.item57 + this.state.item75 + this.state.item84
+    const connectingRawScore = this.state.item14 + this.state.item32 + this.state.item41 + this.state.item50 + this.state.item57 + this.state.item75 + this.state.item84
 
-    const healthScore = this.state.item15 + this.state.item27 + this.state.item33 + this.state.item42 + this.state.item58 + this.state.item68 + this.state.item58
+    const healthRawScore = this.state.item15 + this.state.item27 + this.state.item33 + this.state.item42 + this.state.item58 + this.state.item68 + this.state.item58
 
-    const planningScore = this.state.item8 + this.state.item16 + (7 - this.state.item21) + this.state.item34 + this.state.item51 + (7 - this.state.item59) + (7 - this.state.item76)
+    const planningRawScore = this.state.item8 + this.state.item16 + (7 - this.state.item21) + this.state.item34 + this.state.item51 + (7 - this.state.item59) + (7 - this.state.item76)
 
-    // store the aggregate raw scores for each scale into an array
-    const answerArr = [{ name: "criticalThinkingScore", value: criticalThinkingScore }, { name: "motivationScore", value: motivationScore }, { name: "learningScore", value: learningScore }, { name: "timeManagementScore", value: timeManagementScore }, { name: "readingScore", value: readingScore }, { name: "noteTakingScore", value: noteTakingScore }, { name: "memoryScore", value: memoryScore }, { name: "testTakingScore", value: testTakingScore }, { name: "commScore", value: commScore }, { name: "connectingScore", value: connectingScore }, { name: "healthScore", value: healthScore }, { name: "planningScore", value: planningScore }]
+    const criticalThinkingScore = this.convertToPercentile(criticalThinkingRawScore, 1)
+    const motivationScore = this.convertToPercentile(motivationRawScore, 2);
+    const learningScore = this.convertToPercentile(learningRawScore, 3);
+    const timeManagementScore = this.convertToPercentile(timeManagementRawScore, 4);
+    const readingScore = this.convertToPercentile(readingRawScore, 5);
+    const noteTakingScore = this.convertToPercentile(noteTakingRawScore, 6);
+    const memoryScore = this.convertToPercentile(memoryRawScore, 7);
+    const testTakingScore = this.convertToPercentile(testTakingRawScore, 8);
+    const commScore = this.convertToPercentile(commRawScore, 9);
+    const connectingScore = this.convertToPercentile(connectingRawScore, 10);
+    const healthScore = this.convertToPercentile(healthRawScore, 11)
+    const planningScore = this.convertToPercentile(planningRawScore, 12);
 
+    // store the aggregate raw scores for each scale into an array (code below if needed later on)
+
+      // const rawScoreArr = [{ name: "criticalThinkingScore", value: criticalThinkingRawScore }, { name: "motivationScore", value: motivationRawScore }, { name: "learningScore", value: learningRawScore }, { name: "timeManagementScore", value: timeManagementRawScore }, { name: "readingScore", value: readingRawScore }, { name: "noteTakingScore", value: noteTakingRawScore }, { name: "memoryScore", value: memoryRawScore }, { name: "testTakingScore", value: testTakingRawScore }, { name: "commScore", value: commRawScore }, { name: "connectingScore", value: connectingRawScore }, { name: "healthScore", value: healthRawScore }, { name: "planningScore", value: planningRawScore }]
+
+    // store the percentile scores for each scale into an array
+    const percentileArr = [{ name: "criticalThinkingScore", value: criticalThinkingScore }, { name: "motivationScore", value: motivationScore }, { name: "learningScore", value: learningScore }, { name: "timeManagementScore", value: timeManagementScore }, { name: "readingScore", value: readingScore }, { name: "noteTakingScore", value: noteTakingScore }, { name: "memoryScore", value: memoryScore }, { name: "testTakingScore", value: testTakingScore }, { name: "commScore", value: commScore }, { name: "connectingScore", value: connectingScore }, { name: "healthScore", value: healthScore }, { name: "planningScore", value: planningScore }]
+
+    console.log(percentileArr);
     // sort the array from smallest to largest
-    const sortedValues = this.sortValues(answerArr)
+    // const sortedValues = this.sortValues(answerArr);
+    const sortedPercentileValues = this.sortValues(percentileArr);
 
     // save the three smallest values
-    const goalOne = sortedValues[0]
-    const goalTwo = sortedValues[1]
-    const goalThree = sortedValues[2]
+    const goalOne = sortedPercentileValues[0]
+    const goalTwo = sortedPercentileValues[1]
+    const goalThree = sortedPercentileValues[2]
 
     this.setState({
       takenAssessment: true,
       goalOne: goalOne,
       goalTwo: goalTwo,
       goalThree: goalThree,
-      scoreArr: [criticalThinkingScore, motivationScore, learningScore, timeManagementScore, readingScore, noteTakingScore, memoryScore, testTakingScore, commScore, connectingScore, healthScore, planningScore]
+      scoreArr: [criticalThinkingScore, motivationScore, learningScore, timeManagementScore, readingScore, noteTakingScore, memoryScore, testTakingScore, commScore, connectingScore, healthScore, planningScore],
+      rawScoreArr: [criticalThinkingRawScore, motivationRawScore, learningRawScore, timeManagementRawScore, readingRawScore, noteTakingRawScore, memoryRawScore, testTakingRawScore, commRawScore, connectingRawScore, healthRawScore, planningRawScore]
     });
     console.log(`Total Scores = ${JSON.stringify(this.state)}`)
   }
@@ -265,6 +296,7 @@ class App extends Component {
       goalTwo: null,
       goalThree: null,
       scoreArr: [],
+      rawScoreArr: [],
       item1: null,
       item2: null,
       item3: null,
@@ -387,7 +419,7 @@ class App extends Component {
         <div>
           <Container>
             <Jumbotron>
-              <h1>App</h1>
+              <h1>ACES Goal-Setter</h1>
               <Button variant="primary" onClick={this.handleReset} style={{ marginRight: "20px" }}>
                 Reset
               </Button>
@@ -399,7 +431,7 @@ class App extends Component {
             <section>
               <Accordion>
                 <h4 style={{ paddingLeft: "20px" }}>
-                  Your Goals
+                  Your Personalized Goals
                 </h4>
                 <AccordionUnit score={this.state.goalOne} />
                 <AccordionUnit score={this.state.goalTwo} />
@@ -414,7 +446,7 @@ class App extends Component {
         <div>
           <Container>
             <Jumbotron>
-              <h1>App</h1>
+              <h1>ACES Goal-Setter</h1>
               <Button variant="primary" onClick={this.handleReset} style={{ marginRight: "20px" }}>
                 Reset
               </Button>
@@ -445,7 +477,7 @@ class App extends Component {
         <div>
           <Container>
             <Jumbotron>
-              <h1>App</h1>
+              <h1>ACES Goal-Setter</h1>
               <Button variant="primary" onClick={this.handleReset} style={{ marginRight: "20px" }}>
                 Reset
               </Button>

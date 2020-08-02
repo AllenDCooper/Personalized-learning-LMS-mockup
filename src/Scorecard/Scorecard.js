@@ -13,12 +13,12 @@ class Scorecard extends Component {
       return (
         <div>
           <h4 style={{ paddingLeft: "20px" }}>
-            Your Score
+            Your Strengths Report
       </h4>
           <Accordion style={{ marginBottom: "30px" }} >
             <Card>
               <Accordion.Toggle as={Card.Header} eventKey="14">
-                Your Score
+                View Report
             </Accordion.Toggle>
               <Accordion.Collapse eventKey="14">
                 <Card.Body>
