@@ -390,6 +390,9 @@ class ModalAssessment extends Component {
             </Form>
           </Modal.Body>
           <Modal.Footer>
+            <Button variant="secondary" onClick={this.props.randomScore}>
+              Random Score
+              </Button>
             <Button variant="secondary" onClick={this.handleCancel1}>
               Cancel
           </Button>
@@ -474,6 +477,9 @@ class ModalAssessment extends Component {
             </Form>
           </Modal.Body>
           <Modal.Footer>
+            <Button variant="secondary" onClick={this.props.randomScore}>
+              Random Score
+              </Button>
             <Button variant="secondary" onClick={this.handleCancel2}>
               Cancel
           </Button>
@@ -558,6 +564,9 @@ class ModalAssessment extends Component {
             </Form>
           </Modal.Body>
           <Modal.Footer>
+            <Button variant="secondary" onClick={this.props.randomScore}>
+              Random Score
+              </Button>
             <Button variant="secondary" onClick={this.handleCancel3}>
               Cancel
           </Button>
@@ -642,6 +651,9 @@ class ModalAssessment extends Component {
             </Form>
           </Modal.Body>
           <Modal.Footer>
+            <Button variant="secondary" onClick={this.props.randomScore}>
+              Random Score
+              </Button>
             <Button variant="secondary" onClick={this.handleCancel4}>
               Cancel
           </Button>
@@ -726,6 +738,9 @@ class ModalAssessment extends Component {
             </Form>
           </Modal.Body>
           <Modal.Footer>
+            <Button variant="secondary" onClick={this.props.randomScore}>
+              Random Score
+              </Button>
             <Button variant="secondary" onClick={this.handleCancel5}>
               Cancel
           </Button>
@@ -810,6 +825,9 @@ class ModalAssessment extends Component {
             </Form>
           </Modal.Body>
           <Modal.Footer>
+            <Button variant="secondary" onClick={this.props.randomScore}>
+              Random Score
+              </Button>
             <Button variant="secondary" onClick={this.handleCancel6}>
               Cancel
           </Button>
@@ -894,6 +912,9 @@ class ModalAssessment extends Component {
             </Form>
           </Modal.Body>
           <Modal.Footer>
+            <Button variant="secondary" onClick={this.props.randomScore}>
+              Random Score
+              </Button>
             <Button variant="secondary" onClick={this.handleCancel7}>
               Cancel
           </Button>
@@ -978,6 +999,9 @@ class ModalAssessment extends Component {
             </Form>
           </Modal.Body>
           <Modal.Footer>
+            <Button variant="secondary" onClick={this.props.randomScore}>
+              Random Score
+              </Button>
             <Button variant="secondary" onClick={this.handleCancel8}>
               Cancel
           </Button>
@@ -1062,6 +1086,9 @@ class ModalAssessment extends Component {
             </Form>
           </Modal.Body>
           <Modal.Footer>
+            <Button variant="secondary" onClick={this.props.randomScore}>
+              Random Score
+              </Button>
             <Button variant="secondary" onClick={this.handleCancel9}>
               Cancel
           </Button>

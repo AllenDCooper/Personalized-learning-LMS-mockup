@@ -12,6 +12,7 @@ class App extends Component {
     super();
     this.updateScore = this.updateScore.bind(this);
     this.submitScore = this.submitScore.bind(this);
+    this.randomScore = this.randomScore.bind(this);
   }
 
   state = {
@@ -206,7 +207,7 @@ class App extends Component {
       item83: (Math.floor(Math.random() * 6) + 1),
       item84: (Math.floor(Math.random() * 6) + 1)
     },
-    () => {this.submitScore()}
+      () => { this.submitScore() }
     )
   }
   submitScore = () => {
@@ -261,93 +262,93 @@ class App extends Component {
     this.setState({
       takenAssessment: null,
       goalOne: null,
-    goalTwo: null,
-    goalThree: null,
-    scoreArr: [],
-    item1: null,
-    item2: null,
-    item3: null,
-    item4: null,
-    item5: null,
-    item6: null,
-    item7: null,
-    item8: null,
-    item9: null,
-    item10: null,
-    item11: null,
-    item12: null,
-    item13: null,
-    item14: null,
-    item15: null,
-    item16: null,
-    item17: null,
-    item18: null,
-    item19: null,
-    item20: null,
-    item21: null,
-    item22: null,
-    item23: null,
-    item24: null,
-    item25: null,
-    item26: null,
-    item27: null,
-    item28: null,
-    item29: null,
-    item30: null,
-    item31: null,
-    item32: null,
-    item33: null,
-    item34: null,
-    item35: null,
-    item36: null,
-    item37: null,
-    item38: null,
-    item39: null,
-    item40: null,
-    item41: null,
-    item42: null,
-    item43: null,
-    item44: null,
-    item45: null,
-    item46: null,
-    item47: null,
-    item48: null,
-    item49: null,
-    item50: null,
-    item51: null,
-    item52: null,
-    item53: null,
-    item54: null,
-    item55: null,
-    item56: null,
-    item57: null,
-    item58: null,
-    item59: null,
-    item60: null,
-    item61: null,
-    item62: null,
-    item63: null,
-    item64: null,
-    item65: null,
-    item66: null,
-    item67: null,
-    item68: null,
-    item69: null,
-    item70: null,
-    item71: null,
-    item72: null,
-    item73: null,
-    item74: null,
-    item75: null,
-    item76: null,
-    item77: null,
-    item78: null,
-    item79: null,
-    item80: null,
-    item81: null,
-    item82: null,
-    item83: null,
-    item84: null
+      goalTwo: null,
+      goalThree: null,
+      scoreArr: [],
+      item1: null,
+      item2: null,
+      item3: null,
+      item4: null,
+      item5: null,
+      item6: null,
+      item7: null,
+      item8: null,
+      item9: null,
+      item10: null,
+      item11: null,
+      item12: null,
+      item13: null,
+      item14: null,
+      item15: null,
+      item16: null,
+      item17: null,
+      item18: null,
+      item19: null,
+      item20: null,
+      item21: null,
+      item22: null,
+      item23: null,
+      item24: null,
+      item25: null,
+      item26: null,
+      item27: null,
+      item28: null,
+      item29: null,
+      item30: null,
+      item31: null,
+      item32: null,
+      item33: null,
+      item34: null,
+      item35: null,
+      item36: null,
+      item37: null,
+      item38: null,
+      item39: null,
+      item40: null,
+      item41: null,
+      item42: null,
+      item43: null,
+      item44: null,
+      item45: null,
+      item46: null,
+      item47: null,
+      item48: null,
+      item49: null,
+      item50: null,
+      item51: null,
+      item52: null,
+      item53: null,
+      item54: null,
+      item55: null,
+      item56: null,
+      item57: null,
+      item58: null,
+      item59: null,
+      item60: null,
+      item61: null,
+      item62: null,
+      item63: null,
+      item64: null,
+      item65: null,
+      item66: null,
+      item67: null,
+      item68: null,
+      item69: null,
+      item70: null,
+      item71: null,
+      item72: null,
+      item73: null,
+      item74: null,
+      item75: null,
+      item76: null,
+      item77: null,
+      item78: null,
+      item79: null,
+      item80: null,
+      item81: null,
+      item82: null,
+      item83: null,
+      item84: null
     })
   }
 
@@ -393,13 +394,13 @@ class App extends Component {
               <Button variant="primary" onClick={this.handleSeeAll} style={{ marginRight: "20px" }}>
                 Toggle See All
               </Button>
-              <Button variant="secondary" onClick={this.randomScore}>
-                Random Score
-              </Button>
             </Jumbotron>
-            <Scorecard scoreArr={this.state.scoreArr}/>
+            <Scorecard scoreArr={this.state.scoreArr} />
             <section>
               <Accordion>
+                <h4 style={{ paddingLeft: "20px" }}>
+                  Your Goals
+                </h4>
                 <AccordionUnit score={this.state.goalOne} />
                 <AccordionUnit score={this.state.goalTwo} />
                 <AccordionUnit score={this.state.goalThree} />
@@ -420,12 +421,9 @@ class App extends Component {
               <Button variant="primary" onClick={this.handleSeeAll} style={{ marginRight: "20px" }}>
                 Toggle See All
               </Button>
-              <Button variant="secondary" onClick={this.randomScore}>
-                Random Score
-              </Button>
             </Jumbotron>
             <section>
-              <Scorecard scoreArr={this.state.scoreArr}/>
+              <Scorecard scoreArr={this.state.scoreArr} />
               <Accordion>
                 <Card>
                   <Accordion.Toggle as={Card.Header} eventKey="0">
@@ -433,7 +431,7 @@ class App extends Component {
                 </Accordion.Toggle>
                   <Accordion.Collapse eventKey="0">
                     <div>
-                      <ModalAssessment updateScore={this.updateScore} submitScore={this.submitScore} />
+                      <ModalAssessment updateScore={this.updateScore} submitScore={this.submitScore} randomScore={this.randomScore} />
                     </div>
                   </Accordion.Collapse>
                 </Card>
@@ -454,11 +452,8 @@ class App extends Component {
               <Button variant="primary" onClick={this.handleSeeAll} style={{ marginRight: "20px" }}>
                 Toggle See All
               </Button>
-              <Button variant="secondary" onClick={this.randomScore}>
-                Random Score
-              </Button>
             </Jumbotron>
-            <Scorecard scoreArr={this.state.scoreArr}/>
+            <Scorecard scoreArr={this.state.scoreArr} />
             <section>
               <Accordion>
                 <Card>
@@ -467,7 +462,7 @@ class App extends Component {
                   </Accordion.Toggle>
                   <Accordion.Collapse eventKey="0">
                     <div>
-                      <ModalAssessment updateScore={this.updateScore} submitScore={this.submitScore} />
+                      <ModalAssessment updateScore={this.updateScore} submitScore={this.submitScore} randomScore={this.randomScore} />
                     </div>
                   </Accordion.Collapse>
                 </Card>
