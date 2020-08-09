@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import { Container, Jumbotron, Accordion, Card, Button } from 'react-bootstrap';
+import { Container, Accordion, Card } from 'react-bootstrap';
 import ModalAssessment from './ModalAssessment/ModalAssessment';
 import AccordionUnit from './AccordionUnit/AccordionUnit';
 import Scorecard from './Scorecard/Scorecard';
 import normTable from './normTable.js';
+import Header from './Header/Header';
 
 class App extends Component {
 
@@ -214,10 +215,10 @@ class App extends Component {
   }
 
   convertToPercentile = (value, scaleNum) => {
-    for (var i = 0; i < normTable[(scaleNum-1)].length; i++) {
-      if (value === parseInt(Object.keys(normTable[(scaleNum-1)][i]))) {
-        return Object.values(normTable[(scaleNum-1)][i])
-      } 
+    for (var i = 0; i < normTable[(scaleNum - 1)].length; i++) {
+      if (value === parseInt(Object.keys(normTable[(scaleNum - 1)][i]))) {
+        return Object.values(normTable[(scaleNum - 1)][i])
+      }
     }
   }
 
@@ -263,7 +264,7 @@ class App extends Component {
 
     // store the aggregate raw scores for each scale into an array (code below if needed later on)
 
-      // const rawScoreArr = [{ name: "criticalThinkingScore", value: criticalThinkingRawScore }, { name: "motivationScore", value: motivationRawScore }, { name: "learningScore", value: learningRawScore }, { name: "timeManagementScore", value: timeManagementRawScore }, { name: "readingScore", value: readingRawScore }, { name: "noteTakingScore", value: noteTakingRawScore }, { name: "memoryScore", value: memoryRawScore }, { name: "testTakingScore", value: testTakingRawScore }, { name: "commScore", value: commRawScore }, { name: "connectingScore", value: connectingRawScore }, { name: "healthScore", value: healthRawScore }, { name: "planningScore", value: planningRawScore }]
+    // const rawScoreArr = [{ name: "criticalThinkingScore", value: criticalThinkingRawScore }, { name: "motivationScore", value: motivationRawScore }, { name: "learningScore", value: learningRawScore }, { name: "timeManagementScore", value: timeManagementRawScore }, { name: "readingScore", value: readingRawScore }, { name: "noteTakingScore", value: noteTakingRawScore }, { name: "memoryScore", value: memoryRawScore }, { name: "testTakingScore", value: testTakingRawScore }, { name: "commScore", value: commRawScore }, { name: "connectingScore", value: connectingRawScore }, { name: "healthScore", value: healthRawScore }, { name: "planningScore", value: planningRawScore }]
 
     // store the percentile scores for each scale into an array
     const percentileArr = [{ name: "criticalThinkingScore", value: criticalThinkingScore }, { name: "motivationScore", value: motivationScore }, { name: "learningScore", value: learningScore }, { name: "timeManagementScore", value: timeManagementScore }, { name: "readingScore", value: readingScore }, { name: "noteTakingScore", value: noteTakingScore }, { name: "memoryScore", value: memoryScore }, { name: "testTakingScore", value: testTakingScore }, { name: "commScore", value: commScore }, { name: "connectingScore", value: connectingScore }, { name: "healthScore", value: healthScore }, { name: "planningScore", value: planningScore }]
@@ -418,15 +419,7 @@ class App extends Component {
       return (
         <div>
           <Container>
-            <Jumbotron>
-              <h1>ACES Goal-Setter</h1>
-              <Button variant="primary" onClick={this.handleReset} style={{ marginRight: "20px" }}>
-                Reset
-              </Button>
-              <Button variant="primary" onClick={this.handleSeeAll} style={{ marginRight: "20px" }}>
-                Toggle See All
-              </Button>
-            </Jumbotron>
+            <Header OnClickReset={this.handleReset} onClickerSeeAll={this.handleSeeAll} />
             <Scorecard scoreArr={this.state.scoreArr} />
             <section>
               <Accordion>
@@ -445,15 +438,7 @@ class App extends Component {
       return (
         <div>
           <Container>
-            <Jumbotron>
-              <h1>ACES Goal-Setter</h1>
-              <Button variant="primary" onClick={this.handleReset} style={{ marginRight: "20px" }}>
-                Reset
-              </Button>
-              <Button variant="primary" onClick={this.handleSeeAll} style={{ marginRight: "20px" }}>
-                Toggle See All
-              </Button>
-            </Jumbotron>
+            <Header OnClickReset={this.handleReset} onClickerSeeAll={this.handleSeeAll} />
             <section>
               <Scorecard scoreArr={this.state.scoreArr} />
               <Accordion>
@@ -476,15 +461,7 @@ class App extends Component {
       return (
         <div>
           <Container>
-            <Jumbotron>
-              <h1>ACES Goal-Setter</h1>
-              <Button variant="primary" onClick={this.handleReset} style={{ marginRight: "20px" }}>
-                Reset
-              </Button>
-              <Button variant="primary" onClick={this.handleSeeAll} style={{ marginRight: "20px" }}>
-                Toggle See All
-              </Button>
-            </Jumbotron>
+            <Header OnClickReset={this.handleReset} onClickerSeeAll={this.handleSeeAll} />
             <Scorecard scoreArr={this.state.scoreArr} />
             <section>
               <Accordion>
