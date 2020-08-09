@@ -412,33 +412,27 @@ class App extends Component {
     }
     return newArr
   }
-  render() {
 
-
-    if (this.state.seeAll === false && this.state.takenAssessment) {
+  renderSections = (seeAll, takenAssessment) => {
+    if (!seeAll && takenAssessment) {
       return (
         <div>
-          <Container>
-            <Header OnClickReset={this.handleReset} onClickerSeeAll={this.handleSeeAll} />
-            <Scorecard scoreArr={this.state.scoreArr} />
-            <section>
-              <Accordion>
-                <h4 style={{ paddingLeft: "20px" }}>
-                  Your Personalized Goals
+          <Scorecard scoreArr={this.state.scoreArr} />
+          <section>
+            <Accordion>
+              <h4 style={{ paddingLeft: "20px" }}>
+                Your Personalized Goals
                 </h4>
-                <AccordionUnit score={this.state.goalOne} />
-                <AccordionUnit score={this.state.goalTwo} />
-                <AccordionUnit score={this.state.goalThree} />
-              </Accordion>
-            </section>
-          </Container>
+              <AccordionUnit score={this.state.goalOne} />
+              <AccordionUnit score={this.state.goalTwo} />
+              <AccordionUnit score={this.state.goalThree} />
+            </Accordion>
+          </section>
         </div>
       )
-    } else if (this.state.seeAll === false) {
+    } else if (!seeAll) {
       return (
         <div>
-          <Container>
-            <Header OnClickReset={this.handleReset} onClickerSeeAll={this.handleSeeAll} />
             <section>
               <Scorecard scoreArr={this.state.scoreArr} />
               <Accordion>
@@ -454,14 +448,11 @@ class App extends Component {
                 </Card>
               </Accordion>
             </section>
-          </Container>
         </div>
       );
     } else {
       return (
-        <div>
-          <Container>
-            <Header OnClickReset={this.handleReset} onClickerSeeAll={this.handleSeeAll} />
+          <div>
             <Scorecard scoreArr={this.state.scoreArr} />
             <section>
               <Accordion>
@@ -621,10 +612,21 @@ class App extends Component {
                 </Card>
               </Accordion>
             </section>
-          </Container>
-        </div>
+          </div>
       )
     }
   }
+
+  render() {
+    return (
+          <div>
+            <Container>
+              <Header onClickReset={this.handleReset} onClickSeeAll={this.handleSeeAll} />
+              {this.renderSections(this.state.seeAll, this.state.takenAssessment)}
+            </Container>
+          </div>
+    )
+  }
 }
+
 export default App;
