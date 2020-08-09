@@ -17,6 +17,8 @@ function FormCheck(props) {
             name={`item${(index + 1 + ( 10 * parseInt(props.pageNum)))}`}
             value={item.reverseScore ? 1 : 6}
             onChange={props.updateScore}
+            required
+            feedback="You must select an option."
           />
           <Form.Check
             custom
@@ -27,6 +29,8 @@ function FormCheck(props) {
             name={`item${(index + 1 + ( 10 * parseInt(props.pageNum)))}`}
             value={item.reverseScore ? 2 : 5}
             onChange={props.updateScore}
+            required
+            feedback="You must select an option."
           />
           <Form.Check
             custom
@@ -37,6 +41,8 @@ function FormCheck(props) {
             name={`item${(index + 1 + ( 10 * parseInt(props.pageNum)))}`}
             value={item.reverseScore ? 3 : 4}
             onChange={props.updateScore}
+            required
+            feedback="You must select an option."
           />
           <Form.Check
             custom
@@ -47,6 +53,8 @@ function FormCheck(props) {
             name={`item${(index + 1 + ( 10 * parseInt(props.pageNum)))}`}
             value={item.reverseScore ? 4 : 3}
             onChange={props.updateScore}
+            required
+            feedback="You must select an option."
           />
           <Form.Check
             custom
@@ -57,6 +65,8 @@ function FormCheck(props) {
             name={`item${(index + 1 + ( 10 * parseInt(props.pageNum)))}`}
             value={item.reverseScore ? 5 : 2}
             onChange={props.updateScore}
+            required
+            feedback="You must select an option."
           />
           <Form.Check
             custom
@@ -67,6 +77,8 @@ function FormCheck(props) {
             name={`item${(index + 1 + ( 10 * parseInt(props.pageNum)))}`}
             value={item.reverseScore ? 6 : 1}
             onChange={props.updateScore}
+            required
+            feedback="You must select an option."
           />
         </div>
       ))}
