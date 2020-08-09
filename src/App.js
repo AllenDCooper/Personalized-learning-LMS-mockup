@@ -227,11 +227,11 @@ class App extends Component {
     // sum individual item scores to create aggregate raw scores for each scale
     const criticalThinkingRawScore = this.state.item1 + this.state.item35 + this.state.item43 + this.state.item60 + this.state.item69 + this.state.item77
 
-    const motivationRawScore = this.state.item2 + this.state.item9 + this.state.item17 + this.state.item28 + this.state.item44 + (7 - this.state.item61) + this.state.item70 + (7 - this.state.item78)
+    const motivationRawScore = this.state.item2 + this.state.item9 + this.state.item17 + this.state.item28 + this.state.item44 + this.state.item61 + this.state.item70 + this.state.item78
 
-    const learningRawScore = this.state.item3 + this.state.item10 + (7 - this.state.item22) + this.state.item29 + this.state.item36 + (7 - this.state.item45) + (7 - this.state.item52) + this.state.item62 + this.state.item79
+    const learningRawScore = this.state.item3 + this.state.item10 + this.state.item22 + this.state.item29 + this.state.item36 + this.state.item45 + this.state.item52 + this.state.item62 + this.state.item79
 
-    const timeManagementRawScore = (7 - this.state.item11) + (7 - this.state.item23) + this.state.item30 + (7 - this.state.item46) + (7 - this.state.item46) + (7 - this.state.item53) + (7 - this.state.item63) + (7 - this.state.item71)
+    const timeManagementRawScore = this.state.item11 + this.state.item23 + this.state.item30 + this.state.item46 + this.state.item46 + this.state.item53 + this.state.item63 + this.state.item71
 
     const readingRawScore = this.state.item4 + this.state.item12 + this.state.item37 + this.state.item47 + this.state.item54 + this.state.item72 + this.state.item80
 
@@ -247,7 +247,7 @@ class App extends Component {
 
     const healthRawScore = this.state.item15 + this.state.item27 + this.state.item33 + this.state.item42 + this.state.item58 + this.state.item68 + this.state.item58
 
-    const planningRawScore = this.state.item8 + this.state.item16 + (7 - this.state.item21) + this.state.item34 + this.state.item51 + (7 - this.state.item59) + (7 - this.state.item76)
+    const planningRawScore = this.state.item8 + this.state.item16 + this.state.item21 + this.state.item34 + this.state.item51 + this.state.item59 + this.state.item76
 
     const criticalThinkingScore = this.convertToPercentile(criticalThinkingRawScore, 1)
     const motivationScore = this.convertToPercentile(motivationRawScore, 2);
