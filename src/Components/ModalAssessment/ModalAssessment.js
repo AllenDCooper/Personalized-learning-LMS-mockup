@@ -66,6 +66,7 @@ class ModalAssessment extends Component {
     }
   }
 
+  // function that takes an array and breaks it down into smaller arrays limited to 10 items each
   createChunkedArrays = (arr, size) => {
     const chunked_arr = [];
     let copied = [...arr];
@@ -76,6 +77,7 @@ class ModalAssessment extends Component {
     return chunked_arr;
   }
 
+  // render function dynamically creates forms for each chunked array
   render() {
     console.log(this.state.validated);
     const chunkedArrays = this.createChunkedArrays(itemsArr, 10)

@@ -5,11 +5,15 @@ class Scorecard extends Component {
 
   render() {
     console.log(this.props.scoreArr)
+
+    // if no scores because assessment hasn't been taken yet, then no content modules will be delivered to user
     if (this.props.scoreArr.length === 0) {
       return (
         null
       )
-    } else {
+    } 
+    // otherwise will display a strengths report module
+    else {
       return (
         <div>
           <h4 style={{ paddingLeft: "20px" }}>

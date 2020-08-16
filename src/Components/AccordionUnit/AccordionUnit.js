@@ -2,6 +2,8 @@ import { Component } from 'react';
 import { criticalThinkingUnit, motivationUnit, learningUnit, timeManagementUnit, readingUnit, noteTakingUnit, memoryUnit, testTakingUnit, commUnit, connectingUnit, healthUnit, planningUnit } from '../ContentUnits/ContentUnits'
 
 class AccordionUnit extends Component {
+  
+  // this function will deliver the appropriate content unit for the particular scale passed in as props
   scoreSwitch = (score) => {
     console.log(score)
     switch (score) {
