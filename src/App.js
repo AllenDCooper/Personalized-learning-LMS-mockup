@@ -22,18 +22,16 @@ class App extends Component {
   state = {
     takenAssessment: false,
     seeAll: false,
-    goalOne: null,
-    goalTwo: null,
-    goalThree: null,
     scoreArr: [],
     rawScoreArr: [],
     answerArr: [],
+    goalOne: null,
+    goalTwo: null,
+    goalThree: null,
   }
 
   updateScore = (event, index) => {
-    // const index = parseInt(event.target.key);
     const value = parseInt(event.target.value);
-
     this.setState(state => {
       const answerArr = state.answerArr;
       answerArr[index] = value;
@@ -41,9 +39,6 @@ class App extends Component {
         answerArr
       }
     })
-    console.log(`answerArr: ${this.state.answerArr}`)
-    console.log(`answerArr[0]: ${this.state.answerArr[0]}`)
-    console.log(`type of answerArr[0]: ${typeof this.state.answerArr[0]}`)
   }
 
   randomScore = () => {
@@ -75,10 +70,8 @@ class App extends Component {
   }
 
   submitScore = () => {
-
     let rawScoreArr = []
     let percentileArr = []
-
     scales.forEach(element => {
       const scaleName = element.name
       let rawScoreSum = 0
@@ -89,33 +82,16 @@ class App extends Component {
       })
       const scoreObj = {name: scaleName, score: rawScoreSum}
       rawScoreArr.push(scoreObj)
-      const percentileScore = this.convertToPercentile(rawScoreSum, 1)
+      const percentileScore = parseInt(this.convertToPercentile(rawScoreSum, 1))
       const percentileObj = {name: scaleName, score: percentileScore}
       percentileArr.push(percentileObj)
     })
     console.log(rawScoreArr);
     console.log(percentileArr);
 
-    // const criticalThinkingScore = this.convertToPercentile((rawScoreArr[0].score), 1)
-    // const motivationScore = this.convertToPercentile((rawScoreArr[1].score), 2);
-    // const learningScore = this.convertToPercentile((rawScoreArr[2].score), 3);
-    // const timeManagementScore = this.convertToPercentile((rawScoreArr[3].score), 4);
-    // const readingScore = this.convertToPercentile((rawScoreArr[4].score), 5);
-    // const noteTakingScore = this.convertToPercentile((rawScoreArr[5].score), 6);
-    // const memoryScore = this.convertToPercentile((rawScoreArr[6].score), 7);
-    // const testTakingScore = this.convertToPercentile((rawScoreArr[7].score), 8);
-    // const commScore = this.convertToPercentile((rawScoreArr[8].score), 9);
-    // const connectingScore = this.convertToPercentile((rawScoreArr[9].score), 10);
-    // const healthScore = this.convertToPercentile((rawScoreArr[10].score), 11)
-    // const planningScore = this.convertToPercentile((rawScoreArr[11].score), 12);
-
-    // store the percentile scores for each scale into an array
-    // const percentileArr = [{ name: "criticalThinkingScore", value: criticalThinkingScore }, { name: "motivationScore", value: motivationScore }, { name: "learningScore", value: learningScore }, { name: "timeManagementScore", value: timeManagementScore }, { name: "readingScore", value: readingScore }, { name: "noteTakingScore", value: noteTakingScore }, { name: "memoryScore", value: memoryScore }, { name: "testTakingScore", value: testTakingScore }, { name: "commScore", value: commScore }, { name: "connectingScore", value: connectingScore }, { name: "healthScore", value: healthScore }, { name: "planningScore", value: planningScore }]
-
-    // console.log(percentileArr);
     // sort the array from smallest to largest
-    // const sortedValues = this.sortValues(answerArr);
     const sortedPercentileValues = this.sortValues(percentileArr);
+
 
     // save the three smallest values
     const goalOne = sortedPercentileValues[0]
@@ -150,14 +126,16 @@ class App extends Component {
   }
 
   sortValues = (arr) => {
-    console.log(arr)
-    arr.sort(function (a, b) {
-      return a.value - b.value
+    const arrCopy = [...arr]
+    console.log(arrCopy)
+    arrCopy.sort(function (a, b) {
+      return a.score - b.score
     })
     let newArr = []
     for (let i = 0; i < arr.length; i++) {
       newArr.push(arr[i])
     }
+    console.log(newArr)
     return newArr
   }
 
