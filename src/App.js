@@ -77,6 +77,7 @@ class App extends Component {
   submitScore = () => {
 
     let rawScoreArr = []
+    let percentileArr = []
 
     scales.forEach(element => {
       const scaleName = element.name
@@ -88,26 +89,30 @@ class App extends Component {
       })
       const scoreObj = {name: scaleName, score: rawScoreSum}
       rawScoreArr.push(scoreObj)
+      const percentileScore = this.convertToPercentile(rawScoreSum, 1)
+      const percentileObj = {name: scaleName, score: percentileScore}
+      percentileArr.push(percentileObj)
     })
-    console.log(rawScoreArr);;
+    console.log(rawScoreArr);
+    console.log(percentileArr);
 
-    const criticalThinkingScore = this.convertToPercentile((rawScoreArr[0].score), 1)
-    const motivationScore = this.convertToPercentile((rawScoreArr[1].score), 2);
-    const learningScore = this.convertToPercentile((rawScoreArr[2].score), 3);
-    const timeManagementScore = this.convertToPercentile((rawScoreArr[3].score), 4);
-    const readingScore = this.convertToPercentile((rawScoreArr[4].score), 5);
-    const noteTakingScore = this.convertToPercentile((rawScoreArr[5].score), 6);
-    const memoryScore = this.convertToPercentile((rawScoreArr[6].score), 7);
-    const testTakingScore = this.convertToPercentile((rawScoreArr[7].score), 8);
-    const commScore = this.convertToPercentile((rawScoreArr[8].score), 9);
-    const connectingScore = this.convertToPercentile((rawScoreArr[9].score), 10);
-    const healthScore = this.convertToPercentile((rawScoreArr[10].score), 11)
-    const planningScore = this.convertToPercentile((rawScoreArr[11].score), 12);
+    // const criticalThinkingScore = this.convertToPercentile((rawScoreArr[0].score), 1)
+    // const motivationScore = this.convertToPercentile((rawScoreArr[1].score), 2);
+    // const learningScore = this.convertToPercentile((rawScoreArr[2].score), 3);
+    // const timeManagementScore = this.convertToPercentile((rawScoreArr[3].score), 4);
+    // const readingScore = this.convertToPercentile((rawScoreArr[4].score), 5);
+    // const noteTakingScore = this.convertToPercentile((rawScoreArr[5].score), 6);
+    // const memoryScore = this.convertToPercentile((rawScoreArr[6].score), 7);
+    // const testTakingScore = this.convertToPercentile((rawScoreArr[7].score), 8);
+    // const commScore = this.convertToPercentile((rawScoreArr[8].score), 9);
+    // const connectingScore = this.convertToPercentile((rawScoreArr[9].score), 10);
+    // const healthScore = this.convertToPercentile((rawScoreArr[10].score), 11)
+    // const planningScore = this.convertToPercentile((rawScoreArr[11].score), 12);
 
     // store the percentile scores for each scale into an array
-    const percentileArr = [{ name: "criticalThinkingScore", value: criticalThinkingScore }, { name: "motivationScore", value: motivationScore }, { name: "learningScore", value: learningScore }, { name: "timeManagementScore", value: timeManagementScore }, { name: "readingScore", value: readingScore }, { name: "noteTakingScore", value: noteTakingScore }, { name: "memoryScore", value: memoryScore }, { name: "testTakingScore", value: testTakingScore }, { name: "commScore", value: commScore }, { name: "connectingScore", value: connectingScore }, { name: "healthScore", value: healthScore }, { name: "planningScore", value: planningScore }]
+    // const percentileArr = [{ name: "criticalThinkingScore", value: criticalThinkingScore }, { name: "motivationScore", value: motivationScore }, { name: "learningScore", value: learningScore }, { name: "timeManagementScore", value: timeManagementScore }, { name: "readingScore", value: readingScore }, { name: "noteTakingScore", value: noteTakingScore }, { name: "memoryScore", value: memoryScore }, { name: "testTakingScore", value: testTakingScore }, { name: "commScore", value: commScore }, { name: "connectingScore", value: connectingScore }, { name: "healthScore", value: healthScore }, { name: "planningScore", value: planningScore }]
 
-    console.log(percentileArr);
+    // console.log(percentileArr);
     // sort the array from smallest to largest
     // const sortedValues = this.sortValues(answerArr);
     const sortedPercentileValues = this.sortValues(percentileArr);
@@ -122,7 +127,7 @@ class App extends Component {
       goalOne: goalOne,
       goalTwo: goalTwo,
       goalThree: goalThree,
-      scoreArr: [criticalThinkingScore, motivationScore, learningScore, timeManagementScore, readingScore, noteTakingScore, memoryScore, testTakingScore, commScore, connectingScore, healthScore, planningScore],
+      scoreArr: percentileArr,
     });
   }
 

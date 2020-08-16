@@ -87,7 +87,7 @@ class ModalAssessment extends Component {
           </Card.Body>
         </Card>
         {chunkedArrays.map((item, index) => (
-          <Modal size="xl" show={this.state.show === (index + 1)} onHide={this.handleCancel}>
+          <Modal size="xl" key={`key-${index}`} show={this.state.show === (index + 1)} onHide={this.handleCancel}>
             <Form noValidate validated={this.state.validated} onSubmit={this.handleSubmit}>
               <Modal.Header closeButton>
                 <Modal.Title>Initial Self-Assessment</Modal.Title>
