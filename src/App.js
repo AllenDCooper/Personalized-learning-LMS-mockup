@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { Container, Accordion, Card } from 'react-bootstrap';
-import ModalAssessment from './ModalAssessment/ModalAssessment';
-import AccordionUnit from './AccordionUnit/AccordionUnit';
-import Scorecard from './Scorecard/Scorecard';
+import ModalAssessment from './Components/ModalAssessment/ModalAssessment';
+import AccordionUnit from './Components/AccordionUnit/AccordionUnit';
+import Scorecard from './Components/Scorecard/Scorecard';
 import normTable from './ACES_Assessment/normTable.js';
-import Header from './Header/Header';
+import Header from './Components/Header/Header';
 import itemsArr from './ACES_Assessment/itemsArr';
 import scales from './ACES_Assessment/scales';
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Modal, Button, Card, Form } from 'react-bootstrap';
-import itemsArr from '../ACES_Assessment/itemsArr';
+import itemsArr from '../../ACES_Assessment/itemsArr';
 import FormCheck from '../FormCheck/FormCheck';
 
 class ModalAssessment extends Component {
