@@ -61,10 +61,10 @@ class App extends Component {
     )
   }
 
-  convertToPercentile = (value, scaleNum) => {
-    for (var i = 0; i < normTable[(scaleNum - 1)].length; i++) {
-      if (value === parseInt(Object.keys(normTable[(scaleNum - 1)][i]))) {
-        return Object.values(normTable[(scaleNum - 1)][i])
+  convertToPercentile = (value, scaleIndex) => {
+    for (var i = 0; i < normTable[scaleIndex].length; i++) {
+      if (value === parseInt(Object.keys(normTable[scaleIndex][i]))) {
+        return Object.values(normTable[scaleIndex][i])
       }
     }
   }
@@ -72,17 +72,17 @@ class App extends Component {
   submitScore = () => {
     let rawScoreArr = []
     let percentileArr = []
-    scales.forEach(element => {
-      const scaleName = element.name
+    scales.forEach((scale, scaleIndex) => {
+      const scaleName = scale.name
       let rawScoreSum = 0
-      element.itemIndexes.forEach(index => {
+      scale.itemIndexes.forEach(index => {
         const score = this.state.answerArr[index]
         rawScoreSum += score
         console.log(rawScoreSum)
       })
       const scoreObj = {name: scaleName, score: rawScoreSum}
       rawScoreArr.push(scoreObj)
-      const percentileScore = parseInt(this.convertToPercentile(rawScoreSum, 1))
+      const percentileScore = parseInt(this.convertToPercentile(rawScoreSum, scaleIndex))
       const percentileObj = {name: scaleName, score: percentileScore}
       percentileArr.push(percentileObj)
     })
@@ -90,8 +90,8 @@ class App extends Component {
     console.log(percentileArr);
 
     // sort the array from smallest to largest
-    const sortedPercentileValues = this.sortValues(percentileArr);
-
+    const arrCopy = [...percentileArr]
+    const sortedPercentileValues = this.sortValues(arrCopy);
 
     // save the three smallest values
     const goalOne = sortedPercentileValues[0]
@@ -126,9 +126,8 @@ class App extends Component {
   }
 
   sortValues = (arr) => {
-    const arrCopy = [...arr]
-    console.log(arrCopy)
-    arrCopy.sort(function (a, b) {
+    console.log(arr);
+    arr.sort(function (a, b) {
       return a.score - b.score
     })
     let newArr = []

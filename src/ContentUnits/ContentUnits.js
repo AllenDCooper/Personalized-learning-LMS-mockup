@@ -22,7 +22,7 @@ function motivationUnit() {
   return (
     <Card>
       <Accordion.Toggle as={Card.Header} eventKey="2">
-        Motivation and Decision Making
+        Motivation, Decision Making, and Personal Responsibility
             </Accordion.Toggle>
       <Accordion.Collapse eventKey="2">
         <div>
@@ -39,7 +39,7 @@ function learningUnit() {
   return (
     <Card>
       <Accordion.Toggle as={Card.Header} eventKey="3">
-        LearningPreferences
+        Learning Preferences
               </Accordion.Toggle>
       <Accordion.Collapse eventKey="3">
         <div>

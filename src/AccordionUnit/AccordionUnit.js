@@ -5,51 +5,51 @@ class AccordionUnit extends Component {
   scoreSwitch = (score) => {
     console.log(score)
     switch (score) {
-      case "criticalThinkingScore":
+      case "Critical Thinking and Goal Setting":
         return (
             criticalThinkingUnit()
         )
-      case "motivationScore":
+      case "Motivation, Decision Making, and Personal Responsibility":
         return (
           motivationUnit()
         )
-      case "learningScore":
+      case "Learning Preferences":
         return (
           learningUnit()
         )
-      case "timeManagementScore":
+      case "Organization and Time Management":
         return (
           timeManagementUnit()
         )
-      case "readingScore":
+      case "Reading":
         return (
           readingUnit()
         )
-      case "noteTakingScore":
+      case "Note Taking":
         return (
           noteTakingUnit()
         )
-      case "memoryScore":
+      case "Memory and Studying":
         return (
           memoryUnit()
         );
-      case "testTakingScore":
+      case "Test Taking":
         return (
           testTakingUnit()
         );
-      case "commScore":
+      case "Information Literacy and Communication":
         return (
           commUnit()
         )
-      case "connectingScore":
+      case "Connecting with Others":
         return (
           connectingUnit()
         )
-      case "healthScore":
+      case "Personal and Financial Health":
         return (
           healthUnit()
         )
-      case "planningScore":
+      case "Academic and Career Planning":
         return (
           planningUnit()
         )
