@@ -4,14 +4,14 @@ import { Card, Accordion } from 'react-bootstrap';
 class Scorecard extends Component {
 
   render() {
-    console.log(this.props.scoreArr)
+    console.log(this.props.strengthsArr)
 
     // if no scores because assessment hasn't been taken yet, then no content modules will be delivered to user
     if (this.props.scoreArr.length === 0) {
       return (
         null
       )
-    } 
+    }
     // otherwise will display a strengths report module
     else {
       return (
@@ -26,10 +26,29 @@ class Scorecard extends Component {
             </Accordion.Toggle>
               <Accordion.Collapse eventKey="14">
                 <Card.Body>
+                  <h5>Your Strengths</h5>
                   <ul>
-                    {this.props.scoreArr.map((scale, index) => (
-                      <li key={`key-${index}`}>{scale.name}: {scale.score}%</li>
-                    ))}
+                    {this.props.strengthsArr[0].Strengths.length === 0 ? <li>[empty]</li> : (
+                      this.props.strengthsArr[0].Strengths.map((scale, index) => (
+                        <li key={`key-${index}`}>{scale.name}: {scale.score}%</li>
+                      ))
+                    )}
+                  </ul>
+                  <h5>Your Developing Strengths</h5>
+                  <ul>
+                    {this.props.strengthsArr[1].Strengths.length === 0 ? <li>[empty]</li> : (
+                      this.props.strengthsArr[1].Strengths.map((scale, index) => (
+                        <li key={`key-${index}`}>{scale.name}: {scale.score}%</li>
+                      ))
+                    )}
+                  </ul>
+                  <h5>Your Growth Areas</h5>
+                  <ul>
+                    {this.props.strengthsArr[2].Strengths.length === 0 ? <li>[empty]</li> : (
+                      this.props.strengthsArr[2].Strengths.map((scale, index) => (
+                        <li key={`key-${index}`}>{scale.name}: {scale.score}%</li>
+                      ))
+                    )}
                   </ul>
                 </Card.Body>
               </Accordion.Collapse>

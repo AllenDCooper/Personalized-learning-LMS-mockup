@@ -31,6 +31,7 @@ class App extends Component {
     scoreArr: [],
     rawScoreArr: [],
     answerArr: [],
+    strengthsArr: [],
     goalOne: null,
     goalTwo: null,
     goalThree: null,
@@ -122,12 +123,17 @@ class App extends Component {
     const goalTwo = sortedPercentileValues[1]
     const goalThree = sortedPercentileValues[2]
 
+    // sort percentile array into 3 arrays: strengths, developing strengths, and growth areas
+    const strengthsArr = this.sortStrengths(percentileArr)
+
+    // save into state
     this.setState({
       takenAssessment: true,
       goalOne: goalOne,
       goalTwo: goalTwo,
       goalThree: goalThree,
       scoreArr: percentileArr,
+      strengthsArr: strengthsArr,
     });
   }
 
@@ -167,13 +173,65 @@ class App extends Component {
     return newArr
   }
 
+  reverseSortValues = (arr) => {
+    console.log(arr);
+    arr.sort(function (a, b) {
+      return b.score - a.score
+    })
+    let newArr = []
+    for (let i = 0; i < arr.length; i++) {
+      newArr.push(arr[i])
+    }
+    console.log(newArr)
+    return newArr
+  } 
+
+  sortStrengths = (arr) => {
+    const descendingArr = this.reverseSortValues(arr);
+    console.log(`descendingArr: ${descendingArr}`);
+    const strengthsArr = [{"Strengths": []}, {"Developing Strengths": []}, {"Growth Areas": []}]
+    descendingArr.forEach((element, index) => {
+      console.log(`element.score: ${element.score}`);
+      if (element.score > 75) {
+        const arrCopy1 = strengthsArr[0].Strengths
+        console.log(arrCopy1)
+        let arr1 = []
+        arrCopy1 === undefined ? arr1 = [] : arr1 = [...arrCopy1]
+        arr1.push(element)
+        console.log(arr1)
+        strengthsArr[0].Strengths = arr1
+        console.log(strengthsArr)
+      } else if (element.score <= 75 && element.score > 25) {
+        const arrCopy2 = strengthsArr[1].Strengths
+        console.log(arrCopy2)
+        let arr2 = []
+        arrCopy2 === undefined ? arr2 = [] : arr2 = [...arrCopy2]
+        arr2.push(element)
+        console.log(arr2)
+        strengthsArr[1].Strengths = arr2
+        console.log(strengthsArr)
+      } else {
+        const arrCopy3 = strengthsArr[2].Strengths
+        console.log(arrCopy3)
+        let arr3 = []
+        arrCopy3 === undefined ? arr3 = [] : arr3 = [...arrCopy3]
+        arr3.push(element)
+        console.log(arr3)
+        strengthsArr[2].Strengths = arr3
+        console.log(strengthsArr)
+      }
+    })
+    console.log(`strengthsArr: ${strengthsArr}`)
+    return strengthsArr
+  }
+
   // helper function that will conditionally return components, and will be called in the render
   renderSections = (seeAll, takenAssessment) => {
     // displays three goal content units after assessment is taken
     if (!seeAll && takenAssessment) {
       return (
         <div>
-          <Scorecard scoreArr={this.state.scoreArr} />
+          <Scorecard strengthsArr={this.state.strengthsArr} scoreArr={this.state.scoreArr} />
           <section>
             <Accordion>
               <h4 style={{ paddingLeft: "20px" }}>
@@ -192,7 +250,7 @@ class App extends Component {
       return (
         <div>
           <section>
-            <Scorecard scoreArr={this.state.scoreArr} />
+            <Scorecard strengthsArr={this.state.strengthsArr} scoreArr={this.state.scoreArr} />
             <Accordion>
               <Card>
                 <Accordion.Toggle as={Card.Header} eventKey="0">
@@ -213,7 +271,7 @@ class App extends Component {
     else {
       return (
         <div>
-          <Scorecard scoreArr={this.state.scoreArr} />
+          <Scorecard strengthsArr={this.state.strengthsArr} scoreArr={this.state.scoreArr} />
           <section>
             <Accordion>
               <Card>
