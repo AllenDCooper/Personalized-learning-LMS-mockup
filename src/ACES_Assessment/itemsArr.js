@@ -86,4 +86,4 @@ const itemsArr = [
   {itemText: "I manage stress well.", reverseScore: false}
 ]
 
-export default itemsArr; 
+export default itemsArr;

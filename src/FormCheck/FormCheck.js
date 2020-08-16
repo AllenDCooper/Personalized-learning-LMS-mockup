@@ -15,8 +15,9 @@ function FormCheck(props) {
             type="radio"
             id={`item-1-${(index + 1 + ( 10 * parseInt(props.pageNum)))}`}
             name={`item${(index + 1 + ( 10 * parseInt(props.pageNum)))}`}
+            datavalue={index + 1 + ( 10 * parseInt(props.pageNum))}
             value={item.reverseScore ? 1 : 6}
-            onChange={props.updateScore}
+            onChange={(event) => props.updateScore(event, (index + ( 10 * parseInt(props.pageNum))))}
             required
             feedback="You must select an option."
           />
@@ -27,8 +28,9 @@ function FormCheck(props) {
             type="radio"
             id={`item-2-${(index + 1 + ( 10 * parseInt(props.pageNum)))}`}
             name={`item${(index + 1 + ( 10 * parseInt(props.pageNum)))}`}
+            datavalue={index + 1 + ( 10 * parseInt(props.pageNum))}
             value={item.reverseScore ? 2 : 5}
-            onChange={props.updateScore}
+            onChange={(event) => props.updateScore(event, (index + ( 10 * parseInt(props.pageNum))))}
             required
             feedback="You must select an option."
           />
@@ -39,8 +41,9 @@ function FormCheck(props) {
             type="radio"
             id={`item-3-${(index + 1 + ( 10 * parseInt(props.pageNum)))}`}
             name={`item${(index + 1 + ( 10 * parseInt(props.pageNum)))}`}
+            datavalue={index + 1 + ( 10 * parseInt(props.pageNum))}
             value={item.reverseScore ? 3 : 4}
-            onChange={props.updateScore}
+            onChange={(event) => props.updateScore(event, (index + ( 10 * parseInt(props.pageNum))))}
             required
             feedback="You must select an option."
           />
@@ -51,8 +54,9 @@ function FormCheck(props) {
             type="radio"
             id={`item-4-${(index + 1 + ( 10 * parseInt(props.pageNum)))}`}
             name={`item${(index + 1 + ( 10 * parseInt(props.pageNum)))}`}
+            datavalue={index + 1 + ( 10 * parseInt(props.pageNum))}
             value={item.reverseScore ? 4 : 3}
-            onChange={props.updateScore}
+            onChange={(event) => props.updateScore(event, (index + ( 10 * parseInt(props.pageNum))))}
             required
             feedback="You must select an option."
           />
@@ -63,8 +67,9 @@ function FormCheck(props) {
             type="radio"
             id={`item-5-${(index + 1 + ( 10 * parseInt(props.pageNum)))}`}
             name={`item${(index + 1 + ( 10 * parseInt(props.pageNum)))}`}
+            datavalue={index + 1 + ( 10 * parseInt(props.pageNum))}
             value={item.reverseScore ? 5 : 2}
-            onChange={props.updateScore}
+            onChange={(event) => props.updateScore(event, (index + ( 10 * parseInt(props.pageNum))))}
             required
             feedback="You must select an option."
           />
@@ -75,8 +80,9 @@ function FormCheck(props) {
             type="radio"
             id={`item-6-${(index + 1 + ( 10 * parseInt(props.pageNum)))}`}
             name={`item${(index + 1 + ( 10 * parseInt(props.pageNum)))}`}
+            datavalue={index + 1 + ( 10 * parseInt(props.pageNum))}
             value={item.reverseScore ? 6 : 1}
-            onChange={props.updateScore}
+            onChange={(event) => props.updateScore(event, (index + ( 10 * parseInt(props.pageNum))))}
             required
             feedback="You must select an option."
           />

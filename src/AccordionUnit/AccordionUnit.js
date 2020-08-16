@@ -3,6 +3,7 @@ import { criticalThinkingUnit, motivationUnit, learningUnit, timeManagementUnit,
 
 class AccordionUnit extends Component {
   scoreSwitch = (score) => {
+    console.log(score)
     switch (score) {
       case "criticalThinkingScore":
         return (
@@ -53,7 +54,7 @@ class AccordionUnit extends Component {
           planningUnit()
         )
       default:
-        return null;
+        return (null);
     }
   }
 
