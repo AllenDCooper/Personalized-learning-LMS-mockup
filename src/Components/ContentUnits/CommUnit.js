@@ -20,7 +20,7 @@ class CommUnit extends Component {
         if (this.state.show) {
           let goalString = "";
           goalString = goals[this.props.score.name][this.findValueTier(this.props.score.value)]
-          this.typeWriter(goalString)
+          setTimeout(() => {this.typeWriter(goalString)}, 2000)
         } else {
           this.resetTypeWriter()
         }
