@@ -76,14 +76,19 @@ class App extends Component {
 
   // function runs raw score through norm table and returns corresponding percentile rank
   convertToPercentile = (value, scaleIndex) => {
+    // scaleIndex determines which of the scales in the norm table should be used
+    // loops through each score for that particular scale in the norm table
     for (var i = 0; i < normTable[scaleIndex].length; i++) {
-      if (value === parseInt(Object.keys(normTable[scaleIndex][i]))) {
-        return Object.values(normTable[scaleIndex][i])
+      const normScore = normTable[scaleIndex][i]
+      // finds normScore that is equal to passed in value, and returns it
+      if (value === parseInt(Object.keys(normScore))) {
+        return Object.values(normScore)
       }
     }
   }
 
   // function aggregates individual answers stored in answerArr into scales
+  // passed as props into ModalAssessment component where it is called when assessment is submitted
   submitScore = () => {
     // instantiate two arrays that will hold scale objects, one for raw scores and one for percentiles
     let rawScoreArr = []
@@ -116,7 +121,7 @@ class App extends Component {
 
     // sort the array from smallest to largest
     const arrCopy = [...percentileArr]
-    const sortedPercentileValues = this.sortValues(arrCopy);
+    const sortedPercentileValues = this.sortValuesAscending(arrCopy);
 
     // save the three smallest values
     const goalOne = sortedPercentileValues[0]
@@ -160,7 +165,7 @@ class App extends Component {
   }
 
   // sort function that takes an array and will return new array with items in order from smallest to largest
-  sortValues = (arr) => {
+  sortValuesAscending = (arr) => {
     console.log(arr);
     arr.sort(function (a, b) {
       return a.score - b.score
@@ -173,7 +178,8 @@ class App extends Component {
     return newArr
   }
 
-  reverseSortValues = (arr) => {
+  // sort function that takes an array and will return new array with items in order from largest to smallest
+  sortValuesDescending = (arr) => {
     console.log(arr);
     arr.sort(function (a, b) {
       return b.score - a.score
@@ -186,39 +192,36 @@ class App extends Component {
     return newArr
   } 
 
+  // function that sorts percentile array into 3 tiers: strengths, developing strengths, and growth areas.
   sortStrengths = (arr) => {
-    const descendingArr = this.reverseSortValues(arr);
+    // sort the percentile array into descending order so that top strengths will appear first
+    const descendingArr = this.sortValuesDescending(arr);
     console.log(`descendingArr: ${descendingArr}`);
+
+    // instantiate an array to hold the 3 tiers of skill
     const strengthsArr = [{"Strengths": []}, {"Developing Strengths": []}, {"Growth Areas": []}]
+
+    // map descending array, sorting out into 3 tiers and pushing into appropriate object in strengthsArr
     descendingArr.forEach((element, index) => {
       console.log(`element.score: ${element.score}`);
       if (element.score > 75) {
         const arrCopy1 = strengthsArr[0].Strengths
-        console.log(arrCopy1)
         let arr1 = []
         arrCopy1 === undefined ? arr1 = [] : arr1 = [...arrCopy1]
         arr1.push(element)
-        console.log(arr1)
         strengthsArr[0].Strengths = arr1
-        console.log(strengthsArr)
       } else if (element.score <= 75 && element.score > 25) {
         const arrCopy2 = strengthsArr[1].Strengths
-        console.log(arrCopy2)
         let arr2 = []
         arrCopy2 === undefined ? arr2 = [] : arr2 = [...arrCopy2]
         arr2.push(element)
-        console.log(arr2)
         strengthsArr[1].Strengths = arr2
-        console.log(strengthsArr)
       } else {
         const arrCopy3 = strengthsArr[2].Strengths
-        console.log(arrCopy3)
         let arr3 = []
         arrCopy3 === undefined ? arr3 = [] : arr3 = [...arrCopy3]
         arr3.push(element)
-        console.log(arr3)
         strengthsArr[2].Strengths = arr3
-        console.log(strengthsArr)
       }
     })
     console.log(`strengthsArr: ${strengthsArr}`)
