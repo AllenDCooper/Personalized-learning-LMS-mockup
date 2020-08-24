@@ -1,6 +1,7 @@
 import React from 'react';
 import { Accordion, Card } from 'react-bootstrap';
 import goals from '../../ACES_Assessment/goals';
+import GoalsTypeWriter from '../GoalTypeWriter/GoalTypeWriter';
 
 function findValueTier(value) {
   return value > 75 ? "high"
@@ -17,7 +18,7 @@ function criticalThinkingUnit(score) {
       </Accordion.Toggle>
       <Accordion.Collapse eventKey="1">
         <div>
-          <Card.Body><h5>{goals[score.name][findValueTier(score.value)]}</h5></Card.Body>
+          <Card.Body><GoalsTypeWriter inputStrings={[goals[score.name][findValueTier(score.value)]]}/></Card.Body>
           <Card.Body>Activity 1</Card.Body>
           <Card.Body>Activity 2</Card.Body>
           <Card.Body>Activity 3</Card.Body>
@@ -35,7 +36,7 @@ function motivationUnit(score) {
             </Accordion.Toggle>
       <Accordion.Collapse eventKey="2">
         <div>
-          <Card.Body><h5>{goals[score.name][findValueTier(score.value)]}</h5></Card.Body>
+          <Card.Body><GoalsTypeWriter inputStrings={[goals[score.name][findValueTier(score.value)]]}/></Card.Body>
           <Card.Body>Activity 1</Card.Body>
           <Card.Body>Activity 2</Card.Body>
           <Card.Body>Activity 3</Card.Body>
@@ -53,7 +54,7 @@ function learningUnit(score) {
               </Accordion.Toggle>
       <Accordion.Collapse eventKey="3">
         <div>
-          <Card.Body><h5>{goals[score.name][findValueTier(score.value)]}</h5></Card.Body>
+          <Card.Body><GoalsTypeWriter inputStrings={[goals[score.name][findValueTier(score.value)]]}/></Card.Body>
           <Card.Body>Activity 1</Card.Body>
           <Card.Body>Activity 2</Card.Body>
           <Card.Body>Activity 3</Card.Body>
@@ -71,7 +72,7 @@ function timeManagementUnit(score) {
                 </Accordion.Toggle>
       <Accordion.Collapse eventKey="4">
         <div>
-          <Card.Body><h5>{goals[score.name][findValueTier(score.value)]}</h5></Card.Body>
+          <Card.Body><GoalsTypeWriter inputStrings={[goals[score.name][findValueTier(score.value)]]}/></Card.Body>
           <Card.Body>Activity 1</Card.Body>
           <Card.Body>Activity 2</Card.Body>
           <Card.Body>Activity 3</Card.Body>
@@ -89,7 +90,7 @@ function readingUnit(score) {
                     </Accordion.Toggle>
       <Accordion.Collapse eventKey="5">
         <div>
-          <Card.Body><h5>{goals[score.name][findValueTier(score.value)]}</h5></Card.Body>
+          <Card.Body><GoalsTypeWriter inputStrings={[goals[score.name][findValueTier(score.value)]]}/></Card.Body>
           <Card.Body>Activity 1</Card.Body>
           <Card.Body>Activity 2</Card.Body>
           <Card.Body>Activity 3</Card.Body>
@@ -107,7 +108,7 @@ function noteTakingUnit(score) {
                 </Accordion.Toggle>
       <Accordion.Collapse eventKey="6">
         <div>
-          <Card.Body><h5>{goals[score.name][findValueTier(score.value)]}</h5></Card.Body>
+          <Card.Body><GoalsTypeWriter inputStrings={[goals[score.name][findValueTier(score.value)]]}/></Card.Body>
           <Card.Body>Activity 1</Card.Body>
           <Card.Body>Activity 2</Card.Body>
           <Card.Body>Activity 3</Card.Body>
@@ -125,7 +126,7 @@ function memoryUnit(score) {
               </Accordion.Toggle>
       <Accordion.Collapse eventKey="7">
         <div>
-          <Card.Body><h5>{goals[score.name][findValueTier(score.value)]}</h5></Card.Body>
+          <Card.Body><GoalsTypeWriter inputStrings={[goals[score.name][findValueTier(score.value)]]}/></Card.Body>
           <Card.Body>Activity 1</Card.Body>
           <Card.Body>Activity 2</Card.Body>
           <Card.Body>Activity 3</Card.Body>
@@ -143,7 +144,7 @@ function testTakingUnit(score) {
                 </Accordion.Toggle>
       <Accordion.Collapse eventKey="8">
         <div>
-          <Card.Body><h5>{goals[score.name][findValueTier(score.value)]}</h5></Card.Body>
+          <Card.Body><GoalsTypeWriter inputStrings={[goals[score.name][findValueTier(score.value)]]}/></Card.Body>
           <Card.Body>Activity 1</Card.Body>
           <Card.Body>Activity 2</Card.Body>
           <Card.Body>Activity 3</Card.Body>
@@ -161,7 +162,7 @@ function commUnit(score) {
                 </Accordion.Toggle>
       <Accordion.Collapse eventKey="9">
         <div>
-          <Card.Body><h5>{goals[score.name][findValueTier(score.value)]}</h5></Card.Body>
+          <Card.Body><GoalsTypeWriter inputStrings={[goals[score.name][findValueTier(score.value)]]}/></Card.Body>
           <Card.Body>Activity 1</Card.Body>
           <Card.Body>Activity 2</Card.Body>
           <Card.Body>Activity 3</Card.Body>
@@ -179,7 +180,7 @@ function connectingUnit(score) {
                 </Accordion.Toggle>
       <Accordion.Collapse eventKey="10">
         <div>
-          <Card.Body><h5>{goals[score.name][findValueTier(score.value)]}</h5></Card.Body>
+          <Card.Body><GoalsTypeWriter inputStrings={[goals[score.name][findValueTier(score.value)]]}/></Card.Body>
           <Card.Body>Activity 1</Card.Body>
           <Card.Body>Activity 2</Card.Body>
           <Card.Body>Activity 3</Card.Body>
@@ -197,7 +198,7 @@ function healthUnit(score) {
                 </Accordion.Toggle>
       <Accordion.Collapse eventKey="11">
         <div>
-          <Card.Body><h5>{goals[score.name][findValueTier(score.value)]}</h5></Card.Body>
+          <Card.Body><GoalsTypeWriter inputStrings={[goals[score.name][findValueTier(score.value)]]}/></Card.Body>
           <Card.Body>Activity 1</Card.Body>
           <Card.Body>Activity 2</Card.Body>
           <Card.Body>Activity 3</Card.Body>
@@ -215,7 +216,7 @@ function planningUnit(score) {
                 </Accordion.Toggle>
       <Accordion.Collapse eventKey="12">
         <div>
-          <Card.Body><h5>{goals[score.name][findValueTier(score.value)]}</h5></Card.Body>
+          <Card.Body><GoalsTypeWriter inputStrings={[goals[score.name][findValueTier(score.value)]]}/></Card.Body>
           <Card.Body>Activity 1</Card.Body>
           <Card.Body>Activity 2</Card.Body>
           <Card.Body>Activity 3</Card.Body>
