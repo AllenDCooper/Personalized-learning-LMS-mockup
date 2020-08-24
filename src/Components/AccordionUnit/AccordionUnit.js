@@ -1,5 +1,6 @@
-import { Component } from 'react';
-import { criticalThinkingUnit, motivationUnit, learningUnit, timeManagementUnit, readingUnit, noteTakingUnit, memoryUnit, testTakingUnit, commUnit, connectingUnit, healthUnit, planningUnit } from '../ContentUnits/ContentUnits'
+import React, { Component } from 'react';
+import { CriticalThinkingUnit, MotivationUnit, LearningUnit, TimeManagementUnit, ReadingUnit, NoteTakingUnit, MemoryUnit, TestTakingUnit, CommUnit, ConnectingUnit, HealthUnit, PlanningUnit } from '../ContentUnits'
+
 
 class AccordionUnit extends Component {
 
@@ -9,51 +10,51 @@ class AccordionUnit extends Component {
     switch (score.name) {
       case "Critical Thinking and Goal Setting":
         return (
-            criticalThinkingUnit(score)
+          <CriticalThinkingUnit score={score} />
         )
       case "Motivation, Decision Making, and Personal Responsibility":
         return (
-          motivationUnit(score)
+          <MotivationUnit score={score} />
         )
       case "Learning Preferences":
         return (
-          learningUnit(score)
+          <LearningUnit score={score} />
         )
       case "Organization and Time Management":
         return (
-          timeManagementUnit(score)
+          <TimeManagementUnit score={score} />
         )
       case "Reading":
         return (
-          readingUnit(score)
+          <ReadingUnit score={score} />
         )
       case "Note Taking":
         return (
-          noteTakingUnit(score)
+          <NoteTakingUnit score={score} />
         )
       case "Memory and Studying":
         return (
-          memoryUnit(score)
+          <MemoryUnit score={score} />
         );
       case "Test Taking":
         return (
-          testTakingUnit(score)
+          <TestTakingUnit score={score} />
         );
       case "Information Literacy and Communication":
         return (
-          commUnit(score)
+          <CommUnit score={score} />
         )
       case "Connecting with Others":
         return (
-          connectingUnit(score)
+          <ConnectingUnit score={score} />
         )
       case "Personal and Financial Health":
         return (
-          healthUnit(score)
+          <HealthUnit score={score} />
         )
       case "Academic and Career Planning":
         return (
-          planningUnit(score)
+          <PlanningUnit score={score} />
         )
       default:
         return (null);
