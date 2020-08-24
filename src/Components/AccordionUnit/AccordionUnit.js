@@ -2,58 +2,58 @@ import { Component } from 'react';
 import { criticalThinkingUnit, motivationUnit, learningUnit, timeManagementUnit, readingUnit, noteTakingUnit, memoryUnit, testTakingUnit, commUnit, connectingUnit, healthUnit, planningUnit } from '../ContentUnits/ContentUnits'
 
 class AccordionUnit extends Component {
-  
+
   // this function will deliver the appropriate content unit for the particular scale passed in as props
   scoreSwitch = (score) => {
     console.log(score)
-    switch (score) {
+    switch (score.name) {
       case "Critical Thinking and Goal Setting":
         return (
-            criticalThinkingUnit()
+            criticalThinkingUnit(score)
         )
       case "Motivation, Decision Making, and Personal Responsibility":
         return (
-          motivationUnit()
+          motivationUnit(score)
         )
       case "Learning Preferences":
         return (
-          learningUnit()
+          learningUnit(score)
         )
       case "Organization and Time Management":
         return (
-          timeManagementUnit()
+          timeManagementUnit(score)
         )
       case "Reading":
         return (
-          readingUnit()
+          readingUnit(score)
         )
       case "Note Taking":
         return (
-          noteTakingUnit()
+          noteTakingUnit(score)
         )
       case "Memory and Studying":
         return (
-          memoryUnit()
+          memoryUnit(score)
         );
       case "Test Taking":
         return (
-          testTakingUnit()
+          testTakingUnit(score)
         );
       case "Information Literacy and Communication":
         return (
-          commUnit()
+          commUnit(score)
         )
       case "Connecting with Others":
         return (
-          connectingUnit()
+          connectingUnit(score)
         )
       case "Personal and Financial Health":
         return (
-          healthUnit()
+          healthUnit(score)
         )
       case "Academic and Career Planning":
         return (
-          planningUnit()
+          planningUnit(score)
         )
       default:
         return (null);
@@ -62,7 +62,7 @@ class AccordionUnit extends Component {
 
   render() {
     console.log(this.props.score)
-    return (this.scoreSwitch(this.props.score.name))
+    return (this.scoreSwitch(this.props.score))
   }
 };
 

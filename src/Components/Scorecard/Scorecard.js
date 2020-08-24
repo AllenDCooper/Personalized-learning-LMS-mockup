@@ -30,7 +30,7 @@ class Scorecard extends Component {
                   <ul>
                     {this.props.strengthsArr[0].Strengths.length === 0 ? <li>[empty]</li> : (
                       this.props.strengthsArr[0].Strengths.map((scale, index) => (
-                        <li key={`key-${index}`}>{scale.name}: {scale.score}%</li>
+                        <li key={`key-${index}`}>{scale.name}: {scale.value}%</li>
                       ))
                     )}
                   </ul>
@@ -38,7 +38,7 @@ class Scorecard extends Component {
                   <ul>
                     {this.props.strengthsArr[1].Strengths.length === 0 ? <li>[empty]</li> : (
                       this.props.strengthsArr[1].Strengths.map((scale, index) => (
-                        <li key={`key-${index}`}>{scale.name}: {scale.score}%</li>
+                        <li key={`key-${index}`}>{scale.name}: {scale.value}%</li>
                       ))
                     )}
                   </ul>
@@ -46,7 +46,7 @@ class Scorecard extends Component {
                   <ul>
                     {this.props.strengthsArr[2].Strengths.length === 0 ? <li>[empty]</li> : (
                       this.props.strengthsArr[2].Strengths.map((scale, index) => (
-                        <li key={`key-${index}`}>{scale.name}: {scale.score}%</li>
+                        <li key={`key-${index}`}>{scale.name}: {scale.value}%</li>
                       ))
                     )}
                   </ul>

@@ -1,7 +1,15 @@
 import React from 'react';
 import { Accordion, Card } from 'react-bootstrap';
+import goals from '../../ACES_Assessment/goals';
 
-function criticalThinkingUnit() {
+function findValueTier(value) {
+  return value > 75 ? "high"
+    : value > 25 ? "moderate"
+      : "low";
+}
+
+
+function criticalThinkingUnit(score) {
   return (
     <Card>
       <Accordion.Toggle as={Card.Header} eventKey="1">
@@ -9,6 +17,7 @@ function criticalThinkingUnit() {
       </Accordion.Toggle>
       <Accordion.Collapse eventKey="1">
         <div>
+          <Card.Body><h5>{goals[score.name][findValueTier(score.value)]}</h5></Card.Body>
           <Card.Body>Activity 1</Card.Body>
           <Card.Body>Activity 2</Card.Body>
           <Card.Body>Activity 3</Card.Body>
@@ -18,7 +27,7 @@ function criticalThinkingUnit() {
   )
 };
 
-function motivationUnit() {
+function motivationUnit(score) {
   return (
     <Card>
       <Accordion.Toggle as={Card.Header} eventKey="2">
@@ -26,6 +35,7 @@ function motivationUnit() {
             </Accordion.Toggle>
       <Accordion.Collapse eventKey="2">
         <div>
+          <Card.Body><h5>{goals[score.name][findValueTier(score.value)]}</h5></Card.Body>
           <Card.Body>Activity 1</Card.Body>
           <Card.Body>Activity 2</Card.Body>
           <Card.Body>Activity 3</Card.Body>
@@ -35,7 +45,7 @@ function motivationUnit() {
   )
 };
 
-function learningUnit() {
+function learningUnit(score) {
   return (
     <Card>
       <Accordion.Toggle as={Card.Header} eventKey="3">
@@ -43,6 +53,7 @@ function learningUnit() {
               </Accordion.Toggle>
       <Accordion.Collapse eventKey="3">
         <div>
+          <Card.Body><h5>{goals[score.name][findValueTier(score.value)]}</h5></Card.Body>
           <Card.Body>Activity 1</Card.Body>
           <Card.Body>Activity 2</Card.Body>
           <Card.Body>Activity 3</Card.Body>
@@ -52,7 +63,7 @@ function learningUnit() {
   )
 }
 
-function timeManagementUnit() {
+function timeManagementUnit(score) {
   return (
     <Card>
       <Accordion.Toggle as={Card.Header} eventKey="4">
@@ -60,6 +71,7 @@ function timeManagementUnit() {
                 </Accordion.Toggle>
       <Accordion.Collapse eventKey="4">
         <div>
+          <Card.Body><h5>{goals[score.name][findValueTier(score.value)]}</h5></Card.Body>
           <Card.Body>Activity 1</Card.Body>
           <Card.Body>Activity 2</Card.Body>
           <Card.Body>Activity 3</Card.Body>
@@ -69,7 +81,7 @@ function timeManagementUnit() {
   )
 }
 
-function readingUnit() {
+function readingUnit(score) {
   return (
     <Card>
       <Accordion.Toggle as={Card.Header} eventKey="5">
@@ -77,6 +89,7 @@ function readingUnit() {
                     </Accordion.Toggle>
       <Accordion.Collapse eventKey="5">
         <div>
+          <Card.Body><h5>{goals[score.name][findValueTier(score.value)]}</h5></Card.Body>
           <Card.Body>Activity 1</Card.Body>
           <Card.Body>Activity 2</Card.Body>
           <Card.Body>Activity 3</Card.Body>
@@ -86,7 +99,7 @@ function readingUnit() {
   )
 }
 
-function noteTakingUnit() {
+function noteTakingUnit(score) {
   return (
     <Card>
       <Accordion.Toggle as={Card.Header} eventKey="6">
@@ -94,6 +107,7 @@ function noteTakingUnit() {
                 </Accordion.Toggle>
       <Accordion.Collapse eventKey="6">
         <div>
+          <Card.Body><h5>{goals[score.name][findValueTier(score.value)]}</h5></Card.Body>
           <Card.Body>Activity 1</Card.Body>
           <Card.Body>Activity 2</Card.Body>
           <Card.Body>Activity 3</Card.Body>
@@ -103,7 +117,7 @@ function noteTakingUnit() {
   )
 }
 
-function memoryUnit() {
+function memoryUnit(score) {
   return (
     <Card>
       <Accordion.Toggle as={Card.Header} eventKey="7">
@@ -111,6 +125,7 @@ function memoryUnit() {
               </Accordion.Toggle>
       <Accordion.Collapse eventKey="7">
         <div>
+          <Card.Body><h5>{goals[score.name][findValueTier(score.value)]}</h5></Card.Body>
           <Card.Body>Activity 1</Card.Body>
           <Card.Body>Activity 2</Card.Body>
           <Card.Body>Activity 3</Card.Body>
@@ -120,7 +135,7 @@ function memoryUnit() {
   )
 }
 
-function testTakingUnit() {
+function testTakingUnit(score) {
   return (
     <Card>
       <Accordion.Toggle as={Card.Header} eventKey="8">
@@ -128,6 +143,7 @@ function testTakingUnit() {
                 </Accordion.Toggle>
       <Accordion.Collapse eventKey="8">
         <div>
+          <Card.Body><h5>{goals[score.name][findValueTier(score.value)]}</h5></Card.Body>
           <Card.Body>Activity 1</Card.Body>
           <Card.Body>Activity 2</Card.Body>
           <Card.Body>Activity 3</Card.Body>
@@ -137,7 +153,7 @@ function testTakingUnit() {
   );
 }
 
-function commUnit() {
+function commUnit(score) {
   return (
     <Card>
       <Accordion.Toggle as={Card.Header} eventKey="9">
@@ -145,6 +161,7 @@ function commUnit() {
                 </Accordion.Toggle>
       <Accordion.Collapse eventKey="9">
         <div>
+          <Card.Body><h5>{goals[score.name][findValueTier(score.value)]}</h5></Card.Body>
           <Card.Body>Activity 1</Card.Body>
           <Card.Body>Activity 2</Card.Body>
           <Card.Body>Activity 3</Card.Body>
@@ -154,7 +171,7 @@ function commUnit() {
   )
 }
 
-function connectingUnit() {
+function connectingUnit(score) {
   return (
     <Card>
       <Accordion.Toggle as={Card.Header} eventKey="10">
@@ -162,6 +179,7 @@ function connectingUnit() {
                 </Accordion.Toggle>
       <Accordion.Collapse eventKey="10">
         <div>
+          <Card.Body><h5>{goals[score.name][findValueTier(score.value)]}</h5></Card.Body>
           <Card.Body>Activity 1</Card.Body>
           <Card.Body>Activity 2</Card.Body>
           <Card.Body>Activity 3</Card.Body>
@@ -171,7 +189,7 @@ function connectingUnit() {
   )
 }
 
-function healthUnit() {
+function healthUnit(score) {
   return (
     <Card>
       <Accordion.Toggle as={Card.Header} eventKey="11">
@@ -179,6 +197,7 @@ function healthUnit() {
                 </Accordion.Toggle>
       <Accordion.Collapse eventKey="11">
         <div>
+          <Card.Body><h5>{goals[score.name][findValueTier(score.value)]}</h5></Card.Body>
           <Card.Body>Activity 1</Card.Body>
           <Card.Body>Activity 2</Card.Body>
           <Card.Body>Activity 3</Card.Body>
@@ -188,7 +207,7 @@ function healthUnit() {
   )
 }
 
-function planningUnit() {
+function planningUnit(score) {
   return (
     <Card>
       <Accordion.Toggle as={Card.Header} eventKey="12">
@@ -196,6 +215,7 @@ function planningUnit() {
                 </Accordion.Toggle>
       <Accordion.Collapse eventKey="12">
         <div>
+          <Card.Body><h5>{goals[score.name][findValueTier(score.value)]}</h5></Card.Body>
           <Card.Body>Activity 1</Card.Body>
           <Card.Body>Activity 2</Card.Body>
           <Card.Body>Activity 3</Card.Body>

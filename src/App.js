@@ -107,13 +107,13 @@ class App extends Component {
         console.log(scaleSum)
       })
       // create score object that holds scale name and scale sum
-      const scoreObj = { name: scaleName, score: scaleSum }
+      const scoreObj = { name: scaleName, value: scaleSum }
       // push it into the rawScoreArr
       rawScoreArr.push(scoreObj)
       // convert scale sum to percentile score
       const percentileScore = parseInt(this.convertToPercentile(scaleSum, scaleIndex))
       // create percentile object that holds scale name and percentile rank, and then push it into percentile array
-      const percentileObj = { name: scaleName, score: percentileScore }
+      const percentileObj = { name: scaleName, value: percentileScore }
       percentileArr.push(percentileObj)
     })
     console.log(rawScoreArr);
@@ -125,8 +125,11 @@ class App extends Component {
 
     // save the three smallest values
     const goalOne = sortedPercentileValues[0]
+    console.log(`goalOne: ${JSON.stringify(goalOne)}`);
     const goalTwo = sortedPercentileValues[1]
+    console.log(`goalTwo: ${JSON.stringify(goalTwo)}`);
     const goalThree = sortedPercentileValues[2]
+    console.log(`goalThree: ${JSON.stringify(goalThree)}`);
 
     // sort percentile array into 3 arrays: strengths, developing strengths, and growth areas
     const strengthsArr = this.sortStrengths(percentileArr)
@@ -168,7 +171,7 @@ class App extends Component {
   sortValuesAscending = (arr) => {
     console.log(arr);
     arr.sort(function (a, b) {
-      return a.score - b.score
+      return a.value - b.value
     })
     let newArr = []
     for (let i = 0; i < arr.length; i++) {
@@ -182,7 +185,7 @@ class App extends Component {
   sortValuesDescending = (arr) => {
     console.log(arr);
     arr.sort(function (a, b) {
-      return b.score - a.score
+      return b.value - a.value
     })
     let newArr = []
     for (let i = 0; i < arr.length; i++) {
@@ -203,14 +206,14 @@ class App extends Component {
 
     // map descending array, sorting out into 3 tiers and pushing into appropriate object in strengthsArr
     descendingArr.forEach((element, index) => {
-      console.log(`element.score: ${element.score}`);
-      if (element.score > 75) {
+      console.log(`element.value: ${element.value}`);
+      if (element.value > 75) {
         const arrCopy1 = strengthsArr[0].Strengths
         let arr1 = []
         arrCopy1 === undefined ? arr1 = [] : arr1 = [...arrCopy1]
         arr1.push(element)
         strengthsArr[0].Strengths = arr1
-      } else if (element.score <= 75 && element.score > 25) {
+      } else if (element.value <= 75 && element.value > 25) {
         const arrCopy2 = strengthsArr[1].Strengths
         let arr2 = []
         arrCopy2 === undefined ? arr2 = [] : arr2 = [...arrCopy2]
