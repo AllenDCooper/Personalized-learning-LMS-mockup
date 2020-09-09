@@ -20,7 +20,7 @@ class TestTakingUnit extends Component {
         if (this.state.show) {
           let goalString = "";
           goalString = goals[this.props.score.name][this.findValueTier(this.props.score.value)]
-          setTimeout(() => { this.typeWriter(goalString) }, 2000)
+          setTimeout(() => { this.typeWriter(goalString) }, 1000)
         } else {
           this.resetTypeWriter()
         }
