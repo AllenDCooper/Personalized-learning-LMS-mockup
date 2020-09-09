@@ -48,3 +48,7 @@
     color:#000
   }
 }
+
+.unit-folder {
+  border-top: 1px solid lightgray;
+}
