@@ -62,14 +62,14 @@ class MotivationUnit extends Component {
           Motivation, Decision Making, and Personal Responsibility
       </Accordion.Toggle>
         <Accordion.Collapse eventKey="2">
-          <div style={{backgroundColor: "white"}}>
-            <Card.Body style={{borderBottom: "1px solid #ededed", borderTop: "1px solid #ededed", paddingLeft: "2rem"}}><div style={{ fontSize: "18px", fontWeight: "500"}}>{this.state.typed}<span className="cursor"><span style={{ fontWeight: "normal"}}>|</span></span></div></Card.Body>
-            <Card.Body style={{borderBottom: "1px solid #ededed", paddingLeft: "2rem"}}>Activity 1</Card.Body>
-            <Card.Body style={{borderBottom: "1px solid #ededed", paddingLeft: "2rem"}}>Activity 2</Card.Body>
-            <Card.Body style={{borderBottom: "1px solid #ededed", paddingLeft: "2rem"}}>Activity 3</Card.Body>
-            <Card.Body style={{paddingLeft: "2rem", color: "gray"}}>
+          <div style={{ backgroundColor: "#fff6e5" }}>
+            <Card.Body style={{ borderBottom: "1px solid #ededed", borderTop: "1px solid #ededed", paddingLeft: "2rem" }}><div style={{ fontSize: "18px", fontWeight: "500" }}>{this.state.typed}<span className="cursor"><span style={{ fontWeight: "normal" }}>|</span></span></div></Card.Body>
+            <Card.Body style={{ borderBottom: "1px solid #ededed", paddingLeft: "2rem" }}>Activity 1</Card.Body>
+            <Card.Body style={{ borderBottom: "1px solid #ededed", paddingLeft: "2rem" }}>Activity 2</Card.Body>
+            <Card.Body style={{ borderBottom: "1px solid #ededed", paddingLeft: "2rem" }}>Activity 3</Card.Body>
+            <Card.Body style={{ paddingLeft: "2rem", color: "gray" }}>
               Goal completed?
-              <Slider style={{ width: "100%", margin: "20px 30px 20px 30px", maxWidth: "300px" }} min={0} max={1} defaultValue={0} marks={{ 0: "Not yet", 1: "Yes!", }} step={null} handleStyle={{backgroundColor: "black", border: "solid 2px black"}} dotStyle={{border: "solid 2px black"}} trackStyle={{backgroundColor: "green"}}/>
+              <Slider style={{ width: "100%", margin: "20px 30px 20px 30px", maxWidth: "300px" }} min={0} max={1} defaultValue={0} marks={{ 0: "Not yet", 1: "Yes!", }} step={null} handleStyle={{ backgroundColor: "black", border: "solid 2px black" }} dotStyle={{ border: "solid 2px black" }} trackStyle={{ backgroundColor: "green" }} />
             </Card.Body>
           </div>
         </Accordion.Collapse>

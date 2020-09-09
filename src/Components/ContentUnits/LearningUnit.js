@@ -61,7 +61,7 @@ class LearningUnit extends Component {
           Learning Preferences
       </Accordion.Toggle>
         <Accordion.Collapse eventKey="3">
-          <div style={{ backgroundColor: "white" }}>
+          <div style={{ backgroundColor: "#fff6e5" }}>
             <Card.Body style={{ borderBottom: "1px solid #ededed", borderTop: "1px solid #ededed", paddingLeft: "2rem" }}><div style={{ fontSize: "18px", fontWeight: "500" }}>{this.state.typed}<span className="cursor"><span style={{ fontWeight: "normal" }}>|</span></span></div></Card.Body>
             <Card.Body style={{ borderBottom: "1px solid #ededed", paddingLeft: "2rem" }}>Activity 1</Card.Body>
             <Card.Body style={{ borderBottom: "1px solid #ededed", paddingLeft: "2rem" }}>Activity 2</Card.Body>
