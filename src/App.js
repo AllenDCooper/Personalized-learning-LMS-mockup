@@ -227,7 +227,7 @@ class App extends Component {
         strengthsArr[2].Strengths = arr3
       }
     })
-    console.log(`strengthsArr: ${strengthsArr}`)
+    console.log(`strengthsArr: ${JSON.stringify(strengthsArr)}`)
     return strengthsArr
   }
 
