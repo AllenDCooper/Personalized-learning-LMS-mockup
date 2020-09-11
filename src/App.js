@@ -163,7 +163,7 @@ class App extends Component {
   // will be passed into Header as props and called on click of Toggle See All button
   handleSeeAll = () => {
     this.setState({
-      seeAll: this.state.seeAll === false ? true : false
+      seeAll: !this.state.seeAll
     })
   }
 
