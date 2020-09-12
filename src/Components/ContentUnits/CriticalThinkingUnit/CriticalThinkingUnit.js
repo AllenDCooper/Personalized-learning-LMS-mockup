@@ -7,11 +7,16 @@ class CriticalThinkingUnit extends Component {
   state = {
     activitiesArr: CriticalThinkingUnitActivities,
     numActivitiesToDo: CriticalThinkingUnitActivities.length,
-    numActivitiesCompleted: 0
+    numActivitiesCompleted: 0,
+    allActivitiesComplete: false,
+    unitCompleted: false
   }
 
   closeActivity = () => {
     console.log(`closeActivity run`)
+    this.setState({
+      allActivitiesComplete: true
+    })
   }
 
   submitActivity = (index) => {
@@ -37,7 +42,7 @@ class CriticalThinkingUnit extends Component {
 
   render() {
     return (
-      <ContentCard scoreName={this.props.score.name} scoreValue={this.props.score.value} index={this.props.index} activitiesArr={this.state.activitiesArr} submitActivity={this.submitActivity} />
+      <ContentCard scoreName={this.props.score.name} scoreValue={this.props.score.value} index={this.props.index} activitiesArr={this.state.activitiesArr} submitActivity={this.submitActivity} allActivitiesComplete={this.state.allActivitiesComplete} />
     )
   }
 }

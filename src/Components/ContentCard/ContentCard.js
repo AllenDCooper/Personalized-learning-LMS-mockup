@@ -2,15 +2,13 @@ import React, { Component } from 'react';
 import { Accordion, Card, Form } from 'react-bootstrap';
 import goals from '../../ACES_Assessment/goals';
 import './styles.css';
-import 'rc-tooltip/assets/bootstrap.css';
-import Slider from 'rc-slider';
-import 'rc-slider/assets/index.css';
 
 class CardUnit extends Component {
 
   state = {
     show: false,
-    typed: ""
+    typed: "",
+    switchChecked: false
   }
 
   toggleShow = () => {
@@ -59,6 +57,14 @@ class CardUnit extends Component {
         : "low";
   }
 
+  submitGoal = () => {
+    this.setState(prevState => {
+      return {
+        switchChecked: !prevState.switchChecked
+      }
+    })
+  }
+
   render() {
     return (
       <Card>
@@ -71,17 +77,27 @@ class CardUnit extends Component {
             {this.props.activitiesArr.map((item, index) => (
               <Card.Body style={{ borderBottom: "1px solid #ededed", paddingLeft: "2rem" }}>
                 <Form.Group controlId={`formBasicCheckbox-${index}`}>
-                  <Form.Check type="checkbox" label={`${item.activityName} ${(item.completed ? "Completed" : "")}`} onChange={() => this.props.submitActivity(index)}/>
+                  {item.completed ? (
+                    <Form.Check type="checkbox" checked label={`${item.activityName} ${(item.completed ? "Completed" : "")}`} />
+                  ) : (
+                      <Form.Check type="checkbox" label={`${item.activityName}`} onChange={() => this.props.submitActivity(index)} />
+                    )}
                 </Form.Group>
               </Card.Body>
             ))}
-            <Card.Body style={{ paddingLeft: "2rem", color: "gray" }}>
+            {this.props.allActivitiesComplete ? (
+            <Card.Body style={{ paddingLeft: "2rem" }}>
               Goal completed?
-              <Slider style={{ width: "100%", margin: "20px 30px 20px 30px", maxWidth: "300px" }} min={0} max={1} defaultValue={0} marks={{ 0: "Not yet", 1: "Yes!", }} step={null} handleStyle={{ backgroundColor: "black", border: "solid 2px black" }} dotStyle={{ border: "solid 2px black" }} trackStyle={{ backgroundColor: "green" }} />
-            </Card.Body>
+              <Form.Check
+                type="switch"
+                id={`switch-${this.props.index}`}
+                onClick={this.submitGoal}
+                label={(this.state.switchChecked ? `Yes!` : `No`)}
+              />
+            </Card.Body>) : null }
           </div>
         </Accordion.Collapse>
-      </Card>
+      </Card >
     )
   }
 }
