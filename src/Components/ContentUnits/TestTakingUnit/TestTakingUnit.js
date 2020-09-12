@@ -18,6 +18,10 @@ class TestTakingUnit extends Component {
     })
   }
 
+  saveCompletedGoal = () => {
+    console.log(`saveCompletedGoal run`)
+  }
+
   submitActivity = (index) => {
 
     console.log(this.state.activitiesArr);
@@ -43,7 +47,7 @@ class TestTakingUnit extends Component {
 
   render() {
     return (
-      <ContentCard scoreName={this.props.score.name} scoreValue={this.props.score.value} index={this.props.index} activitiesArr={this.state.activitiesArr} submitActivity={this.submitActivity} allActivitiesComplete={this.state.allActivitiesComplete} />
+      <ContentCard scoreName={this.props.score.name} scoreValue={this.props.score.value} index={this.props.index} activitiesArr={this.state.activitiesArr} submitActivity={this.submitActivity} allActivitiesComplete={this.state.allActivitiesComplete} saveCompletedGoal={this.saveCompletedGoal} />
     )
   }
 }

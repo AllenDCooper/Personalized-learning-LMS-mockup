@@ -62,6 +62,8 @@ class CardUnit extends Component {
       return {
         switchChecked: !prevState.switchChecked
       }
+    }, () => {
+      this.props.saveCompletedGoal()
     })
   }
 

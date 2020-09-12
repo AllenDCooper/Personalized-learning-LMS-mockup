@@ -32,6 +32,7 @@ class App extends Component {
     rawScoreArr: [],
     answerArr: [],
     strengthsArr: [],
+    goalsToCompleteArr: [],
     goalOne: null,
     goalTwo: null,
     goalThree: null,
@@ -60,7 +61,7 @@ class App extends Component {
         // randomly generate a score between 1 and 6 for each item
         const randomAnswer = Math.floor(Math.random() * 6) + 1
         answerArr.push(randomAnswer)
-        console.log(answerArr)
+        // console.log(answerArr)
       }
       return {
         answerArr,
@@ -142,6 +143,7 @@ class App extends Component {
       goalThree: goalThree,
       scoreArr: percentileArr,
       strengthsArr: strengthsArr,
+      goalsToCompleteArr: percentileArr
     });
   }
 
@@ -149,13 +151,16 @@ class App extends Component {
   // will be passed into Header component as props and called on click of Reset button
   handleReset = () => {
     this.setState({
-      takenAssessment: null,
+      takenAssessment: false,
+      seeAll: false,
+      scoreArr: [],
+      rawScoreArr: [],
+      answerArr: [],
+      strengthsArr: [],
+      goalsToCompleteArr: [],
       goalOne: null,
       goalTwo: null,
       goalThree: null,
-      scoreArr: [],
-      rawScoreArr: [],
-      answerArr: []
     })
   }
 
@@ -202,7 +207,7 @@ class App extends Component {
     console.log(`descendingArr: ${descendingArr}`);
 
     // instantiate an array to hold the 3 tiers of skill
-    const strengthsArr = [{"Strengths": []}, {"Developing Strengths": []}, {"Growth Areas": []}]
+    const strengthsArr = [{"Strengths": []}, {"Developing_Strengths": []}, {"Growth_Areas": []}]
 
     // map descending array, sorting out into 3 tiers and pushing into appropriate object in strengthsArr
     descendingArr.forEach((element, index) => {
@@ -214,17 +219,17 @@ class App extends Component {
         arr1.push(element)
         strengthsArr[0].Strengths = arr1
       } else if (element.value <= 75 && element.value > 25) {
-        const arrCopy2 = strengthsArr[1].Strengths
+        const arrCopy2 = strengthsArr[1].Developing_Strengths
         let arr2 = []
         arrCopy2 === undefined ? arr2 = [] : arr2 = [...arrCopy2]
         arr2.push(element)
-        strengthsArr[1].Strengths = arr2
+        strengthsArr[1].Developing_Strengths = arr2
       } else {
-        const arrCopy3 = strengthsArr[2].Strengths
+        const arrCopy3 = strengthsArr[2].Growth_Areas
         let arr3 = []
         arrCopy3 === undefined ? arr3 = [] : arr3 = [...arrCopy3]
         arr3.push(element)
-        strengthsArr[2].Strengths = arr3
+        strengthsArr[2].Growth_Areas = arr3
       }
     })
     console.log(`strengthsArr: ${JSON.stringify(strengthsArr)}`)
@@ -243,9 +248,9 @@ class App extends Component {
               <h4 style={{ paddingLeft: "20px" }}>
                 Your Personalized Goals
                 </h4>
-              <AccordionUnit score={this.state.goalOne} />
-              <AccordionUnit score={this.state.goalTwo} />
-              <AccordionUnit score={this.state.goalThree} />
+              <AccordionUnit score={this.state.goalsToCompleteArr[(this.state.goalsToCompleteArr.length-1)]} />
+              <AccordionUnit score={this.state.goalsToCompleteArr[(this.state.goalsToCompleteArr.length-2)]} />
+              <AccordionUnit score={this.state.goalsToCompleteArr[(this.state.goalsToCompleteArr.length-3)]} />
             </Accordion>
           </section>
         </div>

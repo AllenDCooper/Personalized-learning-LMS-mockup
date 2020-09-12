@@ -19,7 +19,13 @@ class ConnectingUnit extends Component {
     })
   }
 
+  saveCompletedGoal = () => {
+    console.log(`saveCompletedGoal run`)
+  }
+
   submitActivity = (index) => {
+
+    console.log(this.state.activitiesArr);
 
     this.setState(state => {
       const activitiesArr = state.activitiesArr;
@@ -42,7 +48,7 @@ class ConnectingUnit extends Component {
 
   render() {
     return (
-      <ContentCard scoreName={this.props.score.name} scoreValue={this.props.score.value} index={this.props.index} activitiesArr={this.state.activitiesArr} submitActivity={this.submitActivity} allActivitiesComplete={this.state.allActivitiesComplete} />
+      <ContentCard scoreName={this.props.score.name} scoreValue={this.props.score.value} index={this.props.index} activitiesArr={this.state.activitiesArr} submitActivity={this.submitActivity} allActivitiesComplete={this.state.allActivitiesComplete} saveCompletedGoal={this.saveCompletedGoal} />
     )
   }
 }

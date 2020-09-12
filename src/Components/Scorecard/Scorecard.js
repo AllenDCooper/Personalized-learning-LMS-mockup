@@ -36,16 +36,16 @@ class Scorecard extends Component {
                   </ul>
                   <h5>Your Developing Strengths</h5>
                   <ul>
-                    {this.props.strengthsArr[1].Strengths.length === 0 ? <li>[empty]</li> : (
-                      this.props.strengthsArr[1].Strengths.map((scale, index) => (
+                    {this.props.strengthsArr[1].Developing_Strengths.length === 0 ? <li>[empty]</li> : (
+                      this.props.strengthsArr[1].Developing_Strengths.map((scale, index) => (
                         <li key={`key-${index}`}>{scale.name}: {scale.value}%</li>
                       ))
                     )}
                   </ul>
                   <h5>Your Growth Areas</h5>
                   <ul>
-                    {this.props.strengthsArr[2].Strengths.length === 0 ? <li>[empty]</li> : (
-                      this.props.strengthsArr[2].Strengths.map((scale, index) => (
+                    {this.props.strengthsArr[2].Growth_Areas.length === 0 ? <li>[empty]</li> : (
+                      this.props.strengthsArr[2].Growth_Areas.map((scale, index) => (
                         <li key={`key-${index}`}>{scale.name}: {scale.value}%</li>
                       ))
                     )}
