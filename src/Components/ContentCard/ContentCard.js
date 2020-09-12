@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Accordion, Card } from 'react-bootstrap';
+import { Accordion, Card, Form } from 'react-bootstrap';
 import goals from '../../ACES_Assessment/goals';
 import './styles.css';
 import 'rc-tooltip/assets/bootstrap.css';
@@ -60,7 +60,6 @@ class CardUnit extends Component {
   }
 
   render() {
-    console.log(`index: ${this.props.index}`)
     return (
       <Card>
         <Accordion.Toggle as={Card.Header} eventKey={this.props.index} onClick={this.toggleShow}>
@@ -70,7 +69,11 @@ class CardUnit extends Component {
           <div style={{ backgroundColor: "#fff6e5" }}>
             <Card.Body style={{ borderBottom: "1px solid #ededed", borderTop: "1px solid #ededed", paddingLeft: "2rem" }}><div style={{ fontSize: "18px", fontWeight: "500" }}>{this.state.typed}<span className="cursor"><span style={{ fontWeight: "normal" }}>|</span></span></div></Card.Body>
             {this.props.activitiesArr.map((item, index) => (
-              <Card.Body style={{ borderBottom: "1px solid #ededed", paddingLeft: "2rem" }}>{item.activityName}</Card.Body>
+              <Card.Body style={{ borderBottom: "1px solid #ededed", paddingLeft: "2rem" }}>
+                <Form.Group controlId={`formBasicCheckbox-${index}`}>
+                  <Form.Check type="checkbox" label={`${item.activityName} ${(item.completed ? "Completed" : "")}`} onChange={() => this.props.submitActivity(index)}/>
+                </Form.Group>
+              </Card.Body>
             ))}
             <Card.Body style={{ paddingLeft: "2rem", color: "gray" }}>
               Goal completed?

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ContentCard from '../../ContentCard/ContentCard';
-import TimeManagementUnitActivities from './TimeManagementActivitiesUnit';
+import TimeManagementUnitActivities from './TimeManagementUnitActivities';
 
 class TimeManagementUnit extends Component {
   state = {
@@ -17,7 +17,7 @@ class TimeManagementUnit extends Component {
 
     this.setState(state => {
       const activitiesArr = state.activitiesArr;
-      activitiesArr[index] = true;
+      activitiesArr[index].completed = true;
       let numActivitiesCompleted = state.numActivitiesCompleted
       numActivitiesCompleted++
       return {
@@ -36,7 +36,7 @@ class TimeManagementUnit extends Component {
 
   render() {
     return (
-      <ContentCard scoreName={this.props.score.name} scoreValue={this.props.score.value} index={this.props.index} activitiesArr={this.state.activitiesArr} closeActivity={this.closeActivity} />
+      <ContentCard scoreName={this.props.score.name} scoreValue={this.props.score.value} index={this.props.index} activitiesArr={this.state.activitiesArr} submitActivity={this.submitActivity} />
     )
   }
 }
