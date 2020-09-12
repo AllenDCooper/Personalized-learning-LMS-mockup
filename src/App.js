@@ -67,7 +67,7 @@ class App extends Component {
         answerArr,
       }
     },
-    // callback function used to submit score async (after state is updated)
+      // callback function used to submit score async (after state is updated)
       () => {
         this.submitScore()
         console.log(`answerArr: ${this.state.answerArr}`)
@@ -198,7 +198,7 @@ class App extends Component {
     }
     console.log(newArr)
     return newArr
-  } 
+  }
 
   // function that sorts percentile array into 3 tiers: strengths, developing strengths, and growth areas.
   sortStrengths = (arr) => {
@@ -207,7 +207,7 @@ class App extends Component {
     console.log(`descendingArr: ${descendingArr}`);
 
     // instantiate an array to hold the 3 tiers of skill
-    const strengthsArr = [{"Strengths": []}, {"Developing_Strengths": []}, {"Growth_Areas": []}]
+    const strengthsArr = [{ "Strengths": [] }, { "Developing_Strengths": [] }, { "Growth_Areas": [] }]
 
     // map descending array, sorting out into 3 tiers and pushing into appropriate object in strengthsArr
     descendingArr.forEach((element, index) => {
@@ -248,14 +248,14 @@ class App extends Component {
               <h4 style={{ paddingLeft: "20px" }}>
                 Your Personalized Goals
                 </h4>
-              <AccordionUnit score={this.state.goalsToCompleteArr[(this.state.goalsToCompleteArr.length-1)]} />
-              <AccordionUnit score={this.state.goalsToCompleteArr[(this.state.goalsToCompleteArr.length-2)]} />
-              <AccordionUnit score={this.state.goalsToCompleteArr[(this.state.goalsToCompleteArr.length-3)]} />
+              <AccordionUnit score={this.state.goalsToCompleteArr[(this.state.goalsToCompleteArr.length - 1)]} />
+              <AccordionUnit score={this.state.goalsToCompleteArr[(this.state.goalsToCompleteArr.length - 2)]} />
+              <AccordionUnit score={this.state.goalsToCompleteArr[(this.state.goalsToCompleteArr.length - 3)]} />
             </Accordion>
           </section>
         </div>
       )
-    } 
+    }
     // displays initial assessment to get started
     else if (!seeAll) {
       return (
@@ -277,7 +277,7 @@ class App extends Component {
           </section>
         </div>
       );
-    } 
+    }
     // displays all content modules when seeAll is true
     else {
       return (
@@ -295,9 +295,13 @@ class App extends Component {
                   </div>
                 </Accordion.Collapse>
               </Card>
-              {scales.map(item => (
-                <AccordionUnit score={item} />
-              ))}
+              {this.state.goalsToCompleteArr.length > 0 ?
+                (this.state.goalsToCompleteArr.map(item => (
+                  <AccordionUnit score={item} />
+                ))) : (scales.map(item => (
+                  <AccordionUnit score={item} />
+                )))
+              }
             </Accordion>
           </section>
         </div>
