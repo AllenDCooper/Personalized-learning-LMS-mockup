@@ -72,7 +72,7 @@ class CardUnit extends Component {
           {this.props.scoreName}
         </Accordion.Toggle>
         <Accordion.Collapse eventKey={this.props.index} >
-          <div style={{ backgroundColor: "#fff6e5" }}>
+          <div>
             <Card.Body style={{ borderBottom: "1px solid #ededed", borderTop: "1px solid #ededed", paddingLeft: "2rem" }}><div style={{ fontSize: "18px", fontWeight: "500" }}>{this.state.typed}<span className="cursor"><span style={{ fontWeight: "normal" }}>|</span></span></div></Card.Body>
             {this.props.activitiesArr.map((item, index) => (
               <Card.Body style={{ borderBottom: "1px solid #ededed", paddingLeft: "2rem" }}>
@@ -86,7 +86,7 @@ class CardUnit extends Component {
               </Card.Body>
             ))}
             {this.props.allActivitiesComplete ? (
-            <Card.Body style={{ paddingLeft: "2rem" }}>
+            <Card.Body style={{ paddingLeft: "2rem", backgroundColor: "#fff6e5" }}>
               Goal completed?
               <Form.Check
                 type="switch"
