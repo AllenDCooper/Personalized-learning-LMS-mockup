@@ -241,6 +241,20 @@ class App extends Component {
         <div>
           <Scorecard strengthsArr={this.state.strengthsArr} scoreArr={this.state.scoreArr} />
           <section>
+            {this.state.completedGoalsArr.length > 0 ?
+              <div style={{ marginBottom: "30px" }}>
+                <h4 style={{ paddingLeft: "20px" }}>
+                  Your Completed Goals
+              </h4>
+                <Accordion>
+                  {this.state.completedGoalsArr.map(item => (
+                    <AccordionUnit score={item} saveCompletedGoal={this.saveCompletedGoal} />
+                  ))}
+                </Accordion>
+              </div>
+              :
+              null
+            }
             <Accordion>
               <h4 style={{ paddingLeft: "20px" }}>
                 Your Personalized Goals
