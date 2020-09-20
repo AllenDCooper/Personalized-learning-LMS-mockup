@@ -10,51 +10,51 @@ class AccordionUnit extends Component {
     switch (score.name) {
       case "Critical Thinking and Goal Setting":
         return (
-          <CriticalThinkingUnit score={score} index={1} />
+          <CriticalThinkingUnit score={score} index={1} saveCompletedGoal={this.props.saveCompletedGoal}/>
         )
       case "Motivation, Decision Making, and Personal Responsibility":
         return (
-          <MotivationUnit score={score} index={2} />
+          <MotivationUnit score={score} index={2} saveCompletedGoal={this.props.saveCompletedGoal}/>
         )
       case "Learning Preferences":
         return (
-          <LearningUnit score={score} index={3} />
+          <LearningUnit score={score} index={3} saveCompletedGoal={this.props.saveCompletedGoal}/>
         )
       case "Organization and Time Management":
         return (
-          <TimeManagementUnit score={score} index={4} />
+          <TimeManagementUnit score={score} index={4} saveCompletedGoal={this.props.saveCompletedGoal}/>
         )
       case "Reading":
         return (
-          <ReadingUnit score={score} index={5} />
+          <ReadingUnit score={score} index={5} saveCompletedGoal={this.props.saveCompletedGoal}/>
         )
       case "Note Taking":
         return (
-          <NoteTakingUnit score={score} index={6} />
+          <NoteTakingUnit score={score} index={6} saveCompletedGoal={this.props.saveCompletedGoal}/>
         )
       case "Memory and Studying":
         return (
-          <MemoryUnit score={score} index={7} />
+          <MemoryUnit score={score} index={7} saveCompletedGoal={this.props.saveCompletedGoal}/>
         );
       case "Test Taking":
         return (
-          <TestTakingUnit score={score} index={8} />
+          <TestTakingUnit score={score} index={8} saveCompletedGoal={this.props.saveCompletedGoal}/>
         );
       case "Information Literacy and Communication":
         return (
-          <CommUnit score={score} index={9} />
+          <CommUnit score={score} index={9} saveCompletedGoal={this.props.saveCompletedGoal}/>
         )
       case "Connecting with Others":
         return (
-          <ConnectingUnit score={score} index={10} />
+          <ConnectingUnit score={score} index={10} saveCompletedGoal={this.props.saveCompletedGoal}/>
         )
       case "Personal and Financial Health":
         return (
-          <HealthUnit score={score} index={11} />
+          <HealthUnit score={score} index={11} saveCompletedGoal={this.props.saveCompletedGoal}/>
         )
       case "Academic and Career Planning":
         return (
-          <PlanningUnit score={score} index={12} />
+          <PlanningUnit score={score} index={12} saveCompletedGoal={this.props.saveCompletedGoal}/>
         )
       default:
         return (null);

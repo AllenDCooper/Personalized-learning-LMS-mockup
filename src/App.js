@@ -134,6 +134,10 @@ class App extends Component {
     });
   }
 
+  saveCompletedGoal = (scoreName) => {
+    setTimeout(()=> {console.log(`saveCompletedGoal run for ${scoreName}`)}, 1000)
+  }
+
   // function to reset all user data
   // will be passed into Header component as props and called on click of Reset button
   handleReset = () => {
@@ -218,9 +222,9 @@ class App extends Component {
               <h4 style={{ paddingLeft: "20px" }}>
                 Your Personalized Goals
                 </h4>
-              <AccordionUnit score={this.state.goalsToCompleteArr[(this.state.goalsToCompleteArr.length - 1)]} />
-              <AccordionUnit score={this.state.goalsToCompleteArr[(this.state.goalsToCompleteArr.length - 2)]} />
-              <AccordionUnit score={this.state.goalsToCompleteArr[(this.state.goalsToCompleteArr.length - 3)]} />
+              <AccordionUnit score={this.state.goalsToCompleteArr[(this.state.goalsToCompleteArr.length - 1)]} saveCompletedGoal={this.saveCompletedGoal}/>
+              <AccordionUnit score={this.state.goalsToCompleteArr[(this.state.goalsToCompleteArr.length - 2)]} saveCompletedGoal={this.saveCompletedGoal}/>
+              <AccordionUnit score={this.state.goalsToCompleteArr[(this.state.goalsToCompleteArr.length - 3)]} saveCompletedGoal={this.saveCompletedGoal}/>
             </Accordion>
           </section>
         </div>
@@ -267,7 +271,7 @@ class App extends Component {
               </Card>
               {this.state.goalsToCompleteArr.length > 0 ?
                 (this.state.goalsToCompleteArr.map(item => (
-                  <AccordionUnit score={item} />
+                  <AccordionUnit score={item} saveCompletedGoal={this.saveCompletedGoal}/>
                 ))) : (scales.map(item => (
                   <AccordionUnit score={item} />
                 )))

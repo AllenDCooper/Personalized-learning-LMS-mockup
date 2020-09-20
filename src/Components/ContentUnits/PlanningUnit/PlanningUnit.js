@@ -19,10 +19,6 @@ class PlanningUnit extends Component {
     })
   }
 
-  saveCompletedGoal = () => {
-    console.log(`saveCompletedGoal run`)
-  }
-
   submitActivity = (index) => {
 
     console.log(this.state.activitiesArr);
@@ -48,7 +44,7 @@ class PlanningUnit extends Component {
 
   render() {
     return (
-      <ContentCard scoreName={this.props.score.name} scoreValue={this.props.score.value} index={this.props.index} activitiesArr={this.state.activitiesArr} submitActivity={this.submitActivity} allActivitiesComplete={this.state.allActivitiesComplete} saveCompletedGoal={this.saveCompletedGoal} />
+      <ContentCard scoreName={this.props.score.name} scoreValue={this.props.score.value} index={this.props.index} activitiesArr={this.state.activitiesArr} submitActivity={this.submitActivity} allActivitiesComplete={this.state.allActivitiesComplete} saveCompletedGoal={this.props.saveCompletedGoal} />
     )
   }
 }
