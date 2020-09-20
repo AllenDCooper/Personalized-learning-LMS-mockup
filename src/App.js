@@ -28,14 +28,16 @@ class App extends Component {
   state = {
     takenAssessment: false,
     seeAll: false,
+    // scoreArr stores percentile scores for each scale
     scoreArr: [],
+    // rawScoreArr stores raw scores for each scale
     rawScoreArr: [],
+    // answerArr stores raw scores for each item in the self-assessment
     answerArr: [],
+    // strengthsArr stores percentile scores sorted by strengths, developing strengths, and growth areas
     strengthsArr: [],
+    // goalsToCompleteArr stores percentile scores for each scale, arranged in descending order, i.e. with lowest scores at the end
     goalsToCompleteArr: [],
-    goalOne: null,
-    goalTwo: null,
-    goalThree: null,
   }
 
   // this function will update the answerArr in state each time the user clicks on a radio button to answer an assessment question
@@ -120,27 +122,12 @@ class App extends Component {
     console.log(rawScoreArr);
     console.log(percentileArr);
 
-    // sort the array from smallest to largest
-    const arrCopy = [...percentileArr]
-    const sortedPercentileValues = this.sortValuesAscending(arrCopy);
-
-    // save the three smallest values
-    const goalOne = sortedPercentileValues[0]
-    console.log(`goalOne: ${JSON.stringify(goalOne)}`);
-    const goalTwo = sortedPercentileValues[1]
-    console.log(`goalTwo: ${JSON.stringify(goalTwo)}`);
-    const goalThree = sortedPercentileValues[2]
-    console.log(`goalThree: ${JSON.stringify(goalThree)}`);
-
     // sort percentile array into 3 arrays: strengths, developing strengths, and growth areas
     const strengthsArr = this.sortStrengths(percentileArr)
 
     // save into state
     this.setState({
       takenAssessment: true,
-      goalOne: goalOne,
-      goalTwo: goalTwo,
-      goalThree: goalThree,
       scoreArr: percentileArr,
       strengthsArr: strengthsArr,
       goalsToCompleteArr: percentileArr
@@ -158,9 +145,6 @@ class App extends Component {
       answerArr: [],
       strengthsArr: [],
       goalsToCompleteArr: [],
-      goalOne: null,
-      goalTwo: null,
-      goalThree: null,
     })
   }
 
@@ -170,20 +154,6 @@ class App extends Component {
     this.setState({
       seeAll: !this.state.seeAll
     })
-  }
-
-  // sort function that takes an array and will return new array with items in order from smallest to largest
-  sortValuesAscending = (arr) => {
-    console.log(arr);
-    arr.sort(function (a, b) {
-      return a.value - b.value
-    })
-    let newArr = []
-    for (let i = 0; i < arr.length; i++) {
-      newArr.push(arr[i])
-    }
-    console.log(newArr)
-    return newArr
   }
 
   // sort function that takes an array and will return new array with items in order from largest to smallest
