@@ -141,13 +141,19 @@ class App extends Component {
     setTimeout(
       () => {
         this.setState(state => {
-          const completedGoalsArr = [...state.completedGoalsArr]
+          const completedGoalsArr = [...state.completedGoalsArr];
 
-          completedGoalsArr.push(score)
-          console.log(completedGoalsArr)
+          completedGoalsArr.push(score);
+          console.log(completedGoalsArr);
+
+          const originalGoalsToCompleteArr = [...state.goalsToCompleteArr];
+          console.log(originalGoalsToCompleteArr)
+          const goalsToCompleteArr = originalGoalsToCompleteArr.filter(item => (item.name !== score.name))
+          console.log(goalsToCompleteArr)
 
           return {
             completedGoalsArr,
+            goalsToCompleteArr,
           }
         },
           console.log(`saveCompletedGoal run for ${score.name}`)
