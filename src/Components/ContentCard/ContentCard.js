@@ -21,7 +21,7 @@ class CardUnit extends Component {
       () => {
         if (this.state.show) {
           let goalString = "";
-          goalString = goals[this.props.scoreName][this.findValueTier(this.props.scoreValue)]
+          goalString = goals[this.props.score.name][this.findValueTier(this.props.score.value)]
           setTimeout(() => { this.typeWriter(goalString) }, 1000)
         } else {
           this.resetTypeWriter()
@@ -63,7 +63,7 @@ class CardUnit extends Component {
         switchChecked: !prevState.switchChecked
       }
     }, () => {
-      this.props.saveCompletedGoal(this.props.scoreName)
+      this.props.saveCompletedGoal(this.props.score)
     })
   }
 
@@ -71,7 +71,7 @@ class CardUnit extends Component {
     return (
       <Card>
         <Accordion.Toggle as={Card.Header} eventKey={this.props.index} onClick={this.toggleShow}>
-          {this.props.scoreName}
+          {this.props.score.name}
         </Accordion.Toggle>
         <Accordion.Collapse eventKey={this.props.index} >
           <div>

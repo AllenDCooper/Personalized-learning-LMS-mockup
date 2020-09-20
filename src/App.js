@@ -36,8 +36,11 @@ class App extends Component {
     answerArr: [],
     // strengthsArr stores percentile scores sorted by strengths, developing strengths, and growth areas
     strengthsArr: [],
-    // goalsToCompleteArr stores percentile scores for each scale, arranged in descending order, i.e. with lowest scores at the end
+    // goalsToCompleteArr stores percentile scores for each scale for which user has NOT yet completed a content unit
+    // arranged in descending order, i.e. with lowest scores at the end
     goalsToCompleteArr: [],
+    // completedGoalsArr stores percentile scores for each scale for which user has ALREADY completed a content unit for
+    completedGoalsArr: [],
   }
 
   // this function will update the answerArr in state each time the user clicks on a radio button to answer an assessment question
@@ -134,8 +137,22 @@ class App extends Component {
     });
   }
 
-  saveCompletedGoal = (scoreName) => {
-    setTimeout(()=> {console.log(`saveCompletedGoal run for ${scoreName}`)}, 1000)
+  saveCompletedGoal = (score) => {
+    setTimeout(
+      () => {
+        this.setState(state => {
+          const completedGoalsArr = [...state.completedGoalsArr]
+
+          completedGoalsArr.push(score)
+          console.log(completedGoalsArr)
+
+          return {
+            completedGoalsArr,
+          }
+        },
+          console.log(`saveCompletedGoal run for ${score.name}`)
+        )
+      }, 1000)
   }
 
   // function to reset all user data
@@ -222,9 +239,9 @@ class App extends Component {
               <h4 style={{ paddingLeft: "20px" }}>
                 Your Personalized Goals
                 </h4>
-              <AccordionUnit score={this.state.goalsToCompleteArr[(this.state.goalsToCompleteArr.length - 1)]} saveCompletedGoal={this.saveCompletedGoal}/>
-              <AccordionUnit score={this.state.goalsToCompleteArr[(this.state.goalsToCompleteArr.length - 2)]} saveCompletedGoal={this.saveCompletedGoal}/>
-              <AccordionUnit score={this.state.goalsToCompleteArr[(this.state.goalsToCompleteArr.length - 3)]} saveCompletedGoal={this.saveCompletedGoal}/>
+              <AccordionUnit score={this.state.goalsToCompleteArr[(this.state.goalsToCompleteArr.length - 1)]} saveCompletedGoal={this.saveCompletedGoal} />
+              <AccordionUnit score={this.state.goalsToCompleteArr[(this.state.goalsToCompleteArr.length - 2)]} saveCompletedGoal={this.saveCompletedGoal} />
+              <AccordionUnit score={this.state.goalsToCompleteArr[(this.state.goalsToCompleteArr.length - 3)]} saveCompletedGoal={this.saveCompletedGoal} />
             </Accordion>
           </section>
         </div>
@@ -271,7 +288,7 @@ class App extends Component {
               </Card>
               {this.state.goalsToCompleteArr.length > 0 ?
                 (this.state.goalsToCompleteArr.map(item => (
-                  <AccordionUnit score={item} saveCompletedGoal={this.saveCompletedGoal}/>
+                  <AccordionUnit score={item} saveCompletedGoal={this.saveCompletedGoal} />
                 ))) : (scales.map(item => (
                   <AccordionUnit score={item} />
                 )))
