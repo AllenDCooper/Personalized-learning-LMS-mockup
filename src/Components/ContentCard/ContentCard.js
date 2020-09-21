@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Accordion, Card, Form } from 'react-bootstrap';
 import goals from '../../ACES_Assessment/goals';
 import './styles.css';
+import ModalReassessment from '../ModalReassessment/ModalReassessment';
 
 class CardUnit extends Component {
 
@@ -97,6 +98,8 @@ class CardUnit extends Component {
                 label={(this.state.switchChecked ? `Yes!` : `No`)}
               />
             </Card.Body>) : null }
+            {this.props.allActivitiesComplete ? (
+            <ModalReassessment updateScore={this.props.updateScore} scaleName={this.props.score.name} submitScore={this.props.submitScore} />) : null }
           </div>
         </Accordion.Collapse>
       </Card >

@@ -42,11 +42,11 @@ class AccordionUnit extends Component {
         );
       case "Information Literacy and Communication":
         return (
-          <CommUnit score={score} index={9} saveCompletedGoal={this.props.saveCompletedGoal}/>
+          <CommUnit score={score} index={9} saveCompletedGoal={this.props.saveCompletedGoal} updateScore={this.props.updateScore} submitScore={this.props.submitScore} />
         )
       case "Connecting with Others":
         return (
-          <ConnectingUnit score={score} index={10} saveCompletedGoal={this.props.saveCompletedGoal}/>
+          <ConnectingUnit score={score} index={10} saveCompletedGoal={this.props.saveCompletedGoal} />
         )
       case "Personal and Financial Health":
         return (
@@ -63,6 +63,7 @@ class AccordionUnit extends Component {
 
   render() {
     console.log(this.props.score)
+    console.log(this.props)
     return (this.scoreSwitch(this.props.score))
   }
 };

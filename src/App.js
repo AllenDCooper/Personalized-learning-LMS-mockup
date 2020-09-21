@@ -46,6 +46,8 @@ class App extends Component {
   // this function will update the answerArr in state each time the user clicks on a radio button to answer an assessment question
   // it will be passed into ModelAssessment (child) and then into FormCheck (grandchild) as props
   updateScore = (event, index) => {
+    console.log(event.target.value)
+    console.log(index)
     const value = parseInt(event.target.value);
     this.setState(state => {
       const answerArr = state.answerArr;
@@ -53,7 +55,9 @@ class App extends Component {
       return {
         answerArr
       }
-    })
+    }, 
+    () => {console.log(this.state.answerArr)}
+    )
   }
 
   // this function will fill out the answerArr in state with random answers for each assessment question
@@ -138,27 +142,28 @@ class App extends Component {
   }
 
   saveCompletedGoal = (score) => {
-    setTimeout(
-      () => {
-        this.setState(state => {
-          const completedGoalsArr = [...state.completedGoalsArr];
+    console.log(`saveCompletedGoal run`)
+    // setTimeout(
+    //   () => {
+    //     this.setState(state => {
+    //       const completedGoalsArr = [...state.completedGoalsArr];
 
-          completedGoalsArr.push(score);
-          console.log(completedGoalsArr);
+    //       completedGoalsArr.push(score);
+    //       console.log(completedGoalsArr);
 
-          const originalGoalsToCompleteArr = [...state.goalsToCompleteArr];
-          console.log(originalGoalsToCompleteArr)
-          const goalsToCompleteArr = originalGoalsToCompleteArr.filter(item => (item.name !== score.name))
-          console.log(goalsToCompleteArr)
+    //       const originalGoalsToCompleteArr = [...state.goalsToCompleteArr];
+    //       console.log(originalGoalsToCompleteArr)
+    //       const goalsToCompleteArr = originalGoalsToCompleteArr.filter(item => (item.name !== score.name))
+    //       console.log(goalsToCompleteArr)
 
-          return {
-            completedGoalsArr,
-            goalsToCompleteArr,
-          }
-        },
-          console.log(`saveCompletedGoal run for ${score.name}`)
-        )
-      }, 1000)
+    //       return {
+    //         completedGoalsArr,
+    //         goalsToCompleteArr,
+    //       }
+    //     },
+    //       console.log(`saveCompletedGoal run for ${score.name}`)
+    //     )
+    //   }, 1000)
   }
 
   // function to reset all user data
@@ -259,9 +264,9 @@ class App extends Component {
               <h4 style={{ paddingLeft: "20px" }}>
                 Your Personalized Goals
                 </h4>
-              <AccordionUnit score={this.state.goalsToCompleteArr[(this.state.goalsToCompleteArr.length - 1)]} saveCompletedGoal={this.saveCompletedGoal} />
-              <AccordionUnit score={this.state.goalsToCompleteArr[(this.state.goalsToCompleteArr.length - 2)]} saveCompletedGoal={this.saveCompletedGoal} />
-              <AccordionUnit score={this.state.goalsToCompleteArr[(this.state.goalsToCompleteArr.length - 3)]} saveCompletedGoal={this.saveCompletedGoal} />
+              <AccordionUnit score={this.state.goalsToCompleteArr[(this.state.goalsToCompleteArr.length - 1)]} saveCompletedGoal={this.saveCompletedGoal} updateScore={this.updateScore} submitScore={this.submitScore} />
+              <AccordionUnit score={this.state.goalsToCompleteArr[(this.state.goalsToCompleteArr.length - 2)]} saveCompletedGoal={this.saveCompletedGoal} updateScore={this.updateScore} submitScore={this.submitScore} />
+              <AccordionUnit score={this.state.goalsToCompleteArr[(this.state.goalsToCompleteArr.length - 3)]} saveCompletedGoal={this.saveCompletedGoal} updateScore={this.updateScore} submitScore={this.submitScore} />
             </Accordion>
           </section>
         </div>
@@ -308,9 +313,9 @@ class App extends Component {
               </Card>
               {this.state.goalsToCompleteArr.length > 0 ?
                 (this.state.goalsToCompleteArr.map(item => (
-                  <AccordionUnit score={item} saveCompletedGoal={this.saveCompletedGoal} />
+                  <AccordionUnit score={item} saveCompletedGoal={this.saveCompletedGoal} updateScore={this.updateScore} submitScore={this.submitScore} />
                 ))) : (scales.map(item => (
-                  <AccordionUnit score={item} />
+                  <AccordionUnit score={item} updateScore={this.updateScore} submitScore={this.submitScore} />
                 )))
               }
             </Accordion>
