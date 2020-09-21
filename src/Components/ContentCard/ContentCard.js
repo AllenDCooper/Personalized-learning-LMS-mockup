@@ -63,9 +63,10 @@ class CardUnit extends Component {
       return {
         switchChecked: !prevState.switchChecked
       }
-    }, () => {
-      this.props.saveCompletedGoal(this.props.score)
     })
+    // () => {
+    //   this.props.saveCompletedGoal(this.props.score)
+    // })
   }
 
   render() {
@@ -98,8 +99,8 @@ class CardUnit extends Component {
                 label={(this.state.switchChecked ? `Yes!` : `No`)}
               />
             </Card.Body>) : null }
-            {this.props.allActivitiesComplete ? (
-            <ModalReassessment updateScore={this.props.updateScore} scaleName={this.props.score.name} submitScore={this.props.submitScore} />) : null }
+            {this.state.switchChecked ? (
+            <ModalReassessment updateScore={this.props.updateScore} scaleName={this.props.score.name} submitScore={this.props.submitScore} saveCompletedGoal={this.props.saveCompletedGoal} score={this.props.score} />) : null }
           </div>
         </Accordion.Collapse>
       </Card >

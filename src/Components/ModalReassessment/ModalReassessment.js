@@ -45,6 +45,7 @@ class ModalReassessment extends Component {
       event.preventDefault();
       this.setValidated(true)
       this.props.submitScore();
+      this.props.saveCompletedGoal(this.props.score);
       console.log("score submitted");
       this.setValidated(false)
     }
@@ -84,7 +85,7 @@ class ModalReassessment extends Component {
   // render function dynamically creates forms for each chunked array
   render() {
     console.log(this.state.validated);
-    console.log(this.props);
+    console.log(this.props.score);
 
     // need item index and item text for each item in the array, e.g. {itemIndex: 33, itemText: ""}
     return (

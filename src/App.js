@@ -143,27 +143,28 @@ class App extends Component {
 
   saveCompletedGoal = (score) => {
     console.log(`saveCompletedGoal run`)
-    // setTimeout(
-    //   () => {
-    //     this.setState(state => {
-    //       const completedGoalsArr = [...state.completedGoalsArr];
+    console.log(score);
+    setTimeout(
+      () => {
+        this.setState(state => {
+          const completedGoalsArr = [...state.completedGoalsArr];
 
-    //       completedGoalsArr.push(score);
-    //       console.log(completedGoalsArr);
+          completedGoalsArr.push(score);
+          console.log(completedGoalsArr);
 
-    //       const originalGoalsToCompleteArr = [...state.goalsToCompleteArr];
-    //       console.log(originalGoalsToCompleteArr)
-    //       const goalsToCompleteArr = originalGoalsToCompleteArr.filter(item => (item.name !== score.name))
-    //       console.log(goalsToCompleteArr)
+          const originalGoalsToCompleteArr = [...state.goalsToCompleteArr];
+          console.log(originalGoalsToCompleteArr)
+          const goalsToCompleteArr = originalGoalsToCompleteArr.filter(item => (item.name !== score.name))
+          console.log(goalsToCompleteArr)
 
-    //       return {
-    //         completedGoalsArr,
-    //         goalsToCompleteArr,
-    //       }
-    //     },
-    //       console.log(`saveCompletedGoal run for ${score.name}`)
-    //     )
-    //   }, 1000)
+          return {
+            completedGoalsArr,
+            goalsToCompleteArr,
+          }
+        },
+          console.log(`saveCompletedGoal run for ${score.name}`)
+        )
+      }, 1000)
   }
 
   // function to reset all user data
