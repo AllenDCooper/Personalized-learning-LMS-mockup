@@ -91,8 +91,9 @@ class ModalReassessment extends Component {
     return (
       <div>
         <Card variant="primary" onClick={this.handleOpen}>
-          <Card.Body>
+          <Card.Body style={{ fontWeight: "500", paddingLeft: "2rem", backgroundColor: "#fff6e5" }}>
             Self-Reassessment
+            <span style={{ fontWeight: "normal" }}> (complete the module by taking the assessment again) </span>
           </Card.Body>
         </Card>
         <Modal size="xl" key={`key-0`} show={this.state.show === 1} onHide={this.handleCancel}>
@@ -113,7 +114,6 @@ class ModalReassessment extends Component {
             </Modal.Footer>
           </Form>
         </Modal>
-        ))
       </div>
     )
   }

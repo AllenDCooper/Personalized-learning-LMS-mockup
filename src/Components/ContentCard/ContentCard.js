@@ -90,17 +90,30 @@ class CardUnit extends Component {
               </Card.Body>
             ))}
             {this.props.allActivitiesComplete ? (
-            <Card.Body style={{ paddingLeft: "2rem", backgroundColor: "#fff6e5" }}>
-              Goal completed?
-              <Form.Check
-                type="switch"
-                id={`switch-${this.props.index}`}
-                onClick={this.submitGoal}
-                label={(this.state.switchChecked ? `Yes!` : `No`)}
-              />
-            </Card.Body>) : null }
+              this.state.switchChecked ?
+                <Card.Body style={{ paddingLeft: "2rem" }}>
+                  Goal completed?
+                  <Form.Check
+                    type="switch"
+                    id={`switch-${this.props.index}`}
+                    onClick={this.submitGoal}
+                    label={(this.state.switchChecked ? `Yes!` : `No`)}
+                  />
+                </Card.Body>
+                :
+                <Card.Body style={{ paddingLeft: "2rem", backgroundColor: "#fff6e5" }}>
+                  Goal completed?
+                  <Form.Check
+                    type="switch"
+                    id={`switch-${this.props.index}`}
+                    onClick={this.submitGoal}
+                    label={(this.state.switchChecked ? `Yes!` : `No`)}
+                  />
+                </Card.Body>
+            )
+              : null}
             {this.state.switchChecked ? (
-            <ModalReassessment updateScore={this.props.updateScore} scaleName={this.props.score.name} submitScore={this.props.submitScore} saveCompletedGoal={this.props.saveCompletedGoal} score={this.props.score} />) : null }
+              <ModalReassessment updateScore={this.props.updateScore} scaleName={this.props.score.name} submitScore={this.props.submitScore} saveCompletedGoal={this.props.saveCompletedGoal} score={this.props.score} />) : null}
           </div>
         </Accordion.Collapse>
       </Card >
