@@ -43,20 +43,28 @@ class ModalReassessment extends Component {
       this.setValidated(true)
     } else {
       event.preventDefault();
-      this.setValidated(true)
-      this.props.submitScore();
+      this.setValidated(true);
       this.props.saveCompletedGoal(this.props.score);
+      this.props.submitScore();
       console.log("score submitted");
       this.setValidated(false)
     }
+    this.setState(state => {
+      const show = 0
+      const setShow = 0
+      return {
+        show,
+        setShow
+      };
+    });
   }
 
   // function to retrieve item indexes for the particular scale
   getItemIndexes = (scaleName) => {
-    console.log(scaleName)
+    // console.log(scaleName)
     const itemArr = scales.filter(scale => (scale.name === scaleName));
-    console.log(itemArr)
-    console.log(itemArr[0].itemIndexes);
+    // console.log(itemArr)
+    // console.log(itemArr[0].itemIndexes);
     return itemArr[0].itemIndexes
   }
 
@@ -66,7 +74,7 @@ class ModalReassessment extends Component {
       const itemObj = {itemIndex: index, itemText: itemsArr[index].itemText}
       scaleItems.push(itemObj)
     });
-    console.log(`scaleItems: ${scaleItems}`)
+    // console.log(`scaleItems: ${scaleItems}`)
     return scaleItems
   }
 
@@ -84,8 +92,8 @@ class ModalReassessment extends Component {
 
   // render function dynamically creates forms for each chunked array
   render() {
-    console.log(this.state.validated);
-    console.log(this.props.score);
+    // console.log(this.state.validated);
+    // console.log(this.props.score);
 
     // need item index and item text for each item in the array, e.g. {itemIndex: 33, itemText: ""}
     return (

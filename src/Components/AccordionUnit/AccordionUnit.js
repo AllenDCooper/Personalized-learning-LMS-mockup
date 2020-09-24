@@ -62,8 +62,8 @@ class AccordionUnit extends Component {
   }
 
   render() {
-    console.log(this.props.score)
-    console.log(this.props)
+    // console.log(this.props.score)
+    // console.log(this.props)
     return (this.scoreSwitch(this.props.score))
   }
 };
