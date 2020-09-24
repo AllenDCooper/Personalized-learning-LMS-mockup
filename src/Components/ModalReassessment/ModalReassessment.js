@@ -44,8 +44,7 @@ class ModalReassessment extends Component {
     } else {
       event.preventDefault();
       this.setValidated(true);
-      this.props.saveCompletedGoal(this.props.score);
-      this.props.submitScore();
+      this.props.submitScore(this.props.score);
       console.log("score submitted");
       this.setValidated(false)
     }

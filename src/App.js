@@ -101,7 +101,7 @@ class App extends Component {
 
   // function aggregates individual answers stored in answerArr into scales
   // passed as props into ModalAssessment component where it is called when assessment is submitted
-  submitScore = () => {
+  submitScore = (goal) => {
     // instantiate two arrays that will hold scale objects, one for raw scores and one for percentiles
     let rawScoreArr = []
     let percentileArr = []
@@ -145,15 +145,27 @@ class App extends Component {
       }
       console.log(goalsToCompleteArr)
 
+
+      let goalsToDisplay = state.goalsToDisplay
+      // if user has selected maximum number of goals to display, reduce by 1
+      if (parseInt(state.goalsToDisplay) === state.goalsToCompleteArr.length) {
+        goalsToDisplay--
+      }
+      console.log(goalsToDisplay)
+
       return {
+        goalsToDisplay,
         takenAssessment: true,
         scoreArr: percentileArr,
         strengthsArr: strengthsArr,
-        goalsToCompleteArr
+        goalsToCompleteArr,
       }
     }
       ,
-      () => { this.getGoalDisplayArr(this.state.goalsToCompleteArr) }
+      () => {
+        console.log(`submitScore function successfully run`)
+        this.saveCompletedGoal(goal)
+      }
     );
   }
 
@@ -162,37 +174,39 @@ class App extends Component {
     console.log(score);
     setTimeout(
       () => {
-        this.setState(state => {
-          let completedGoalsArr = [...state.completedGoalsArr];
-
-          completedGoalsArr.push(score);
-          console.log(completedGoalsArr);
-
-          console.log(this.state.goalsToCompleteArr)
-
-          let goalsToCompleteArr = this.state.goalsToCompleteArr.filter(item => (item.name !== score.name))
-          console.log(goalsToCompleteArr)
-
-          let goalsToDisplay = 0
-          this.state.goalsToDisplay === (this.state.goalsToCompleteArr.length + 1) ? 
-          goalsToDisplay = this.state.goalsToDisplay - 1 
-          :
-          goalsToDisplay = this.state.goalsToDisplay
-          
-          console.log(goalsToDisplay)
-
-          return {
-            completedGoalsArr,
-            goalsToCompleteArr,
-            goalsToDisplayArr: goalsToCompleteArr,
-            goalsToDisplay,
-          }
-        },
-          () => {
-            console.log(`saveCompletedGoal run for ${score.name}`)
+        if (score) {
+          this.setState(state => {
+            // add completed goal to completedGoalsArr
+            let completedGoalsArr = [...state.completedGoalsArr];
+            completedGoalsArr.push(score);
+            console.log(completedGoalsArr);
             console.log(this.state.goalsToCompleteArr)
-          }
-        )
+
+            // remove completed goal from goalsToCompleteArr
+            let goalsToCompleteArr = this.state.goalsToCompleteArr.filter(item => (item.name !== score.name))
+            console.log(goalsToCompleteArr)
+
+            let goalsToDisplayArr = this.getGoalDisplayArr(goalsToCompleteArr, state.goalsToDisplay)
+
+            return {
+              completedGoalsArr,
+              goalsToCompleteArr,
+              goalsToDisplayArr,
+            }
+          },
+            () => {
+              console.log(`saveCompletedGoal run for ${score.name}`)
+              console.log(this.state.goalsToCompleteArr)
+            }
+          )
+        } else {
+          this.setState(state => {
+            let goalsToDisplayArr = this.getGoalDisplayArr(state.goalsToCompleteArr, state.goalsToDisplay)
+            return {
+              goalsToDisplayArr
+            }
+          })
+        }
       }, 1000)
   }
 
@@ -207,6 +221,9 @@ class App extends Component {
       answerArr: [],
       strengthsArr: [],
       goalsToCompleteArr: [],
+      completedGoalsArr: [],
+      goalsToDisplayArr: [],
+      goalsToDisplay: 3,
     })
   }
 
@@ -274,31 +291,35 @@ class App extends Component {
     },
       () => {
         if (this.state.goalsToCompleteArr.length > 0) {
-          this.getGoalDisplayArr(this.state.goalsToCompleteArr)
+          // this.getGoalDisplayArr(this.state.goalsToCompleteArr)
+          this.setState(state => {
+            let goalsToDisplayArr = this.getGoalDisplayArr(state.goalsToCompleteArr, state.goalsToDisplay)
+            return {
+              goalsToDisplayArr
+            }
+          },
+            () => console.log(this.state.goalsToDisplayArr)
+          )
         }
       }
     )
   }
 
-  getGoalDisplayArr = (goalArr) => {
+  getGoalDisplayArr = (goalArr, numGoalsToDisplay) => {
     console.log(goalArr);
-    console.log(`goalArr: ${goalArr}`)
     const arrCopy = [...goalArr];
-    console.log(`arrCopy = ${arrCopy}`)
-    const limit = (arrCopy.length - this.state.goalsToDisplay) - 1
+    let limit = (arrCopy.length - numGoalsToDisplay) - 1
     console.log(`limit: ${limit}`)
     let newArr = [];
     for (let i = (arrCopy.length - 1); i > limit; i--) {
       console.log(arrCopy[i]);
-      newArr.push(arrCopy[i])
-      console.log(`i: ${i} / newArr: ${newArr}`)
+      // check to ensure value is not null before pushing into array
+      if (arrCopy[i]) {
+        newArr.push(arrCopy[i])
+      }
     }
     console.log(`newArr: ${JSON.stringify(newArr)}`)
-    // return newArr
-    this.setState({
-      goalsToDisplayArr: newArr
-    })
-    console.log(this.state.goalsToDisplayArr)
+    return newArr
   }
 
   numUnitsToDisplay = (goalsArr) => {
