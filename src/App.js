@@ -47,6 +47,7 @@ class App extends Component {
     goalsToDisplay: 3,
     // spinnerOn is a boolean that triggers render of spinner
     spinnerOn: false,
+    personalizedLearningOn: false,
   }
 
   // this function will update the answerArr in state each time the user clicks on a radio button to answer an assessment question
@@ -240,6 +241,12 @@ class App extends Component {
     this.setState({
       seeAll: !this.state.seeAll
     })
+  }
+
+  handlePersonalizedLearningChange = () => {
+    this.setState({
+      personalizedLearningOn: !this.state.personalizedLearningOn,
+    }, () => {console.log(this.state.personalizedLearningOn)})
   }
 
   // sort function that takes an array and will return new array with items in order from largest to smallest
@@ -438,7 +445,7 @@ class App extends Component {
     return (
       <div>
         <Container>
-          <Header onClickReset={this.handleReset} onClickSeeAll={this.handleSeeAll} handleChange={this.handleChange} numUnits={this.numUnitsToDisplay(this.state.goalsToCompleteArr)} goalsToDisplay={this.state.goalsToDisplay} />
+          <Header onClickReset={this.handleReset} onClickSeeAll={this.handleSeeAll} handleChange={this.handleChange} numUnits={this.numUnitsToDisplay(this.state.goalsToCompleteArr)} goalsToDisplay={this.state.goalsToDisplay} handlePersonalizedLearningChange={this.handlePersonalizedLearningChange} personalizedLearningOn={this.state.personalizedLearningOn} />
           {this.renderSections(this.state.seeAll, this.state.takenAssessment)}
         </Container>
       </div>
