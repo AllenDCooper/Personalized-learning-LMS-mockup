@@ -41,8 +41,11 @@ class App extends Component {
     goalsToCompleteArr: [],
     // completedGoalsArr stores percentile scores for each scale for which user has ALREADY completed a content unit for
     completedGoalsArr: [],
+    // goalsToDisplayArr stores a certain number of items (determined by goalsToDisplay) from goalsToCompleteArr 
     goalsToDisplayArr: [],
+    // goalsToDisplay determines numbers of goals to display at a time
     goalsToDisplay: 3,
+    // spinnerOn is a boolean that triggers render of spinner
     spinnerOn: false,
   }
 
