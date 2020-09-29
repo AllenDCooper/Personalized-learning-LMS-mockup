@@ -7,7 +7,7 @@ class Scorecard extends Component {
     console.log(this.props.strengthsArr)
 
     // if no scores because assessment hasn't been taken yet, then no content modules will be delivered to user
-    if (this.props.scoreArr.length === 0) {
+    if (this.props.goalsArr.length === 0) {
       return (
         null
       )
@@ -30,7 +30,7 @@ class Scorecard extends Component {
                   <ul>
                     {this.props.strengthsArr[0].Strengths.length === 0 ? <li>[empty]</li> : (
                       this.props.strengthsArr[0].Strengths.map((scale, index) => (
-                        <li key={`key-${index}`}>{scale.name}: {scale.value}%</li>
+                        <li key={`key-${index}`}>{scale.name}: {scale.percentileScoreInitial}%</li>
                       ))
                     )}
                   </ul>
@@ -38,7 +38,7 @@ class Scorecard extends Component {
                   <ul>
                     {this.props.strengthsArr[1].Developing_Strengths.length === 0 ? <li>[empty]</li> : (
                       this.props.strengthsArr[1].Developing_Strengths.map((scale, index) => (
-                        <li key={`key-${index}`}>{scale.name}: {scale.value}%</li>
+                        <li key={`key-${index}`}>{scale.name}: {scale.percentileScoreInitial}%</li>
                       ))
                     )}
                   </ul>
@@ -46,7 +46,7 @@ class Scorecard extends Component {
                   <ul>
                     {this.props.strengthsArr[2].Growth_Areas.length === 0 ? <li>[empty]</li> : (
                       this.props.strengthsArr[2].Growth_Areas.map((scale, index) => (
-                        <li key={`key-${index}`}>{scale.name}: {scale.value}%</li>
+                        <li key={`key-${index}`}>{scale.name}: {scale.percentileScoreInitial}%</li>
                       ))
                     )}
                   </ul>

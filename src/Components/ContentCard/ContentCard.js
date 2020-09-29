@@ -22,7 +22,7 @@ class CardUnit extends Component {
       () => {
         if (this.state.show) {
           let goalString = "";
-          goalString = goals[this.props.score.name][this.findValueTier(this.props.score.value)]
+          goalString = goals[this.props.score.name][this.findValueTier(this.props.score.percentileScoreInitial)]
           setTimeout(() => { this.typeWriter(goalString) }, 1000)
         } else {
           this.resetTypeWriter()

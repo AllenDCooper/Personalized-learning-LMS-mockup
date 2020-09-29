@@ -13,9 +13,9 @@ class Header extends Component {
             <Button variant="primary" onClick={this.props.onClickReset} style={{ marginRight: "20px" }}>
               Reset
           </Button>
-            <Button variant="primary" onClick={this.props.onClickSeeAll} style={{ marginRight: "20px" }}>
+            {/* <Button variant="primary" onClick={this.props.onClickSeeAll} style={{ marginRight: "20px" }}>
               Toggle See All
-          </Button>
+          </Button> */}
           </Col>
           <Col>
             <Form style={{ marginTop: "35px" }}>
@@ -33,7 +33,7 @@ class Header extends Component {
                 {this.props.personalizedLearningOn ?
                   <div>
                     <Form.Label>Number of Goals to Display at a Time</Form.Label>
-                    <Form.Control as="select" defaultValue="3" value={this.props.goalsToDisplay} onChange={(event) => this.props.handleChange(event)}>
+                    <Form.Control as="select" defaultValue="3" value={this.props.numGoalsToDisplay} onChange={(event) => this.props.handleChange(event)}>
                       {this.props.numUnits.map((item, index) => (
                         <option>{index + 1}</option>
                       ))}
