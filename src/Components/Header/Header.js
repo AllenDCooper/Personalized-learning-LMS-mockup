@@ -18,7 +18,7 @@ function Header(props) {
         <Col>
           <Form>
             <Form.Group controlId="exampleForm.SelectCustom">
-              <Form.Label>Number of Goals to Display</Form.Label>
+              <Form.Label>Number of Goals to Display at a Time</Form.Label>
               <Form.Control as="select" defaultValue="3" value={props.goalsToDisplay} onChange={(event) => props.handleChange(event)}>
                 {props.numUnits.map((item, index) => (
                   <option>{index + 1}</option>

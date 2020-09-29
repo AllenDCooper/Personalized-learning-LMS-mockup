@@ -3,7 +3,7 @@ import './App.css';
 
 // importing react-boostrap styles
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Accordion, Card } from 'react-bootstrap';
+import { Container, Accordion, Card, Spinner } from 'react-bootstrap';
 
 // importing components
 import ModalAssessment from './Components/ModalAssessment/ModalAssessment';
@@ -43,6 +43,7 @@ class App extends Component {
     completedGoalsArr: [],
     goalsToDisplayArr: [],
     goalsToDisplay: 3,
+    spinnerOn: false,
   }
 
   // this function will update the answerArr in state each time the user clicks on a radio button to answer an assessment question
@@ -172,6 +173,7 @@ class App extends Component {
   saveCompletedGoal = (score) => {
     console.log(`saveCompletedGoal run`)
     console.log(score);
+    this.setState({ spinnerOn: true })
     setTimeout(
       () => {
         if (score) {
@@ -192,6 +194,7 @@ class App extends Component {
               completedGoalsArr,
               goalsToCompleteArr,
               goalsToDisplayArr,
+              spinnerOn: false
             }
           },
             () => {
@@ -203,11 +206,12 @@ class App extends Component {
           this.setState(state => {
             let goalsToDisplayArr = this.getGoalDisplayArr(state.goalsToCompleteArr, state.goalsToDisplay)
             return {
-              goalsToDisplayArr
+              goalsToDisplayArr,
+              spinnerOn: false
             }
           })
         }
-      }, 1000)
+      }, 2000)
   }
 
   // function to reset all user data
@@ -356,9 +360,18 @@ class App extends Component {
               <h4 style={{ paddingLeft: "20px" }}>
                 Your Personalized Goals
               </h4>
-              {this.state.goalsToDisplayArr.map(item => (
-                <AccordionUnit score={item} saveCompletedGoal={this.saveCompletedGoal} updateScore={this.updateScore} submitScore={this.submitScore} />
-              ))}
+              {this.state.spinnerOn ?
+                <div>
+                  <Spinner animation="grow" role="status" variant="primary" style={{ marginLeft: "20px" }}>
+                    <span className="sr-only">Loading...</span>
+                  </Spinner>
+                  <span style={{ marginLeft: "10px" }}>Generating your goals...</span>
+                </div>
+                :
+                (this.state.goalsToDisplayArr.map(item => (
+                  <AccordionUnit score={item} saveCompletedGoal={this.saveCompletedGoal} updateScore={this.updateScore} submitScore={this.submitScore} />
+                )))
+              }
             </Accordion>
           </section>
         </div>
