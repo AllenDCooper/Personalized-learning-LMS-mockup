@@ -18,34 +18,34 @@ import scales from './ACES_Assessment/scales';
 
 class App extends Component {
 
-  constructor() {
-    super();
-    this.updateScore = this.updateScore.bind(this);
-    this.submitScore = this.submitScore.bind(this);
-    this.randomScore = this.randomScore.bind(this);
-  }
-
   state = {
     takenAssessment: false,
-    seeAll: false,
+
     // scoreArr stores percentile scores for each scale
     scoreArr: [],
-    // rawScoreArr stores raw scores for each scale
+
+    // goalsArr stores all user data for each scale, including raw score and percentile score
     goalsArr: [],
-    rawScoreArr: [],
+
     // answerArr stores raw scores for each item in the self-assessment
     answerArr: [],
+
     // strengthsArr stores percentile scores sorted by strengths, developing strengths, and growth areas
     strengthsArr: [],
+
     // goalsToCompleteArr stores percentile scores for each scale for which user has NOT yet completed a content unit
     // arranged in descending order, i.e. with lowest scores at the end
     goalsToCompleteArr: [],
+
     // completedGoalsArr stores percentile scores for each scale for which user has ALREADY completed a content unit for
     completedGoalsArr: [],
+
     // goalsToDisplayArr stores a certain number of items (determined by goalsToDisplay) from goalsToCompleteArr 
     goalsToDisplayArr: [],
+
     // goalsToDisplay determines numbers of goals to display at a time
     numGoalsToDisplay: 3,
+
     // spinnerOn is a boolean that triggers render of spinner
     spinnerOn: false,
     adaptiveLearningOn: false,
@@ -126,7 +126,7 @@ class App extends Component {
       const percentileScore = parseInt(this.convertToPercentile(scaleSum, scaleIndex))
 
       // create score object that holds scale name and scale sum
-      const scoreObj = { name: scaleName, rawScoreInitial: scaleSum, percentileScoreInitial: percentileScore, isComplete: false }
+      const scoreObj = { name: scaleName, rawScoreInitial: scaleSum, percentileScoreCurrent: percentileScore, isComplete: false }
       // push it into the rawScoreArr
       goalsArr.push(scoreObj)
       console.log(goalsArr)
@@ -134,9 +134,10 @@ class App extends Component {
     return goalsArr
   }
 
-  getGoalsArrOnResubmit = (goal) => {
-    const scaleObj = scales.filter(scale => scale.name === goal.name)
-    const scaleIndex = scales.findIndex(scale => scale.name === goal.name)
+  getGoalsArrOnResubmit = (goalObj) => {
+    const scaleObj = scales.filter(scale => scale.name === goalObj.name)
+    const scaleIndex = scales.findIndex(scale => scale.name === goalObj.name)
+    console.log(goalObj);
 
     console.log(scaleObj)
     console.log(scaleObj[0])
@@ -153,12 +154,18 @@ class App extends Component {
 
     const percentileScore = parseInt(this.convertToPercentile(scaleSum, scaleIndex))
     console.log(percentileScore)
+    const prevScore = goalObj.percentileScoreCurrent
+    console.log(prevScore)
 
-    // create score object that holds scale name and scale sum
-    const scoreObj = { name: goal.name, rawScoreInitial: scaleSum, percentileScoreInitial: percentileScore, isComplete: true }
+    // update goalObj object
+    goalObj.percentileScoreCurrent = percentileScore;
+    goalObj.percentileScoreInitial = prevScore
+    goalObj.rawScoreProgress = scaleSum
+    goalObj.isComplete = true
+    console.log(goalObj)
     // push it into the rawScoreArr
     const goalsArr = [...this.state.goalsArr]
-    goalsArr[scaleIndex] = scoreObj
+    goalsArr[scaleIndex] = goalObj
     console.log(goalsArr)
     return goalsArr
   }
@@ -177,6 +184,7 @@ class App extends Component {
 
     // sort percentile array into 3 arrays: strengths, developing strengths, and growth areas
     const strengthsArr = this.sortStrengths([...goalsArr])
+    console.log(strengthsArr)
 
     // save into state
     this.setState(state => {
@@ -226,7 +234,7 @@ class App extends Component {
           }
         }
         )
-      }, 2000)
+      }, 3000)
   }
 
   // function to reset all user data
@@ -234,17 +242,20 @@ class App extends Component {
   handleReset = () => {
     this.setState({
       takenAssessment: false,
-      seeAll: false,
       scoreArr: [],
-      rawScoreArr: [],
+      goalsArr: [],
       answerArr: [],
       strengthsArr: [],
       goalsToCompleteArr: [],
       completedGoalsArr: [],
       goalsToDisplayArr: [],
-      goalsToDisplay: 3,
+      numGoalsToDisplay: 3,
+      spinnerOn: false,
+      adaptiveLearningOn: false,
+      showUnassigned: false,
     })
   }
+
 
   // function to loop through array of goals and render ones that are completed
   getCompletedGoals = (goalsArr, needsSort) => {
@@ -257,7 +268,7 @@ class App extends Component {
     const uncompletedGoalArr = goalsArr.filter(goal => goal.isComplete = false)
     return uncompletedGoalArr
   }
-  
+
   // function that will toggle between show all and hide all content units
   // will be passed into Header as props and called on click of Toggle See All button
   handleShowUnassigned = () => {
@@ -276,7 +287,7 @@ class App extends Component {
   sortValuesDescending = (arr) => {
     console.log(arr);
     arr.sort(function (a, b) {
-      return b.percentileScoreInitial - a.percentileScoreInitial
+      return b.percentileScoreCurrent - a.percentileScoreCurrent
     })
     let newArr = []
     for (let i = 0; i < arr.length; i++) {
@@ -297,14 +308,14 @@ class App extends Component {
 
     // map descending array, sorting out into 3 tiers and pushing into appropriate object in strengthsArr
     descendingArr.forEach((element, index) => {
-      console.log(`element.percentileScoreInitial: ${element.percentileScoreInitial}`);
-      if (element.percentileScoreInitial > 75) {
+      console.log(`element.percentileScoreCurrent: ${element.percentileScoreCurrent}`);
+      if (element.percentileScoreCurrent > 75) {
         const arrCopy1 = strengthsArr[0].Strengths
         let arr1 = []
         arrCopy1 === undefined ? arr1 = [] : arr1 = [...arrCopy1]
         arr1.push(element)
         strengthsArr[0].Strengths = arr1
-      } else if (element.percentileScoreInitial <= 75 && element.percentileScoreInitial > 25) {
+      } else if (element.percentileScoreCurrent <= 75 && element.percentileScoreCurrent > 25) {
         const arrCopy2 = strengthsArr[1].Developing_Strengths
         let arr2 = []
         arrCopy2 === undefined ? arr2 = [] : arr2 = [...arrCopy2]
@@ -394,7 +405,7 @@ class App extends Component {
     if (adaptiveLearningOn && takenAssessment) {
       return (
         <div>
-          <Scorecard strengthsArr={this.state.strengthsArr} goalsArr={this.state.goalsArr} />
+          <Scorecard spinnerOn={this.state.spinnerOn} strengthsArr={this.state.strengthsArr} goalsArr={this.state.goalsArr} />
           <section>
             {this.state.completedGoalsArr.length > 0 ?
               <div style={{ marginBottom: "30px" }}>
@@ -409,11 +420,12 @@ class App extends Component {
                     ))}
                   </Accordion>
                   :
-                  (<div><Spinner animation="grow" role="status" variant="primary" style={{ marginLeft: "20px" }}>
-                    <span className="sr-only">Loading...</span>
-                  </Spinner>
+                  <div>
+                    <Spinner animation="grow" role="status" variant="primary" style={{ marginLeft: "20px" }}>
+                      <span className="sr-only">Loading...</span>
+                    </Spinner>
                     <span style={{ marginLeft: "10px" }}>Updating your goals...</span>
-                  </div>)
+                  </div>
                 }
 
               </div>
@@ -444,10 +456,10 @@ class App extends Component {
                 <h4 style={{ paddingLeft: "20px", marginTop: "30px" }}>
                   Unassigned Goals
                   </h4>
-                  <Accordion>
-                {this.getUnassignedGoalDisplayArr(this.sortValuesDescending([...this.state.goalsToCompleteArr]), this.state.numGoalsToDisplay).map(item => (
-                  <AccordionUnit takenAssessment={this.state.takenAssessment} score={item} updateScore={this.updateScore} submitScore={this.submitScore} />
-                ))}
+                <Accordion>
+                  {this.getUnassignedGoalDisplayArr(this.sortValuesDescending([...this.state.goalsToCompleteArr]), this.state.numGoalsToDisplay).map(item => (
+                    <AccordionUnit takenAssessment={this.state.takenAssessment} score={item} updateScore={this.updateScore} submitScore={this.submitScore} />
+                  ))}
                 </Accordion>
               </>
               :
@@ -465,7 +477,7 @@ class App extends Component {
       return (
         <div>
           <section>
-            <Scorecard strengthsArr={this.state.strengthsArr} goalsArr={this.state.goalsArr} />
+            <Scorecard spinnerOn={this.state.spinnerOn} strengthsArr={this.state.strengthsArr} goalsArr={this.state.goalsArr} />
             <Accordion>
               <Card>
                 <Accordion.Toggle as={Card.Header} eventKey="0">
@@ -486,7 +498,7 @@ class App extends Component {
     else {
       return (
         <div>
-          <Scorecard strengthsArr={this.state.strengthsArr} goalsArr={this.state.goalsArr} />
+          <Scorecard spinnerOn={this.state.spinnerOn} strengthsArr={this.state.strengthsArr} goalsArr={this.state.goalsArr} />
           <section>
             <Accordion>
               {this.state.takenAssessment ? null :
@@ -514,11 +526,12 @@ class App extends Component {
                       ))}
                     </Accordion>
                     :
-                    (<div><Spinner animation="grow" role="status" variant="primary" style={{ marginLeft: "20px" }}>
-                      <span className="sr-only">Loading...</span>
-                    </Spinner>
+                    <div>
+                      <Spinner animation="grow" role="status" variant="primary" style={{ marginLeft: "20px" }}>
+                        <span className="sr-only">Loading...</span>
+                      </Spinner>
                       <span style={{ marginLeft: "10px" }}>Updating your goals...</span>
-                    </div>)
+                    </div>
                   }
 
                 </>
@@ -530,9 +543,18 @@ class App extends Component {
                   <h4 style={{ paddingLeft: "20px", marginTop: "30px" }}>
                     Your Personalized Goals
                   </h4>
-                  {this.state.goalsToCompleteArr.map(item => (
-                    <AccordionUnit takenAssessment={this.state.takenAssessment} score={item} saveCompletedGoal={this.saveCompletedGoal} updateScore={this.updateScore} submitScore={this.submitScore} />
-                  ))}
+                  {this.state.spinnerOn
+                    ?
+                    <div>
+                      <Spinner animation="grow" role="status" variant="primary" style={{ marginLeft: "20px" }}>
+                        <span className="sr-only">Loading...</span>
+                      </Spinner>
+                      <span style={{ marginLeft: "10px" }}>Updating your goals...</span>
+                    </div>
+                    :
+                    this.state.goalsToCompleteArr.map(item => (
+                      <AccordionUnit takenAssessment={this.state.takenAssessment} score={item} saveCompletedGoal={this.saveCompletedGoal} updateScore={this.updateScore} submitScore={this.submitScore} />
+                    ))}
                 </>
                 :
                 this.state.showUnassigned
