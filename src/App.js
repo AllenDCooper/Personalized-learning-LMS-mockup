@@ -48,7 +48,8 @@ class App extends Component {
     numGoalsToDisplay: 3,
     // spinnerOn is a boolean that triggers render of spinner
     spinnerOn: false,
-    personalizedLearningOn: false,
+    adaptiveLearningOn: false,
+    showUnassigned: false,
   }
 
   // this function will update the answerArr in state each time the user clicks on a radio button to answer an assessment question
@@ -289,16 +290,16 @@ class App extends Component {
   }
   // function that will toggle between show all and hide all content units
   // will be passed into Header as props and called on click of Toggle See All button
-  handleSeeAll = () => {
+  handleShowUnassigned = () => {
     this.setState({
-      seeAll: !this.state.seeAll
+      showUnassigned: !this.state.showUnassigned
     })
   }
 
-  handlePersonalizedLearningChange = () => {
+  handleAdaptiveLearningChange = () => {
     this.setState({
-      personalizedLearningOn: !this.state.personalizedLearningOn,
-    }, () => { console.log(this.state.personalizedLearningOn) })
+      adaptiveLearningOn: !this.state.adaptiveLearningOn,
+    }, () => { console.log(this.state.adaptiveLearningOn) })
   }
 
   // sort function that takes an array and will return new array with items in order from largest to smallest
@@ -398,11 +399,11 @@ class App extends Component {
   }
 
   // helper function that will conditionally return components, and will be called in the render
-  renderSections = (personalizedLearningOn, takenAssessment) => {
+  renderSections = (adaptiveLearningOn, takenAssessment) => {
     // displays three goal content units after assessment is taken
-    console.log(personalizedLearningOn);
+    console.log(adaptiveLearningOn);
     console.log(takenAssessment)
-    if (personalizedLearningOn && takenAssessment) {
+    if (adaptiveLearningOn && takenAssessment) {
       return (
         <div>
           <Scorecard strengthsArr={this.state.strengthsArr} goalsArr={this.state.goalsArr} />
@@ -416,7 +417,7 @@ class App extends Component {
                 {!this.state.spinnerOn ?
                   <Accordion>
                     {this.state.completedGoalsArr.map(item => (
-                      <AccordionUnit score={item} saveCompletedGoal={this.saveCompletedGoal} />
+                      <AccordionUnit takenAssessment={this.state.takenAssessment} score={item} saveCompletedGoal={this.saveCompletedGoal} />
                     ))}
                   </Accordion>
                   :
@@ -438,7 +439,7 @@ class App extends Component {
               {!this.state.spinnerOn ?
 
                 this.state.goalsToDisplayArr.map(item => (
-                  <AccordionUnit score={item} saveCompletedGoal={this.saveCompletedGoal} updateScore={this.updateScore} submitScore={this.submitScore} />
+                  <AccordionUnit takenAssessment={this.state.takenAssessment} score={item} saveCompletedGoal={this.saveCompletedGoal} updateScore={this.updateScore} submitScore={this.submitScore} />
                 ))
                 :
                 <div>
@@ -457,7 +458,7 @@ class App extends Component {
       )
     }
     // displays initial assessment to get started
-    else if (personalizedLearningOn) {
+    else if (adaptiveLearningOn) {
       return (
         <div>
           <section>
@@ -478,7 +479,7 @@ class App extends Component {
         </div>
       );
     }
-    // displays all content modules when personalizedLearningOn is false
+    // displays all content modules when adaptiveLearningOn is false
     else {
       return (
         <div>
@@ -487,7 +488,7 @@ class App extends Component {
             <Accordion>
               {this.state.takenAssessment ? null :
                 <Card style={{ marginBottom: "30px" }}>
-                  <Accordion.Toggle as={Card.Header} style={{marginBottom: "0px"}} eventKey="0">
+                  <Accordion.Toggle as={Card.Header} style={{ marginBottom: "0px" }} eventKey="0">
                     Self-Assessment (Initial)
                   </Accordion.Toggle>
                   <Accordion.Collapse eventKey="0">
@@ -499,14 +500,14 @@ class App extends Component {
               }
               {this.state.completedGoalsArr.length > 0 ?
                 <>
-                  <h4 style={{ paddingLeft: "20px" }}>
+                  <h4 style={{ paddingLeft: "20px", marginTop: "30px" }}>
                     Your Completed Goals
                   </h4>
 
                   {!this.state.spinnerOn ?
                     <Accordion>
                       {this.state.completedGoalsArr.map(item => (
-                        <AccordionUnit score={item} saveCompletedGoal={this.saveCompletedGoal} />
+                        <AccordionUnit takenAssessment={this.state.takenAssessment} score={item} saveCompletedGoal={this.saveCompletedGoal} />
                       ))}
                     </Accordion>
                     :
@@ -523,22 +524,26 @@ class App extends Component {
               }
               {this.state.goalsToCompleteArr.length > 0 ?
                 <>
-                  <h4 style={{ paddingLeft: "20px" }}>
+                  <h4 style={{ paddingLeft: "20px", marginTop: "30px" }}>
                     Your Personalized Goals
                   </h4>
                   {this.state.goalsToCompleteArr.map(item => (
-                    <AccordionUnit score={item} saveCompletedGoal={this.saveCompletedGoal} updateScore={this.updateScore} submitScore={this.submitScore} />
+                    <AccordionUnit takenAssessment={this.state.takenAssessment} score={item} saveCompletedGoal={this.saveCompletedGoal} updateScore={this.updateScore} submitScore={this.submitScore} />
                   ))}
                 </>
                 :
-                <>
-                  <h4 style={{ paddingLeft: "20px" }}>
-                    Content Units
+                this.state.showUnassigned
+                  ?
+                  <>
+                    <h4 style={{ paddingLeft: "20px" }}>
+                      Unassigned Units
                   </h4>
-                  {scales.map(item => (
-                    <AccordionUnit score={item} updateScore={this.updateScore} submitScore={this.submitScore} />
-                  ))}
+                    {scales.map(item => (
+                      <AccordionUnit takenAssessment={this.state.takenAssessment} score={item} updateScore={this.updateScore} submitScore={this.submitScore} />
+                    ))}
                   </>
+                  :
+                  null
               }
             </Accordion>
           </section>
@@ -552,8 +557,8 @@ class App extends Component {
     return (
       <div>
         <Container>
-          <Header onClickReset={this.handleReset} onClickSeeAll={this.handleSeeAll} handleChange={this.handleChange} numUnits={this.numUnitsToDisplay(this.state.goalsToCompleteArr)} numGoalsToDisplay={this.state.numGoalsToDisplay} handlePersonalizedLearningChange={this.handlePersonalizedLearningChange} personalizedLearningOn={this.state.personalizedLearningOn} />
-          {this.renderSections(this.state.personalizedLearningOn, this.state.takenAssessment)}
+          <Header onClickReset={this.handleReset} showUnassigned={this.state.showUnassigned} handleShowUnassigned={this.handleShowUnassigned} handleChange={this.handleChange} numUnits={this.numUnitsToDisplay(this.state.goalsToCompleteArr)} numGoalsToDisplay={this.state.numGoalsToDisplay} handleAdaptiveLearningChange={this.handleAdaptiveLearningChange} adaptiveLearningOn={this.state.adaptiveLearningOn} />
+          {this.renderSections(this.state.adaptiveLearningOn, this.state.takenAssessment)}
         </Container>
       </div>
     )

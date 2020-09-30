@@ -9,28 +9,46 @@ class Header extends Component {
       <Jumbotron>
         <h1>ACES Goal-Setter</h1>
         <Row>
-          <Col style={{ marginTop: "30px" }}>
-            <Button variant="primary" onClick={this.props.onClickReset} style={{ marginRight: "20px" }}>
-              Reset
-          </Button>
+          <Col sm={12} md={1} style={{ marginTop: "30px" }}>
+              <Button variant="primary" onClick={this.props.onClickReset} style={{ display: "inline", marginRight: "20px" }}>
+                Reset
+              </Button>
+              </Col>
+            <Col sm={12} md={5}>
+              <div style={{ display: "inline" }}>
+                <Form style={{ marginTop: "35px" }}>
+                  <Form.Group controlId="showUnassigned">
+                    <div style={{ marginBottom: "10px" }}>
+                      <span style={{ fontWeight: "500" }}>Show Unassigned?</span>
+                      <Form.Check
+                        style={{ display: "inline", marginLeft: "15px" }}
+                        type="switch"
+                        id="showUnassignedSwitch"
+                        label={this.props.showUnassigned ? "On" : "Off"}
+                        onChange={this.props.handleShowUnassigned}
+                      />
+                    </div>
+                  </Form.Group>
+                </Form>
+              </div>
             {/* <Button variant="primary" onClick={this.props.onClickSeeAll} style={{ marginRight: "20px" }}>
-              Toggle See All
+              Toggle See Content Units
           </Button> */}
           </Col>
-          <Col>
+          <Col sm={12} md={6} >
             <Form style={{ marginTop: "35px" }}>
-              <Form.Group controlId="exampleForm.SelectCustom">
+              <Form.Group controlId="adaptiveLearning">
                 <div style={{ marginBottom: "10px" }}>
-                <span style={{ fontWeight: "500" }}>Personalized learning?</span>
-                <Form.Check
-                  style={{ display: "inline", marginLeft: "15px" }}
-                  type="switch"
-                  id="custom-switch"
-                  label={this.props.personalizedLearningOn ? "" : ""}
-                  onChange={this.props.handlePersonalizedLearningChange}
-                />
+                  <span style={{ fontWeight: "500" }}>Adaptive learning?</span>
+                  <Form.Check
+                    style={{ display: "inline", marginLeft: "15px" }}
+                    type="switch"
+                    id="adaptiveLearningSwitch"
+                    label={this.props.adaptiveLearningOn ? "On" : "Off"}
+                    onChange={this.props.handleAdaptiveLearningChange}
+                  />
                 </div>
-                {this.props.personalizedLearningOn ?
+                {this.props.adaptiveLearningOn ?
                   <div>
                     <Form.Label>Number of Goals to Display at a Time</Form.Label>
                     <Form.Control as="select" defaultValue="3" value={this.props.numGoalsToDisplay} onChange={(event) => this.props.handleChange(event)}>
@@ -39,7 +57,7 @@ class Header extends Component {
                       ))}
                     </Form.Control>
                   </div>
-                  : 
+                  :
                   null
                 }
               </Form.Group>
