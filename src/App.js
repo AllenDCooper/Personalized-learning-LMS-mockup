@@ -107,37 +107,6 @@ class App extends Component {
     }
   }
 
-  // resubmitScore = (scaleName) => {
-  //   const scaleObj = scales.filter(scale => scale.name === scaleName)
-  //   const scaleIndex = scales.findIndex(scale => scale.name === scaleName)
-
-  //   console.log(scaleObj)
-  //   console.log(scaleIndex)
-
-  //   let scaleSum = 0
-  //   scaleObj.itemindexes.forEach(index => {
-  //     const score = this.state.answerArr[index]
-  //     // add that score to the scaleSum
-  //     scaleSum += score
-  //     console.log(scaleSum)
-  //   })
-
-  //   const percentileScore = parseInt(this.convertToPercentile(scaleSum, scaleIndex))
-
-
-  //   // create score object that holds scale name and scale sum
-  //   const scoreObj = { name: scaleName, rawScoreInitial: scaleSum, percentileScoreInitial: percentileScore, isComplete: true }
-  //   // push it into the rawScoreArr
-  //   this.setState(state => {
-  //     const goalsArr = [...state.goalsArr]
-  //     goalsArr[scaleIndex] = scoreObj
-
-  //     return {
-  //       goalsArr
-  //     }
-  //   })
-  // }
-
   getGoalsArrOnSubmit = () => {
     let goalsArr = []
     // loop through scales array to retrieve array of index locations in the rawScoreArr for the items of that particular scale 
@@ -288,6 +257,7 @@ class App extends Component {
     const uncompletedGoalArr = goalsArr.filter(goal => goal.isComplete = false)
     return uncompletedGoalArr
   }
+  
   // function that will toggle between show all and hide all content units
   // will be passed into Header as props and called on click of Toggle See All button
   handleShowUnassigned = () => {
@@ -390,6 +360,24 @@ class App extends Component {
     return newArr
   }
 
+  getUnassignedGoalDisplayArr = (goalArr, numGoalsToDisplay) => {
+    console.log(goalArr);
+    console.log(numGoalsToDisplay);
+    const arrCopy = [...goalArr];
+    let limit = (arrCopy.length - numGoalsToDisplay) - 1
+    console.log(`limit: ${limit}`)
+    let newArr = [];
+    for (let i = limit; i >= 0; i--) {
+      console.log(arrCopy[i]);
+      // check to ensure value is not null before pushing into array
+      if (arrCopy[i]) {
+        newArr.push(arrCopy[i])
+      }
+    }
+    console.log(`newArr: ${JSON.stringify(newArr)}`)
+    return newArr
+  }
+
   numUnitsToDisplay = (goalsArr) => {
     console.log(goalsArr.length)
     if (goalsArr.length > 0) {
@@ -450,6 +438,21 @@ class App extends Component {
                 </div>
               }
             </Accordion>
+            {this.state.showUnassigned
+              ?
+              <>
+                <h4 style={{ paddingLeft: "20px", marginTop: "30px" }}>
+                  Unassigned Goals
+                  </h4>
+                  <Accordion>
+                {this.getUnassignedGoalDisplayArr(this.sortValuesDescending([...this.state.goalsToCompleteArr]), this.state.numGoalsToDisplay).map(item => (
+                  <AccordionUnit takenAssessment={this.state.takenAssessment} score={item} updateScore={this.updateScore} submitScore={this.submitScore} />
+                ))}
+                </Accordion>
+              </>
+              :
+              null
+            }
 
           </section>
 
