@@ -9,7 +9,8 @@ class CardUnit extends Component {
   state = {
     show: false,
     typed: "",
-    switchChecked: false
+    switchChecked: false,
+    viewed: false,
   }
 
   toggleShow = () => {
@@ -20,12 +21,13 @@ class CardUnit extends Component {
       }
     },
       () => {
-        if (this.state.show) {
+        if (this.state.show && !this.state.viewed) {
           let goalString = "";
           goalString = goals[this.props.score.name][this.findValueTier(this.props.score.percentileScoreInitial)]
           setTimeout(() => { this.typeWriter(goalString) }, 1000)
+          this.setState({ viewed: true })
         } else {
-          this.resetTypeWriter()
+          this.setState({ typed: goals[this.props.score.name][this.findValueTier(this.props.score.percentileScoreInitial)]})
         }
       }
     )
