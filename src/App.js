@@ -10,6 +10,7 @@ import ModalAssessment from './Components/ModalAssessment/ModalAssessment';
 import AccordionUnit from './Components/AccordionUnit/AccordionUnit';
 import Scorecard from './Components/Scorecard/Scorecard';
 import Header from './Components/Header/Header';
+import NavBar from './Components/NavBar/NavBar';
 
 // importing ACES Assessment
 import normTable from './ACES_Assessment/normTable.js';
@@ -581,6 +582,7 @@ class App extends Component {
   render() {
     return (
       <div>
+        <NavBar />
         <Container>
           <Header onClickReset={this.handleReset} showUnassigned={this.state.showUnassigned} handleShowUnassigned={this.handleShowUnassigned} handleChange={this.handleChange} numUnits={this.numUnitsToDisplay(this.state.goalsToCompleteArr)} numGoalsToDisplay={this.state.numGoalsToDisplay} handleAdaptiveLearningChange={this.handleAdaptiveLearningChange} adaptiveLearningOn={this.state.adaptiveLearningOn} />
           {this.renderSections(this.state.adaptiveLearningOn, this.state.takenAssessment)}

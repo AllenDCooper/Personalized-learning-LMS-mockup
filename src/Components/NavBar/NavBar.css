@@ -1,0 +1,40 @@
+
+a:not([href]) {
+  color: gray;
+}
+
+.navbar-link {
+  color: gray;
+  font-weight: 300;
+  padding: 0 15px;
+}
+
+.navbar-link:hover {
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  font-weight: 900;
+  border-bottom: 2px solid white
+}
+
+.clicked {
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  font-weight: 900;
+  border-bottom: 2px solid white
+}
+
+.unclicked {
+  color: gray;
+  font-weight: 300;
+  padding: 0 10px;
+}
+
+/* a:not([href]) {
+  color: gray;
+  font-weight: 300;
+  padding: 0 10px;
+  border-radius: 0px;
+} */
