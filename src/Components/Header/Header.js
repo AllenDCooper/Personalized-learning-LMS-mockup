@@ -6,17 +6,17 @@ class Header extends Component {
   render() {
     console.log(this.props.numUnits)
     return (
-      <div style={{backgroundColor: '#f3f3f3', padding: '40px 40px 20px 0px'}}>
-        <h1 className="sans-pro-header">ACES Goal-Setter</h1>
-        <Row style={{paddingLeft: '20px'}}>
-          <Col sm={12} md={3} style={{ marginTop: "30px" }}>
+      <div style={{backgroundColor: '#f3f3f3', padding: '40px 0px 20px 0px'}}>
+        <h1 className="sans-pro-header" style={{marginBottom: '1.5rem'}}>ACES Goal-Setter</h1>
+        <Row style={{paddingLeft: '20px', backgroundColor: '#cff3f9', margin: '0px'}}>
+          <Col sm={12} md={3} style={{ marginTop: "20px" }}>
             <Button variant="outline-dark" onClick={this.props.onClickReset} style={{ display: "inline", marginRight: "20px" }}>
               Reset
               </Button>
           </Col>
           <Col sm={12} md={4}>
             <div style={{ display: "inline" }}>
-              <Form style={{ marginTop: "35px" }}>
+              <Form style={{ marginTop: "25px" }}>
                 <Form.Group controlId="showUnassigned">
                   <div style={{ marginBottom: "10px" }}>
                     <span style={{ fontWeight: "500" }}>Show Unassigned?</span>
@@ -36,7 +36,7 @@ class Header extends Component {
           </Button> */}
           </Col>
           <Col sm={12} md={5} >
-            <Form style={{ marginTop: "35px" }}>
+            <Form style={{ marginTop: "25px" }}>
               <Form.Group controlId="adaptiveLearning">
                 <div style={{ marginBottom: "10px" }}>
                   <span style={{ fontWeight: "500" }}>Adaptive learning?</span>
