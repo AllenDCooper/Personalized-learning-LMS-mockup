@@ -6,15 +6,15 @@ class Header extends Component {
   render() {
     console.log(this.props.numUnits)
     return (
-      <Jumbotron>
-        <h1>ACES Goal-Setter</h1>
-        <Row>
-          <Col sm={12} md={1} style={{ marginTop: "30px" }}>
-            <Button variant="primary" onClick={this.props.onClickReset} style={{ display: "inline", marginRight: "20px" }}>
+      <div style={{backgroundColor: '#f3f3f3', padding: '40px 40px 20px 0px'}}>
+        <h1 className="sans-pro-header">ACES Goal-Setter</h1>
+        <Row style={{paddingLeft: '20px'}}>
+          <Col sm={12} md={3} style={{ marginTop: "30px" }}>
+            <Button variant="outline-dark" onClick={this.props.onClickReset} style={{ display: "inline", marginRight: "20px" }}>
               Reset
               </Button>
           </Col>
-          <Col sm={12} md={5}>
+          <Col sm={12} md={4}>
             <div style={{ display: "inline" }}>
               <Form style={{ marginTop: "35px" }}>
                 <Form.Group controlId="showUnassigned">
@@ -35,7 +35,7 @@ class Header extends Component {
               Toggle See Content Units
           </Button> */}
           </Col>
-          <Col sm={12} md={6} >
+          <Col sm={12} md={5} >
             <Form style={{ marginTop: "35px" }}>
               <Form.Group controlId="adaptiveLearning">
                 <div style={{ marginBottom: "10px" }}>
@@ -47,7 +47,7 @@ class Header extends Component {
                     label={this.props.adaptiveLearningOn ? "On" : "Off"}
                     onChange={this.props.handleAdaptiveLearningChange}
                   />
-                  <p>Deliver personalized content units based on the strengths report.</p>
+                  <p style={{fontSize: '12px', color: 'darkgray'}}>Deliver personalized content units based on the strengths report.</p>
                 </div>
                 {this.props.adaptiveLearningOn ?
                   <div>
@@ -66,7 +66,7 @@ class Header extends Component {
           </Col>
         </Row>
 
-      </Jumbotron>
+      </div>
     )
   }
 }

@@ -579,10 +579,12 @@ class Main extends Component {
   // calls renderSections helper function to display appropriate components
   render() {
     return (
-      <div style={this.props.clickedLink === "home" ? {display: null} : {display: 'none'}}>
+      <div style={this.props.clickedLink === "home" ? {display: null, backgroundColor: '#f3f3f3', minHeight: '740px'} : {display: 'none', backgroundColor: '#f3f3f3', minHeight: '740px'}}>
         <Container>
           <Header onClickReset={this.handleReset} showUnassigned={this.state.showUnassigned} handleShowUnassigned={this.handleShowUnassigned} handleChange={this.handleChange} numUnits={this.numUnitsToDisplay(this.state.goalsToCompleteArr)} numGoalsToDisplay={this.state.numGoalsToDisplay} handleAdaptiveLearningChange={this.handleAdaptiveLearningChange} adaptiveLearningOn={this.state.adaptiveLearningOn} />
+          <div style={{backgroundColor: 'white', padding: '20px'}}> 
           {this.renderSections(this.state.adaptiveLearningOn, this.state.takenAssessment)}
+          </div>
         </Container>
       </div>
     )

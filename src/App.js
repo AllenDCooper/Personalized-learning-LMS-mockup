@@ -15,7 +15,7 @@ function App(props) {
   const [clickedLink, setClickedLink] = useState('home');
 
   return (
-    <div>
+    <div style={{ fontFamily: 'Source Sans Pro, sans-serif'}}>
       <NavBar clickedLink={clickedLink} setClickedLink={setClickedLink} />
       <Main clickedLink={clickedLink} />
       <Reports clickedLink={clickedLink} />
