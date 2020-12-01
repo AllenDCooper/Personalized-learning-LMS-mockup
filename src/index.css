@@ -31,3 +31,31 @@ body {
   color: gray;
   font-size: 2rem;
 }
+
+.report-img {
+  width: 100%
+}
+
+.reports-view {
+  background-color: white;
+  padding: 20px 20px 0px 20px;
+  text-align: center;
+}
+
+.reports-view-title {
+  background-color: white;
+  padding: 0px 20px ;
+  text-align: left;
+  text-transform: capitalize;
+}
+
+.reports-view-hr {
+  border-bottom: 1px solid darkgray;
+}
+
+.reports-view-heading {
+  margin: 0px;
+  padding-bottom: 5px;
+  font-size: 16px;
+  font-weight: bold;
+}
