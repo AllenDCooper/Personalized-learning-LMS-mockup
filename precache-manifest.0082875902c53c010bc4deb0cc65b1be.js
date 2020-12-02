@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "37916fbee6b79cfaa3d1abb890843b02",
+    "revision": "dc9709ea1a39969012444d46adbdda80",
     "url": "/aces-goalsetter-mockup/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/aces-goalsetter-mockup/static/css/2.af3c1da9.chunk.css"
   },
   {
-    "revision": "e7d2f3437dee0f01253a",
+    "revision": "45c99354c955a933c200",
     "url": "/aces-goalsetter-mockup/static/css/main.d0f89dc8.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/aces-goalsetter-mockup/static/js/2.ad69dda6.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "e7d2f3437dee0f01253a",
-    "url": "/aces-goalsetter-mockup/static/js/main.961e037a.chunk.js"
+    "revision": "45c99354c955a933c200",
+    "url": "/aces-goalsetter-mockup/static/js/main.afe9ab34.chunk.js"
   },
   {
     "revision": "3baf874a0a4e6d154807",
