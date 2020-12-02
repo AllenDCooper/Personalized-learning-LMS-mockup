@@ -40,7 +40,7 @@ class Scorecard extends Component {
                     <div style={{ margin: '20px 0px' }}>
                       {this.props.strengthsArr[0].Strengths.length === 0 ? <li>[empty]</li> : (
                         this.props.strengthsArr[0].Strengths.map((scale, index) => (
-                          <AccordionScale scale={scale} index={index} />
+                          <AccordionScale scale={scale} index={index} level={'high'}/>
                         ))
                       )}
                     </div>
@@ -48,7 +48,7 @@ class Scorecard extends Component {
                     <div style={{ margin: '20px 0px' }}>
                       {this.props.strengthsArr[1].Developing_Strengths.length === 0 ? <li>[empty]</li> : (
                         this.props.strengthsArr[1].Developing_Strengths.map((scale, index) => (
-                          <AccordionScale scale={scale} index={index} />
+                          <AccordionScale scale={scale} index={index} level={'moderate'}/>
                         ))
                       )}
                     </div>
@@ -56,7 +56,7 @@ class Scorecard extends Component {
                     <div style={{ margin: '20px 0px' }}>
                       {this.props.strengthsArr[2].Growth_Areas.length === 0 ? <li>[empty]</li> : (
                         this.props.strengthsArr[2].Growth_Areas.map((scale, index) => (
-                          <AccordionScale scale={scale} index={index} />
+                          <AccordionScale scale={scale} index={index} level={'low'}/>
                         ))
                       )}
                     </div>

@@ -1,7 +1,11 @@
 import React from 'react';
 import { Card, Accordion, Spinner, ProgressBar, Row, Col, Button } from 'react-bootstrap';
+import resources from '../../ACES_Assessment/resources';
 
 function AccordionScale(props) {
+
+  const resourceObj = resources[props.scale.name][props.level];
+  console.log(resourceObj);
 
   return (
     <Accordion>
@@ -58,8 +62,15 @@ function AccordionScale(props) {
               </Col>
               <Col xs={12} md={8} style={{ margin: 'auto' }}>
                 <h5>{props.scale.name}</h5>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Suspendisse interdum consectetur libero id faucibus nisl tincidunt eget. Erat velit scelerisque in dictum non consectetur. In cursus turpis massa tincidunt dui ut ornare lectus sit. Scelerisque eu ultrices vitae auctor eu augue ut lectus. Quam nulla porttitor massa id neque. Tellus id interdum velit laoreet id donec ultrices. Eget nunc scelerisque viverra mauris. Pretium quam vulputate dignissim suspendisse in est. Vel facilisis volutpat est velit egestas dui id. Adipiscing bibendum est ultricies integer. Aliquam sem et tortor consequat id porta nibh venenatis cras. Faucibus et molestie ac feugiat sed lectus vestibulum mattis ullamcorper. Consectetur a erat nam at lectus. Ut tristique et egestas quis. Aliquet eget sit amet tellus cras adipiscing enim eu turpis. Augue lacus viverra vitae congue eu consequat ac felis. Consectetur lorem donec massa sapien faucibus et molestie. Viverra adipiscing at in tellus integer. Elementum integer enim neque volutpat ac tincidunt.</p>
-                <p>Venenatis urna cursus eget nunc scelerisque. Morbi tempus iaculis urna id volutpat lacus laoreet non. Adipiscing bibendum est ultricies integer quis auctor elit sed vulputate. Sed viverra ipsum nunc aliquet bibendum enim facilisis gravida. Massa tempor nec feugiat nisl pretium fusce id. Faucibus in ornare quam viverra orci. Pellentesque diam volutpat commodo sed. Purus semper eget duis at. Sit amet dictum sit amet. Rhoncus mattis rhoncus urna neque viverra justo nec ultrices dui.</p>
+                <p>{resourceObj.description}</p>
+                <ul>
+                  {resourceObj.resources.map(item =>
+                    <li>
+                      {`${item.resourceName}: `}<a target='_blank' href={`/${item.resourceURL}`}>{item.resourceURL}</a>
+                      <p>{item.resourceText}</p>
+                    </li>
+                  )}
+                </ul>
               </Col>
             </Row>
           </div>
