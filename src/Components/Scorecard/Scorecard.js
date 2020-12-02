@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, Accordion, Spinner } from 'react-bootstrap';
+import { Card, Accordion, Spinner, ProgressBar, Row, Col } from 'react-bootstrap';
 
 class Scorecard extends Component {
 
@@ -35,63 +35,69 @@ class Scorecard extends Component {
             </Accordion.Toggle>
                 <Accordion.Collapse eventKey="14">
                   <Card.Body>
-                    <h5>Your Strengths</h5>
-                    <ul>
+                    <h5 className='strengths-header'>Your Strengths</h5>
+                    <div style={{ margin: '20px 0px' }}>
                       {this.props.strengthsArr[0].Strengths.length === 0 ? <li>[empty]</li> : (
                         this.props.strengthsArr[0].Strengths.map((scale, index) => (
-                          <li key={`key-${index}`}>
-                            <span style={{ fontWeight: "400" }}>{scale.name}</span>:
-                            {scale.percentileScoreInitial
-                              ?
-                              <span>
-                                <span style={{ color: "gray" }}>{` ${scale.percentileScoreInitial}%`}&nbsp;&#8594;&nbsp;</span>
-                                <span style={{ color: "blue", fontWeight: "500" }}>{` ${scale.percentileScoreCurrent}%`}</span>
-                              </span>
-                              :
-                              <span>{` ${scale.percentileScoreCurrent}%`}</span>
-                            }
-                          </li>
+                          <Row>
+                            <Col xs={12} md={4} style={{ textAlign: 'right' }}>
+                              <span style={{ fontWeight: "400" }}>{scale.name}</span>
+                            </Col>
+                            <Col xs={12} md={8} style={{ margin: 'auto' }}>
+                              <ProgressBar>
+                                {scale.percentileScoreInitial ?
+                                  <ProgressBar animated variant='success' now={scale.percentileScoreCurrent} label={`${scale.percentileScoreCurrent}%`} />
+                                  :
+                                  <ProgressBar now={scale.percentileScoreCurrent} label={`${scale.percentileScoreCurrent}%`} />
+                                }
+                              </ProgressBar>
+                            </Col>
+                          </Row>
                         ))
                       )}
-                    </ul>
-                    <h5>Your Developing Strengths</h5>
-                    <ul>
+                    </div>
+                    <h5 className='strengths-header'>Your Developing Strengths</h5>
+                    <div style={{ margin: '20px 0px' }}>
                       {this.props.strengthsArr[1].Developing_Strengths.length === 0 ? <li>[empty]</li> : (
                         this.props.strengthsArr[1].Developing_Strengths.map((scale, index) => (
-                          <li key={`key-${index}`}>
-                            <span style={{ fontWeight: "400" }}>{scale.name}</span>:
-                            {scale.percentileScoreInitial
-                              ?
-                              <span>
-                                <span style={{ color: "gray" }}>{` ${scale.percentileScoreInitial}%`}&nbsp;&#8594;&nbsp;</span>
-                                <span style={{ color: "blue", fontWeight: "500" }}>{` ${scale.percentileScoreCurrent}%`}</span>
-                              </span>
-                              :
-                              <span>{` ${scale.percentileScoreCurrent}%`}</span>
-                            }
-                          </li>
+                          <Row>
+                            <Col xs={12} md={4} style={{ textAlign: 'right' }}>
+                              <span style={{ fontWeight: "400" }}>{scale.name}</span>
+                            </Col>
+                            <Col xs={12} md={8} style={{ margin: 'auto' }}>
+                              <ProgressBar>
+                                {scale.percentileScoreInitial ?
+                                  <ProgressBar animated variant='success' now={scale.percentileScoreCurrent} label={`${scale.percentileScoreCurrent}%`} />
+                                  :
+                                  <ProgressBar now={scale.percentileScoreCurrent} label={`${scale.percentileScoreCurrent}%`} />
+                                }
+                              </ProgressBar>
+                            </Col>
+                          </Row>
                         ))
                       )}
-                    </ul>
-                    <h5>Your Growth Areas</h5>
-                    <ul>
+                    </div>
+                    <h5 className='strengths-header'>Your Growth Areas</h5>
+                    <div style={{ margin: '20px 0px' }}>
                       {this.props.strengthsArr[2].Growth_Areas.length === 0 ? <li>[empty]</li> : (
                         this.props.strengthsArr[2].Growth_Areas.map((scale, index) => (
-                          <li key={`key-${index}`}>
-                            <span style={{ fontWeight: "400" }}>{scale.name}</span>:
-                            {scale.percentileScoreInitial
-                              ?
-                              <span>
-                                <span style={{ color: "gray" }}>{` ${scale.percentileScoreInitial}%`}&nbsp;&#8594;&nbsp;</span>
-                                <span style={{ color: "blue", fontWeight: "500" }}>{` ${scale.percentileScoreCurrent}%`}</span>
-                              </span>
-                              :
-                              <span>{` ${scale.percentileScoreCurrent}%`}</span>
-                            }
-                          </li>
+                          <Row>
+                            <Col xs={12} md={4} style={{ textAlign: 'right' }}>
+                              <span style={{ fontWeight: "400" }}>{scale.name}</span>
+                            </Col>
+                            <Col xs={12} md={8} style={{ margin: 'auto' }}>
+                              <ProgressBar>
+                                {scale.percentileScoreInitial ?
+                                  <ProgressBar animated variant='success' now={scale.percentileScoreCurrent} label={`${scale.percentileScoreCurrent}%`} />
+                                  :
+                                  <ProgressBar now={scale.percentileScoreCurrent} label={`${scale.percentileScoreCurrent}%`} />
+                                }
+                              </ProgressBar>
+                            </Col>
+                          </Row>
                         ))
                       )}
-                    </ul>
+                    </div>
                   </Card.Body>
                 </Accordion.Collapse>
               </Card>

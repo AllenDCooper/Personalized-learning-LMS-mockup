@@ -4,7 +4,7 @@ const goals = {
     moderate: "Every day, I will remind myself of my goals, evaluate my progress on them, and update/amend my goals as needed.",
     low: "I will identify at least one long-term life goal I'd like to work towards (such as a happy family, contribution to social justice, financial security, etc.). "
   },
-  "Motivation, Decision Making, and Personal Responsibility" : {
+  "Motivation and Decision Making" : {
     high: "I will schedule time to reflect positively, practice gratitude, and celebrate my accomplishments.",
     moderate: "I will check in with myself everyday to name the emotion I am feeling and to notice when and why I am feel this way.",
     low: "I will practice approaching each obstacle as an opportunity to grow and learn."

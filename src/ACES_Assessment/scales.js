@@ -1,6 +1,6 @@
 const scales = [
   { name: "Critical Thinking and Goal Setting", itemIndexes: [0, 34, 42, 59, 68, 76] },
-  { name: "Motivation, Decision Making, and Personal Responsibility",itemIndexes: [1, 8, 16, 27, 43, 60, 69, 77] },
+  { name: "Motivation and Decision Making",itemIndexes: [1, 8, 16, 27, 43, 60, 69, 77] },
   { name: "Learning Preferences", itemIndexes: [2, 9, 21, 28, 35, 44, 51, 61, 78] },
   { name: "Organization and Time Management", itemIndexes: [10, 22, 29, 45, 52, 62, 70] },
   { name: "Reading", itemIndexes: [3, 11, 36, 46, 53, 71, 79] },

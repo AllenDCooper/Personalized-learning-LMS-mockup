@@ -12,7 +12,7 @@ class AccordionUnit extends Component {
         return (
           <CriticalThinkingUnit score={score} index={1} saveCompletedGoal={this.props.saveCompletedGoal} updateScore={this.props.updateScore} submitScore={this.props.submitScore} takenAssessment={this.props.takenAssessment} />
         )
-      case "Motivation, Decision Making, and Personal Responsibility":
+      case "Motivation and Decision Making":
         return (
           <MotivationUnit score={score} index={2} saveCompletedGoal={this.props.saveCompletedGoal} updateScore={this.props.updateScore} submitScore={this.props.submitScore} takenAssessment={this.props.takenAssessment} />
         )
