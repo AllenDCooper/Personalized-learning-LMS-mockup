@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Modal, Button, Card, Form } from 'react-bootstrap';
+import { Modal, Button, Card, Form, ProgressBar } from 'react-bootstrap';
 import itemsArr from '../../ACES_Assessment/itemsArr';
 import FormCheck from '../FormCheck/FormCheck';
 
@@ -92,7 +92,12 @@ class ModalAssessment extends Component {
           <Modal size="xl" key={`key-${index}`} show={this.state.show === (index + 1)} onHide={this.handleCancel}>
             <Form noValidate validated={this.state.validated} onSubmit={this.handleSubmit}>
               <Modal.Header closeButton>
-                <Modal.Title>Initial Self-Assessment</Modal.Title>
+                <Modal.Title>
+                  <span className='modal-form-header'>ACES Inventory</span>
+                  <div style={{display: 'inline'}}><ProgressBar style={{marginTop: '4px', height: '1.5rem'}} now={100*(index / (Math.ceil(itemsArr.length / 10)))} srOnly /></div>
+                  <br></br>
+                  Questions (page {index + 1} of {Math.ceil(itemsArr.length / 10)})
+                </Modal.Title>
               </Modal.Header>
               <Modal.Body>
                 <FormCheck itemsPageArr={item} updateScore={this.props.updateScore} pageNum={index} />
