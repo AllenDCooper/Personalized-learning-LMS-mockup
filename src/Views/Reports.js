@@ -22,8 +22,8 @@ function Reports(props) {
   return (
     <div style={props.clickedLink === "reports" ? { display: null, backgroundColor: '#f3f3f3', minHeight: '740px' } : { display: 'none', backgroundColor: '#f3f3f3', minHeight: '740px' }}>
       <Container>
-        <div style={{ backgroundColor: '#f3f3f3', padding: '40px 40px 40px 0px' }}>
-          <h1 className="sans-pro-header">ACES Instructor Reports</h1>
+        <div className='tab-title-container'>
+          <h1 className="tab-title">ACES Instructor Reports</h1>
         </div>
         <div>
           <Nav variant="tabs" defaultActiveKey="link-1" >

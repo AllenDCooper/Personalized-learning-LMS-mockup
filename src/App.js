@@ -8,17 +8,19 @@ import { Container, Accordion, Card, Spinner } from 'react-bootstrap';
 // importing components
 import Main from './Views/Main';
 import Reports from './Views/Reports';
+// import Goals from './Views/Goals';
 import NavBar from './Components/NavBar/NavBar';
 
 function App(props) {
 
-  const [clickedLink, setClickedLink] = useState('home');
+  const [clickedLink, setClickedLink] = useState('aces');
 
   return (
     <div style={{ fontFamily: 'Source Sans Pro, sans-serif'}}>
       <NavBar clickedLink={clickedLink} setClickedLink={setClickedLink} />
-      <Main clickedLink={clickedLink} />
-      <Reports clickedLink={clickedLink} />
+      <Main clickedLink={clickedLink} setClickedLink={setClickedLink} />
+      {/* <Goals clickedLink={clickedLink} setClickedLink={setClickedLink} /> */}
+      <Reports clickedLink={clickedLink} setClickedLink={setClickedLink} />
     </div>
   )
 }

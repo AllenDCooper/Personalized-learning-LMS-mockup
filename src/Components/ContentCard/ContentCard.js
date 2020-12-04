@@ -4,13 +4,21 @@ import goals from '../../ACES_Assessment/goals';
 import './styles.css';
 import ModalReassessment from '../ModalReassessment/ModalReassessment';
 
-class CardUnit extends Component {
+class ContentCard extends Component {
 
   state = {
     show: false,
     typed: "",
     switchChecked: false,
     viewed: false,
+    goalString: null,
+  }
+
+  componentDidMount() {
+    const goalString = goals[this.props.score.name][this.findValueTier(this.props.score.percentileScoreInitial)]
+    this.setState({
+      goalString: goalString
+    })
   }
 
   toggleShow = () => {
@@ -22,12 +30,10 @@ class CardUnit extends Component {
     },
       () => {
         if (this.state.show && !this.state.viewed) {
-          let goalString = "";
-          goalString = goals[this.props.score.name][this.findValueTier(this.props.score.percentileScoreInitial)]
-          setTimeout(() => { this.typeWriter(goalString) }, 1000)
+          setTimeout(() => { this.typeWriter(this.state.goalString) }, 1000)
           this.setState({ viewed: true })
         } else {
-          this.setState({ typed: goals[this.props.score.name][this.findValueTier(this.props.score.percentileScoreInitial)]})
+          this.setState({ typed: goals[this.props.score.name][this.findValueTier(this.props.score.percentileScoreInitial)] })
         }
       }
     )
@@ -73,13 +79,15 @@ class CardUnit extends Component {
 
   render() {
     return (
-      <Card>
-        <Accordion.Toggle as={Card.Header} eventKey={this.props.index} onClick={this.toggleShow}>
-          {this.props.score.name}
+      <Card className='hover-pointer'>
+        <Accordion.Toggle as={Card.Body} eventKey={this.props.index} onClick={this.toggleShow} >
+          <span className='goal-scale'>{this.props.score.name}</span>
+          <br></br>
+          <span className='permanent-marker-goal'>{this.state.goalString}</span>
         </Accordion.Toggle>
         <Accordion.Collapse eventKey={this.props.index} >
           <div>
-            {this.props.takenAssessment
+            {/* {this.props.takenAssessment
               ?
               <Card.Body style={{ borderBottom: "1px solid #ededed", borderTop: "1px solid #ededed", paddingLeft: "2rem" }}>
                 <div style={{ fontSize: "18px", fontWeight: "500" }}>
@@ -91,7 +99,7 @@ class CardUnit extends Component {
               </Card.Body>
               :
               null
-            }
+            } */}
             {this.props.activitiesArr.map((item, index) => (
               <Card.Body style={{ borderBottom: "1px solid #ededed", paddingLeft: "2rem" }}>
                 <Form.Group controlId={`formBasicCheckbox-${index}`}>
@@ -127,7 +135,7 @@ class CardUnit extends Component {
             )
               : null}
             {this.state.switchChecked ? (
-              <ModalReassessment updateScore={this.props.updateScore} scaleName={this.props.score.name} submitScore={this.props.submitScore} saveCompletedGoal={this.props.saveCompletedGoal} score={this.props.score} />) : null}
+              <ModalReassessment setClickedLink={this.props.setClickedLink} updateScore={this.props.updateScore} scaleName={this.props.score.name} submitScore={this.props.submitScore} saveCompletedGoal={this.props.saveCompletedGoal} score={this.props.score} />) : null}
           </div>
         </Accordion.Collapse>
       </Card >
@@ -135,4 +143,4 @@ class CardUnit extends Component {
   }
 }
 
-export default CardUnit;
+export default ContentCard;
