@@ -499,6 +499,13 @@ class Main extends Component {
               <h4 className='tab-title'>
                 My Strengths Report
               </h4>
+              {!this.state.takenAssessment && !this.state.spinnerOn ?
+                <div className='tab-description'>
+                  <p>Start by taking the ACES self-assessment to obtain your Strengths Report. </p>
+                </div>
+                :
+                null
+              }
               {this.state.takenAssessment && !this.state.spinnerOn ?
                 <div className='reset-button'>
                   <Button variant="outline-dark" onClick={this.handleReset}>Reset</Button>
