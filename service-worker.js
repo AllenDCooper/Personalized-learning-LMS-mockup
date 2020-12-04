@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/aces-goalsetter-mockup/precache-manifest.6dd05de6f028808bd6727d1293f81f7a.js"
+  "/aces-goalsetter-mockup/precache-manifest.831a96a17f82a5188c06888696e18ca3.js"
 );
 
 self.addEventListener('message', (event) => {
