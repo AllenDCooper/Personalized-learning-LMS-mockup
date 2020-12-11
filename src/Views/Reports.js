@@ -20,7 +20,7 @@ function Reports(props) {
   }
 
   return (
-    <div style={props.clickedLink === "reports" ? { display: null, backgroundColor: '#f3f3f3', minHeight: '740px' } : { display: 'none', backgroundColor: '#f3f3f3', minHeight: '740px' }}>
+    <div style={props.clickedLink === "reports" ? { display: 'initial', backgroundColor: '#f3f3f3', minHeight: '740px' } : { display: 'none', backgroundColor: '#f3f3f3', minHeight: '740px' }}>
       <Container>
         <div className='tab-title-container'>
           <h1 className="tab-title">ACES Instructor Reports</h1>

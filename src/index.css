@@ -121,3 +121,8 @@ body {
   width: auto;
   display: inline-block;
 } */
+
+.activity-link, .activity-link:hover {
+  color: inherit; 
+  text-decoration: none;
+}

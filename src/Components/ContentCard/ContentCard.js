@@ -3,6 +3,7 @@ import { Accordion, Card, Form } from 'react-bootstrap';
 import goals from '../../ACES_Assessment/goals';
 import './styles.css';
 import ModalReassessment from '../ModalReassessment/ModalReassessment';
+import Activity from '../../Components/Activity/Activity';
 
 class ContentCard extends Component {
 
@@ -104,9 +105,9 @@ class ContentCard extends Component {
               <Card.Body style={{ borderBottom: "1px solid #ededed", paddingLeft: "2rem" }}>
                 <Form.Group controlId={`formBasicCheckbox-${index}`}>
                   {item.completed ? (
-                    <Form.Check type="checkbox" checked label={`${item.activityName} ${(item.completed ? "Completed" : "")}`} />
+                      <Activity activity={item} completed={true}/>
                   ) : (
-                      <Form.Check type="checkbox" label={`${item.activityName}`} onChange={() => this.props.submitActivity(index)} />
+                    <Activity activity={item} completed={false} onChangeFunction={() => this.props.submitActivity(index)} />
                     )}
                 </Form.Group>
               </Card.Body>
