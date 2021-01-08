@@ -112,6 +112,11 @@ body {
   right: 20px;
   bottom: -5px;
 }
+.reset-button-mobile {
+  display: inline-block;
+  margin-top: 20px;
+
+}
 
 .adaptive-learning-control {
   text-align: right;

@@ -13,7 +13,7 @@ import NavBar from './Components/NavBar/NavBar';
 
 function App(props) {
 
-  const [clickedLink, setClickedLink] = useState('aces');
+  const [clickedLink, setClickedLink] = useState('ACES');
 
   return (
     <div style={{ fontFamily: 'Source Sans Pro, sans-serif' }}>

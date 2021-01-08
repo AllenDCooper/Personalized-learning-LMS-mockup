@@ -7,12 +7,21 @@ function AccordionScale(props) {
   const resourceObj = resources[props.scale.name][props.level];
   console.log(resourceObj);
 
+  const styles = {
+    scaleTitle: {
+      textAlign: 'right'
+    },
+    scaleTitleMobile: {
+      textAlign: 'left'
+    }
+  }
+
   return (
     <Accordion>
       <Card style={{ border: 'none' }}>
         <Accordion.Toggle as={Button} variant="link" eventKey={props.index + 20} style={{ width: '100%', boxShadow: 'none', padding: '0' }}>
           <Row>
-            <Col xs={12} md={4} style={{ textAlign: 'right' }}>
+            <Col xs={12} md={4} style={window.innerWidth <= 740 ? styles.scaleTitleMobile : styles.scaleTitle}>
               <span style={{ fontWeight: "400" }}>{props.scale.name}</span>
             </Col>
             <Col xs={12} md={8} style={{ margin: 'auto' }}>

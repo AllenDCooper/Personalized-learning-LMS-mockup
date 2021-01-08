@@ -493,7 +493,7 @@ class Main extends Component {
   render() {
     return (
       <div>
-        <div style={this.props.clickedLink === "aces" ? { display: 'initial', backgroundColor: '#f3f3f3', minHeight: '740px' } : { display: 'none', backgroundColor: '#f3f3f3', minHeight: '740px' }}>
+        <div style={this.props.clickedLink === "ACES" ? { display: 'initial', backgroundColor: '#f3f3f3', minHeight: '740px' } : { display: 'none', backgroundColor: '#f3f3f3', minHeight: '740px' }}>
           <Container>
             <div className='tab-title-container'>
               <h4 className='tab-title'>
@@ -507,10 +507,16 @@ class Main extends Component {
                 null
               }
               {this.state.takenAssessment && !this.state.spinnerOn ?
-                <div className='reset-button'>
-                  <Button variant="outline-dark" onClick={this.handleReset}>Reset</Button>
-                  <Button style={{ marginLeft: '10px' }} onClick={this.handleButtonGoals}>Go to Goals</Button>
-                </div>
+                window.innerWidth <= 740 ?
+                  <div className='reset-button-mobile'>
+                    <Button variant="outline-dark" onClick={this.handleReset}>Reset</Button>
+                    <Button style={{ marginLeft: '10px' }} onClick={this.handleButtonGoals}>Go to Goals</Button>
+                  </div>
+                  :
+                  <div className='reset-button'>
+                    <Button variant="outline-dark" onClick={this.handleReset}>Reset</Button>
+                    <Button style={{ marginLeft: '10px' }} onClick={this.handleButtonGoals}>Go to Goals</Button>
+                  </div>
                 :
                 null
               }
@@ -538,7 +544,7 @@ class Main extends Component {
           </Container>
         </div>
 
-        <div style={this.props.clickedLink === "my-goals" ? { display: 'initial', backgroundColor: '#f3f3f3', minHeight: '740px' } : { display: 'none', backgroundColor: '#f3f3f3', minHeight: '740px' }}>
+        <div style={this.props.clickedLink === "My Goals" ? { display: 'initial', backgroundColor: '#f3f3f3', minHeight: '740px' } : { display: 'none', backgroundColor: '#f3f3f3', minHeight: '740px' }}>
           <Container>
             <Row className='tab-title-container'>
               <Col>
@@ -558,7 +564,7 @@ class Main extends Component {
           </Container>
         </div>
 
-        <div style={this.props.clickedLink === "completed-goals" ? { display: 'initial', backgroundColor: '#f3f3f3', minHeight: '740px' } : { display: 'none', backgroundColor: '#f3f3f3', minHeight: '740px' }}>
+        <div style={this.props.clickedLink === "Completed Goals" ? { display: 'initial', backgroundColor: '#f3f3f3', minHeight: '740px' } : { display: 'none', backgroundColor: '#f3f3f3', minHeight: '740px' }}>
           <Container>
             <Row className='tab-title-container'>
               <Col>
@@ -571,7 +577,7 @@ class Main extends Component {
           </Container>
         </div>
 
-      </div>
+      </div >
     )
   }
 }

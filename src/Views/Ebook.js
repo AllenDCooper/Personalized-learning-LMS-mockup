@@ -7,7 +7,7 @@ import { Container, Nav, Form, Accordion, Card, Spinner, Jumbotron } from 'react
 function Ebook(props) {
 
   return (
-    <div style={props.clickedLink === "ebook" ? { display: 'initial', backgroundColor: '#f3f3f3', minHeight: '740px' } : { display: 'none', backgroundColor: '#f3f3f3', minHeight: '740px' }}>
+    <div style={props.clickedLink === "E-book" ? { display: 'initial', backgroundColor: '#f3f3f3', minHeight: '740px' } : { display: 'none', backgroundColor: '#f3f3f3', minHeight: '740px' }}>
       <Container>
         <div className='tab-title-container'>
           <h1 className="tab-title">E-Book</h1>
