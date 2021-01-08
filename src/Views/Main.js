@@ -397,7 +397,7 @@ class Main extends Component {
   }
 
   handleButtonGoals = () => {
-    this.props.setClickedLink('my-goals')
+    this.props.setClickedLink('My Goals')
   }
 
   // helper function that will conditionally return components, and will be called in the render
