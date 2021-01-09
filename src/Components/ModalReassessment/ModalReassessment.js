@@ -48,7 +48,7 @@ class ModalReassessment extends Component {
       console.log("score submitted");
       this.setValidated(false)
     }
-    this.props.setClickedLink('aces')
+    this.props.setClickedLink('ACES')
     this.setState(state => {
       const show = 0
       const setShow = 0
