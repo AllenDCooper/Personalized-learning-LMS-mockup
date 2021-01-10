@@ -1,3 +1,5 @@
+// import normTable from '../ACES_Assessment/normTable.js'
+// import scales from '../ACES_Assessment/scales.js'
 import normTable from '../ACES_Assessment/normTable.js'
 import scales from '../ACES_Assessment/scales.js'
 
@@ -51,7 +53,7 @@ const createSeedData = (numUsersToCreate) => {
     if (i < 20) {
       thisClass = true;
     }
-    const newUser = {userName: userName, scores: seedUserData, class: thisClass}
+    const newUser = {userName: userName, scores: seedUserData, inClass: thisClass}
     seedDataArr.push(newUser)
   }
   return seedDataArr

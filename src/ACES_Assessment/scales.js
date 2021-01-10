@@ -13,4 +13,5 @@ const scales = [
   { name: "Academic and Career Planning", itemIndexes: [7, 15, 20, 33, 50, 58, 75] }
 ]
 
+// export default scales;
 export default scales;

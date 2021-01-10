@@ -41,4 +41,5 @@ const normTable = [
 
 ]
 
+// export default normTable;
 export default normTable;
