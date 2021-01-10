@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, Accordion, ProgressBar, Row, Col, Button } from 'react-bootstrap';
 import './ClassReport.css';
 
-function InitialClassReport(props) {
+function ClassReport(props) {
   console.log(props)
 
   const styles = {
@@ -30,9 +30,9 @@ function InitialClassReport(props) {
                 <Col xs={12} md={8} style={{ margin: 'auto' }}>
                   <ProgressBar style={{ position: 'relative' }}>
                     {/* <span style={{ textAlign: 'center', position: 'absolute', width: `${scale.percentileScoreCurrent}%`, left: '0px', color: 'white', lineHeight: '1.25' }}>{`${props.scale.percentileScoreCurrent}%`}</span> */}
-                    <ProgressBar now={scale.initialScores.classScores.lowScoreCountPercent} label={`${scale.initialScores.classScores.lowScoreCountPercent}%`} style={{ backgroundColor: '#4da3ff' }} />
-                    <ProgressBar now={scale.initialScores.classScores.moderateScoreCountPercent} label={`${scale.initialScores.classScores.moderateScoreCountPercent}%`} />
-                    <ProgressBar now={scale.initialScores.classScores.highScoreCountPercent} label={`${scale.initialScores.classScores.highScoreCountPercent}%`} style={{ backgroundColor: '#0056b3' }} />
+                    <ProgressBar now={scale[props.scoreType][props.scoreCohort].lowScoreCountPercent} label={`${scale[props.scoreType][props.scoreCohort].lowScoreCountPercent}%`} style={{ backgroundColor: '#4da3ff' }} />
+                    <ProgressBar now={scale[props.scoreType][props.scoreCohort].moderateScoreCountPercent} label={`${scale[props.scoreType][props.scoreCohort].moderateScoreCountPercent}%`} />
+                    <ProgressBar now={scale[props.scoreType][props.scoreCohort].highScoreCountPercent} label={`${scale[props.scoreType][props.scoreCohort].highScoreCountPercent}%`} style={{ backgroundColor: '#0056b3' }} />
                   </ProgressBar>
                 </Col>
               </Row>
@@ -45,4 +45,4 @@ function InitialClassReport(props) {
   )
 }
 
-export default InitialClassReport;
+export default ClassReport;

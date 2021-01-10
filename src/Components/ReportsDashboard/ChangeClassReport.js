@@ -30,7 +30,7 @@ function ChangeClassReport(props) {
                 <Col xs={12} md={8} style={{ margin: 'auto' }}>
                   <ProgressBar style={{ position: 'relative' }}>
                     {/* <span style={{ textAlign: 'center', position: 'absolute', width: `${scale.percentileScoreCurrent}%`, left: '0px', color: 'white', lineHeight: '1.25' }}>{`${props.scale.percentileScoreCurrent}%`}</span> */}
-                    <ProgressBar now={scale.changeScores.classScores.rawScoreAvgChangePercent} label={`${scale.changeScores.classScores.rawScoreAvgChangePercent}%`} style={scale.changeScores.classScores.rawScoreAvgChangePercent < 0 ? { backgroundColor: 'red' } : {}} />
+                    <ProgressBar now={scale.changeScores[props.scoreCohort].rawScoreAvgChangePercent} label={`${scale.changeScores[props.scoreCohort].rawScoreAvgChangePercent}%`} style={scale.changeScores[props.scoreCohort].rawScoreAvgChangePercent < 0 ? { backgroundColor: 'red' } : {}} />
                   </ProgressBar>
                 </Col>
               </Row>

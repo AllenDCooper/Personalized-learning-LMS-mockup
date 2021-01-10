@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import seedData from '../Data/seed.js';
-import InitialClassReport from '../Components/ReportsDashboard/InitialClassReport';
+import ClassReport from '../Components/ReportsDashboard/ClassReport';
 import ProgressClassReport from '../Components/ReportsDashboard/ProgressClassReport';
 import ComparisonClassReport from '../Components/ReportsDashboard/ComparisonClassReport';
 import ChangeClassReport from '../Components/ReportsDashboard/ChangeClassReport';
@@ -24,6 +24,37 @@ function Reports(props) {
 
   const handleViewClick = (event) => {
     setView(event.target.id)
+  }
+
+  const getReport = (reportName) => {
+    switch (reportName) {
+      case 'initial_class':
+        return <ClassReport reportsDataArr={reportsDataArr} scoreType={'initialScores'} scoreCohort={'classScores'} />
+      case 'initial_roster':
+        return null
+      case 'initial_institutional':
+        return <ClassReport reportsDataArr={reportsDataArr} scoreType={'initialScores'} scoreCohort={'institutionalScores'} />
+      case 'progress_class':
+        return <ClassReport reportsDataArr={reportsDataArr} scoreType={'progressScores'} scoreCohort={'classScores'} />
+      case 'progress_roster':
+        return <ClassReport reportsDataArr={reportsDataArr} scoreType={'progressScores'} />
+      case 'progress_institutional':
+        return <ClassReport reportsDataArr={reportsDataArr} scoreType={'progressScores'} scoreCohort={'institutionalScores'} />
+      case 'comparison_class':
+        return <ComparisonClassReport reportsDataArr={reportsDataArr} scoreCohort={'classScores'} />
+      case 'comparison_roster':
+        return <ComparisonClassReport reportsDataArr={reportsDataArr} />
+      case 'comparison_institutional':
+        return <ComparisonClassReport reportsDataArr={reportsDataArr} scoreCohort={'institutionalScores'} />
+      case 'change_class':
+        return <ChangeClassReport reportsDataArr={reportsDataArr} scoreCohort={'classScores'} />
+      case 'change_roster':
+        return <ChangeClassReport reportsDataArr={reportsDataArr} />
+      case 'change_institutional':
+        return <ChangeClassReport reportsDataArr={reportsDataArr} scoreCohort={'institutionalScores'} />
+      default:
+        return null
+    }
   }
 
   return (
@@ -60,23 +91,7 @@ function Reports(props) {
           <div className='reports-view-hr'>
           </div>
         </div>
-        {/* <iframe src="https://allendcooper.github.io/ACES-reports-dashboard/" height="1000px" width="100%" frameBorder="0" title="ACES reports">
-        </iframe> */}
-        {/* <img className='report-img' src={`${process.env.PUBLIC_URL}/images/${reportName}.PNG`} /> */}
-        {report === 'initial' ?
-          <InitialClassReport reportsDataArr={reportsDataArr} />
-          :
-          report === 'progress' ?
-            <ProgressClassReport reportsDataArr={reportsDataArr} />
-            :
-            report === 'comparison' ?
-              <ComparisonClassReport reportsDataArr={reportsDataArr} />
-              :
-              report === 'change' ?
-                <ChangeClassReport reportsDataArr={reportsDataArr} />
-                :
-                null
-        }
+        {getReport(reportName)}
       </Container>
     </div>
   )
