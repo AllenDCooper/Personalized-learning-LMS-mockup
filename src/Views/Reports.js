@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
-import seedData from '../Data/seed.js';
+import userModelSeed from '../Data/userModelSeed.js';
 import ClassReport from '../Components/ReportsDashboard/ClassReport';
-import ProgressClassReport from '../Components/ReportsDashboard/ProgressClassReport';
 import ComparisonClassReport from '../Components/ReportsDashboard/ComparisonClassReport';
 import ChangeClassReport from '../Components/ReportsDashboard/ChangeClassReport';
-import reportsDataArr from '../Data/BuildSeedModel';
+import RosterReport from '../Components/ReportsDashboard/RosterReport';
+import RosterComparisonReport from '../Components/ReportsDashboard/ComparisonRosterReport';
+import reportsDataArr from '../Data/classModelSeed';
+import ReportDescriptions from '../Components/ReportsDashboard/ReportDescriptions';
 
 // importing react-boostrap styles
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Nav, Form } from 'react-bootstrap';
 
 function Reports(props) {
-  console.log(seedData)
+  console.log(userModelSeed)
 
   const [report, setReport] = useState("initial")
   const [view, setView] = useState("class")
@@ -29,29 +31,29 @@ function Reports(props) {
   const getReport = (reportName) => {
     switch (reportName) {
       case 'initial_class':
-        return <ClassReport reportsDataArr={reportsDataArr} scoreType={'initialScores'} scoreCohort={'classScores'} />
+        return <ClassReport reportsDataArr={reportsDataArr} scoreType={'initialScores'} scoreCohort={'classScores'} ReportDescription={ReportDescriptions['initial_class']} />
       case 'initial_roster':
-        return null
+        return <RosterReport userModelSeed={userModelSeed} scoreType={'percentileScoreInitial'} scoreCohort={'classScores'} ReportDescription={ReportDescriptions['initial_roster']} />
       case 'initial_institutional':
-        return <ClassReport reportsDataArr={reportsDataArr} scoreType={'initialScores'} scoreCohort={'institutionalScores'} />
+        return <ClassReport reportsDataArr={reportsDataArr} scoreType={'initialScores'} scoreCohort={'institutionalScores'} ReportDescription={ReportDescriptions['initial_institutional']} />
       case 'progress_class':
-        return <ClassReport reportsDataArr={reportsDataArr} scoreType={'progressScores'} scoreCohort={'classScores'} />
+        return <ClassReport reportsDataArr={reportsDataArr} scoreType={'progressScores'} scoreCohort={'classScores'} ReportDescription={ReportDescriptions['progress_class']} />
       case 'progress_roster':
-        return <ClassReport reportsDataArr={reportsDataArr} scoreType={'progressScores'} />
+        return <RosterReport userModelSeed={userModelSeed} scoreType={'percentileScoreCurrent'} scoreCohort={'classScores'} ReportDescription={ReportDescriptions['progress_roster']} />
       case 'progress_institutional':
-        return <ClassReport reportsDataArr={reportsDataArr} scoreType={'progressScores'} scoreCohort={'institutionalScores'} />
+        return <ClassReport reportsDataArr={reportsDataArr} scoreType={'progressScores'} scoreCohort={'institutionalScores'} ReportDescription={ReportDescriptions['progress_institutional']} />
       case 'comparison_class':
-        return <ComparisonClassReport reportsDataArr={reportsDataArr} scoreCohort={'classScores'} />
+        return <ComparisonClassReport reportsDataArr={reportsDataArr} scoreCohort={'classScores'} ReportDescription={ReportDescriptions['comparison_class']} />
       case 'comparison_roster':
-        return <ComparisonClassReport reportsDataArr={reportsDataArr} />
+        return <RosterReport userModelSeed={userModelSeed} scoreType={'percentileScoreInitial'} scoreTypeAlt={'percentileScoreCurrent'} ReportDescription={ReportDescriptions['comparison_roster']} />
       case 'comparison_institutional':
-        return <ComparisonClassReport reportsDataArr={reportsDataArr} scoreCohort={'institutionalScores'} />
+        return <ComparisonClassReport reportsDataArr={reportsDataArr} scoreCohort={'institutionalScores'} ReportDescription={ReportDescriptions['comparison_institutional']} />
       case 'change_class':
-        return <ChangeClassReport reportsDataArr={reportsDataArr} scoreCohort={'classScores'} />
+        return <ChangeClassReport reportsDataArr={reportsDataArr} scoreCohort={'classScores'} ReportDescription={ReportDescriptions['change_class']} />
       case 'change_roster':
-        return <ChangeClassReport reportsDataArr={reportsDataArr} />
+        return <RosterReport userModelSeed={userModelSeed} scoreType={'percentileScoreChange'} ReportDescription={ReportDescriptions['change_roster']} />
       case 'change_institutional':
-        return <ChangeClassReport reportsDataArr={reportsDataArr} scoreCohort={'institutionalScores'} />
+        return <ChangeClassReport reportsDataArr={reportsDataArr} scoreCohort={'institutionalScores'} ReportDescription={ReportDescriptions['change_institutional']} />
       default:
         return null
     }

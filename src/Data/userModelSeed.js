@@ -21,7 +21,9 @@ const scaleConstructor = (scaleName, rawScoreInitial, rawScoreProgress, scaleInd
     rawScoreInitial: rawScoreInitial,
     rawScoreProgress: rawScoreProgress,
     percentileScoreCurrent: convertToPercentile(rawScoreProgress, scaleIndex),
-    percentileScoreInitial: convertToPercentile(rawScoreInitial, scaleIndex)
+    percentileScoreInitial: convertToPercentile(rawScoreInitial, scaleIndex),
+    rawScoreChange: rawScoreProgress - rawScoreInitial,
+    percentileScoreChange: (((rawScoreProgress - rawScoreInitial)/rawScoreInitial)*100).toFixed(1)
   }
 }
 
@@ -39,11 +41,6 @@ const createScoreArr = (scaleArr) => {
   return newScoreArr
 }
 
-const User = (scoreArr, userName) => {
-  this.userName = userName;
-  this.scoreArr = scoreArr
-}
-
 const createSeedData = (numUsersToCreate) => {
   let seedDataArr = []
   for (let i = 0; i < numUsersToCreate; i++) {
@@ -59,6 +56,6 @@ const createSeedData = (numUsersToCreate) => {
   return seedDataArr
 }
 
-const seedData = createSeedData(100)
+const userModelSeed = createSeedData(100)
 
-export default seedData;
+export default userModelSeed;

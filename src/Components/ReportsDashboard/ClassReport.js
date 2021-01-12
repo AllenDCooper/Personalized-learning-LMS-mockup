@@ -17,7 +17,7 @@ function ClassReport(props) {
   return (
     <div>
       <div className='report-instructions'>
-        The ACES Initial Class Report compares your class of students to nationwide norming tables.
+        {props.ReportDescription}
       </div>
       {props.reportsDataArr.map((scale, index) => (
         <Accordion>

@@ -5,3 +5,9 @@
 .comparison-progress-row {
   padding-bottom: 10px;
 }
+
+.roster-dropdown {
+  box-shadow: none;
+  text-align: center;
+  padding-bottom: 20px
+}

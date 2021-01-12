@@ -17,7 +17,7 @@ function ChangeClassReport(props) {
   return (
     <div>
       <div className='report-instructions'>
-        The ACES Change Class Report shows your class's average percent change in raw score, from the ACES (Initial) to the ACES (Progress) self-assessment, on all scales. A positive change appears in blue, while a negative change appears in red.
+        {props.ReportDescription}
       </div>
       {props.reportsDataArr.map((scale, index) => (
         <Accordion>

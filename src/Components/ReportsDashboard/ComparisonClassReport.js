@@ -17,7 +17,7 @@ function ComparisonClassReport(props) {
   return (
     <div>
       <div className='report-instructions'>
-        The ACES Comparison Class Report compares your class's results on the ACES (Initial) and ACES (Progress) self-assessments for all scales. For each topic, the Initial score appears above the Progress score.
+        {props.ReportDescription}
       </div>
       {props.reportsDataArr.map((scale, index) => (
         <Accordion>

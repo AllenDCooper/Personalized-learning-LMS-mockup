@@ -1,5 +1,5 @@
-import seedData from '../Data/seed.js'
-import reportsObjConstructor from './model.js'
+import userModelSeed from './userModelSeed.js'
+import reportsObjConstructor from './classModel.js'
 import scales from '../ACES_Assessment/scales'
 
 let reportsDataArrTemplate = scales.map(scale => reportsObjConstructor(scale.name))
@@ -93,7 +93,7 @@ const BuildSeedModel = (seedData, reportsDataArr) => {
   return updateChangeObject(updatedReportsDataArr);
 }
 
-const reportsDataArr = BuildSeedModel(seedData, reportsDataArrTemplate);
+const reportsDataArr = BuildSeedModel(userModelSeed, reportsDataArrTemplate);
 // console.log(reportsDataArr);
 
 export default reportsDataArr;
