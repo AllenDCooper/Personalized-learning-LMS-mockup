@@ -10,5 +10,6 @@
 .roster-dropdown {
   box-shadow: none;
   text-align: center;
-  padding-bottom: 20px
+  padding-bottom: 20px;
+  background: white;
 }
