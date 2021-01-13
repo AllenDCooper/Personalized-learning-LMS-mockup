@@ -81,19 +81,21 @@ function Reports(props) {
             </Nav.Item>
           </Nav>
         </div>
-        <div className='reports-view'>
-          <Form>
-            <Form.Check onClick={handleViewClick} inline label="Class" type='radio' id='class' name='view' defaultChecked />
-            <Form.Check onClick={handleViewClick} inline label="Roster" type='radio' id='roster' name='view' />
-            <Form.Check onClick={handleViewClick} inline label="Institutional" type='radio' id='institutional' name='view' />
-          </Form>
-        </div>
-        <div className='reports-view-title'>
-          <h5 className='reports-view-heading'>{`${report} ${view} Report`}</h5>
-          <div className='reports-view-hr'>
+        <div className='reports-container'>
+          <div className='reports-view'>
+            <Form>
+              <Form.Check onClick={handleViewClick} inline label="Class" type='radio' id='class' name='view' defaultChecked />
+              <Form.Check onClick={handleViewClick} inline label="Roster" type='radio' id='roster' name='view' />
+              <Form.Check onClick={handleViewClick} inline label="Institutional" type='radio' id='institutional' name='view' />
+            </Form>
           </div>
+          <div className='reports-view-title'>
+            <h5 className='reports-view-heading'>{`${report} ${view} Report`}</h5>
+            <div className='reports-view-hr'>
+            </div>
+          </div>
+          {getReport(reportName)}
         </div>
-        {getReport(reportName)}
       </Container>
     </div>
   )

@@ -74,6 +74,14 @@ body {
   border-bottom: 1px solid darkgray;
 }
 
+.reports-container {
+  background-color: white;
+  padding: 10px;
+  border-right: 1px solid #dee2e6;
+  border-left: 1px solid #dee2e6;
+  border-bottom: 1px solid #dee2e6;
+}
+
 .reports-view-heading {
   margin: 0px;
   padding-bottom: 5px;
