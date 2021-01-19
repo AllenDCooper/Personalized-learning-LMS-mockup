@@ -14,10 +14,11 @@ import NavBar from './Components/NavBar/NavBar';
 function App(props) {
 
   const [clickedLink, setClickedLink] = useState('ACES');
+  const [roleSelected, setRoleSelected] = useState('Student');
 
   return (
     <div style={{ fontFamily: 'Source Sans Pro, sans-serif' }}>
-      <NavBar clickedLink={clickedLink} setClickedLink={setClickedLink} />
+      <NavBar clickedLink={clickedLink} setClickedLink={setClickedLink} roleSelected={roleSelected} setRoleSelected={setRoleSelected} />
       <Main clickedLink={clickedLink} setClickedLink={setClickedLink} />
       {/* <Goals clickedLink={clickedLink} setClickedLink={setClickedLink} /> */}
       <Reports clickedLink={clickedLink} setClickedLink={setClickedLink} />
