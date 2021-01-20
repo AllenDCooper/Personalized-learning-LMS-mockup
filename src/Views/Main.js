@@ -14,6 +14,7 @@ import Header from '../Components/Header/Header';
 import normTable from '../ACES_Assessment/normTable.js';
 import itemsArr from '../ACES_Assessment/itemsArr';
 import scales from '../ACES_Assessment/scales';
+import InstructorScorecard from '../Components/Scorecard/InstructorScorecard';
 
 class Main extends Component {
 
@@ -136,36 +137,25 @@ class Main extends Component {
   getGoalsArrOnResubmit = (goalObj) => {
     const scaleObj = scales.filter(scale => scale.name === goalObj.name)
     const scaleIndex = scales.findIndex(scale => scale.name === goalObj.name)
-    console.log(goalObj);
-
-    console.log(scaleObj)
-    console.log(scaleObj[0])
-    console.log(scaleObj[0].itemIndexes)
-    console.log(scaleIndex)
 
     let scaleSum = 0
     scaleObj[0].itemIndexes.forEach(index => {
       const score = this.state.answerArr[index]
       // add that score to the scaleSum
       scaleSum += score
-      console.log(scaleSum)
     })
 
     const percentileScore = parseInt(this.convertToPercentile(scaleSum, scaleIndex))
-    console.log(percentileScore)
     const prevScore = goalObj.percentileScoreCurrent
-    console.log(prevScore)
 
     // update goalObj object
     goalObj.percentileScoreCurrent = percentileScore;
     goalObj.percentileScoreInitial = prevScore
     goalObj.rawScoreProgress = scaleSum
     goalObj.isComplete = true
-    console.log(goalObj)
     // push it into the rawScoreArr
     const goalsArr = [...this.state.goalsArr]
     goalsArr[scaleIndex] = goalObj
-    console.log(goalsArr)
     return goalsArr
   }
 
@@ -183,23 +173,18 @@ class Main extends Component {
 
     // sort percentile array into 3 arrays: strengths, developing strengths, and growth areas
     const strengthsArr = this.sortStrengths([...goalsArr])
-    console.log(strengthsArr)
 
     // save into state
     this.setState(state => {
       const goalsToCompleteArr = goalsArr.filter(goal => goal.isComplete === false)
-      console.log(goalsToCompleteArr);
 
       const completedGoalsArr = goalsArr.filter(goal => goal.isComplete === true)
-      console.log(completedGoalsArr);
 
       let numGoalsToDisplay = state.numGoalsToDisplay
       // if user has selected maximum number of goals to display, reduce by 1
       if (parseInt(state.numGoalsToDisplay) === state.goalsToCompleteArr.length) {
         numGoalsToDisplay--
       }
-      console.log(numGoalsToDisplay)
-
       return {
         numGoalsToDisplay,
         takenAssessment: true,
@@ -219,7 +204,6 @@ class Main extends Component {
 
   saveCompletedGoal = (score) => {
     console.log(`saveCompletedGoal run`)
-    console.log(score);
     this.setState({ spinnerOn: true })
     setTimeout(
       () => {
@@ -284,7 +268,6 @@ class Main extends Component {
 
   // sort function that takes an array and will return new array with items in order from largest to smallest
   sortValuesDescending = (arr) => {
-    console.log(arr);
     arr.sort(function (a, b) {
       return b.percentileScoreCurrent - a.percentileScoreCurrent
     })
@@ -292,7 +275,6 @@ class Main extends Component {
     for (let i = 0; i < arr.length; i++) {
       newArr.push(arr[i])
     }
-    console.log(newArr)
     return newArr
   }
 
@@ -300,7 +282,6 @@ class Main extends Component {
   sortStrengths = (arr) => {
     // sort the percentile array into descending order so that top strengths will appear first
     const descendingArr = this.sortValuesDescending(arr);
-    console.log(`descendingArr: ${descendingArr}`);
 
     // instantiate an array to hold the 3 tiers of skill
     const strengthsArr = [{ "Strengths": [] }, { "Developing_Strengths": [] }, { "Growth_Areas": [] }]
@@ -328,7 +309,6 @@ class Main extends Component {
         strengthsArr[2].Growth_Areas = arr3
       }
     })
-    console.log(`strengthsArr: ${JSON.stringify(strengthsArr)}`)
     return strengthsArr
   }
 
@@ -344,20 +324,15 @@ class Main extends Component {
             return {
               goalsToDisplayArr
             }
-          },
-            () => console.log(this.state.goalsToDisplayArr)
-          )
+          })
         }
       }
     )
   }
 
   getGoalDisplayArr = (goalArr, numGoalsToDisplay) => {
-    console.log(goalArr);
-    console.log(numGoalsToDisplay)
     const arrCopy = [...goalArr];
     let limit = (arrCopy.length - numGoalsToDisplay) - 1
-    console.log(`limit: ${limit}`)
     let newArr = [];
     for (let i = (arrCopy.length - 1); i > limit; i--) {
       console.log(arrCopy[i]);
@@ -366,30 +341,23 @@ class Main extends Component {
         newArr.push(arrCopy[i])
       }
     }
-    console.log(`newArr: ${JSON.stringify(newArr)}`)
     return newArr
   }
 
   getUnassignedGoalDisplayArr = (goalArr, numGoalsToDisplay) => {
-    console.log(goalArr);
-    console.log(numGoalsToDisplay);
     const arrCopy = [...goalArr];
     let limit = (arrCopy.length - numGoalsToDisplay) - 1
-    console.log(`limit: ${limit}`)
     let newArr = [];
     for (let i = limit; i >= 0; i--) {
-      console.log(arrCopy[i]);
       // check to ensure value is not null before pushing into array
       if (arrCopy[i]) {
         newArr.push(arrCopy[i])
       }
     }
-    console.log(`newArr: ${JSON.stringify(newArr)}`)
     return newArr
   }
 
   numUnitsToDisplay = (goalsArr) => {
-    console.log(goalsArr.length)
     if (goalsArr.length > 0) {
       return goalsArr
     }
@@ -403,8 +371,6 @@ class Main extends Component {
   // helper function that will conditionally return components, and will be called in the render
   renderAssignedGoals = (adaptiveLearningOn, takenAssessment) => {
     // displays three goal content units after assessment is taken
-    console.log(adaptiveLearningOn);
-    console.log(takenAssessment)
     if (adaptiveLearningOn && takenAssessment) {
       return (
         <div>
@@ -494,54 +460,81 @@ class Main extends Component {
     return (
       <div>
         <div style={this.props.clickedLink === "ACES" ? { display: 'initial', backgroundColor: '#f3f3f3', minHeight: '740px' } : { display: 'none', backgroundColor: '#f3f3f3', minHeight: '740px' }}>
-          <Container>
-            <div className='tab-title-container'>
-              <h4 className='tab-title'>
-                My Strengths Report
+          {this.props.roleSelected === 'Instructor' ?
+            <Container>
+              <div className='tab-title-container'>
+                <h4 className='tab-title'>
+                  My Class's Strengths Report
+                </h4>
+              </div>
+              <br></br>
+              <div>
+                <InstructorScorecard scoreType={'initialScores'} scoreCohort={'classScores'} cohortName={'Class'} />
+              </div>
+            </Container>
+            :
+            this.props.roleSelected === 'Administrator' ?
+              <Container>
+                <div className='tab-title-container'>
+                  <h4 className='tab-title'>
+                    My Institution's Strengths Report
               </h4>
-              {!this.state.takenAssessment && !this.state.spinnerOn ?
-                <div className='tab-description'>
-                  <p>Start by taking the ACES self-assessment to obtain your Strengths Report. </p>
                 </div>
-                :
-                null
-              }
-              {this.state.takenAssessment && !this.state.spinnerOn ?
-                window.innerWidth <= 740 ?
-                  <div className='reset-button-mobile'>
-                    <Button variant="outline-dark" onClick={this.handleReset}>Reset</Button>
-                    <Button style={{ marginLeft: '10px' }} onClick={this.handleButtonGoals}>Go to Goals</Button>
-                  </div>
-                  :
-                  <div className='reset-button'>
-                    <Button variant="outline-dark" onClick={this.handleReset}>Reset</Button>
-                    <Button style={{ marginLeft: '10px' }} onClick={this.handleButtonGoals}>Go to Goals</Button>
-                  </div>
-                :
-                null
-              }
-            </div>
-            <br></br>
-            <div>
-              <Scorecard spinnerOn={this.state.spinnerOn} strengthsArr={this.state.strengthsArr} goalsArr={this.state.goalsArr} />
-              <section>
-                <Accordion>
-                  {this.state.takenAssessment ? null :
-                    <Card style={{ marginBottom: "30px" }}>
-                      <Accordion.Toggle as={Card.Header} style={{ marginBottom: "0px" }} eventKey="0">
-                        Self-Assessment (Initial)
-                  </Accordion.Toggle>
-                      <Accordion.Collapse eventKey="0">
-                        <div>
-                          <ModalAssessment updateScore={this.updateScore} submitScore={this.submitScore} randomScore={this.randomScore} />
-                        </div>
-                      </Accordion.Collapse>
-                    </Card>
+                <br></br>
+                <div>
+                  <InstructorScorecard scoreType={'initialScores'} scoreCohort={'institutionalScores'} cohortName={'Institution'} />
+                </div>
+              </Container>
+              :
+              <Container>
+                <div className='tab-title-container'>
+                  <h4 className='tab-title'>
+                    My Strengths Report
+              </h4>
+                  {!this.state.takenAssessment && !this.state.spinnerOn ?
+                    <div className='tab-description'>
+                      <p>Start by taking the ACES self-assessment to obtain your Strengths Report. </p>
+                    </div>
+                    :
+                    null
                   }
-                </Accordion>
-              </section>
-            </div>
-          </Container>
+                  {this.state.takenAssessment && !this.state.spinnerOn ?
+                    window.innerWidth <= 740 ?
+                      <div className='reset-button-mobile'>
+                        <Button variant="outline-dark" onClick={this.handleReset}>Reset</Button>
+                        <Button style={{ marginLeft: '10px' }} onClick={this.handleButtonGoals}>Go to Goals</Button>
+                      </div>
+                      :
+                      <div className='reset-button'>
+                        <Button variant="outline-dark" onClick={this.handleReset}>Reset</Button>
+                        <Button style={{ marginLeft: '10px' }} onClick={this.handleButtonGoals}>Go to Goals</Button>
+                      </div>
+                    :
+                    null
+                  }
+                </div>
+                <br></br>
+                <div>
+                  <Scorecard spinnerOn={this.state.spinnerOn} strengthsArr={this.state.strengthsArr} goalsArr={this.state.goalsArr} />
+                  <section>
+                    <Accordion>
+                      {this.state.takenAssessment ? null :
+                        <Card style={{ marginBottom: "30px" }}>
+                          <Accordion.Toggle as={Card.Header} style={{ marginBottom: "0px" }} eventKey="0">
+                            Self-Assessment (Initial)
+                  </Accordion.Toggle>
+                          <Accordion.Collapse eventKey="0">
+                            <div>
+                              <ModalAssessment updateScore={this.updateScore} submitScore={this.submitScore} randomScore={this.randomScore} />
+                            </div>
+                          </Accordion.Collapse>
+                        </Card>
+                      }
+                    </Accordion>
+                  </section>
+                </div>
+              </Container>
+          }
         </div>
 
         <div style={this.props.clickedLink === "My Goals" ? { display: 'initial', backgroundColor: '#f3f3f3', minHeight: '740px' } : { display: 'none', backgroundColor: '#f3f3f3', minHeight: '740px' }}>
@@ -576,7 +569,6 @@ class Main extends Component {
             {this.renderCompletedGoals()}
           </Container>
         </div>
-
       </div >
     )
   }

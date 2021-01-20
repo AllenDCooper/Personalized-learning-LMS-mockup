@@ -78,6 +78,11 @@ function NavBar(props) {
 
   const handleRoleSelect = (event) => {
     props.setRoleSelected(event.target.name)
+    if (event.target.name === "Instructor" || event.target.name === "Administrator") {
+      props.setClickedLink('ACES')
+    } else if (event.target.name === "Student") {
+      props.setClickedLink('ACES')
+    }
   }
 
   const returnLogo = () => {
@@ -106,15 +111,15 @@ function NavBar(props) {
         :
         <Nav style={{ margin: '0 auto', paddingTop: '40px', height: '72px', transform: 'translate(-140px, 0px)' }}>
           <a name='ACES' onClick={handleClick} className='sans-pro-caps navbar-link' style={props.clickedLink === 'ACES' ? { color: 'white', fontWeight: 'bold', textDecoration: 'none', fontWeight: '900', borderBottom: '2px solid white' } : { color: 'gray', fontWeight: '300', padding: '0 10px' }}>ACES</a>
-          <a name='My Goals' onClick={handleClick} className='sans-pro-caps navbar-link' style={props.clickedLink === 'My Goals' ? { color: 'white', fontWeight: 'bold', textDecoration: 'none', fontWeight: '900', borderBottom: '2px solid white' } : { color: 'gray', fontWeight: '300', padding: '0 10px' }}>My Goals</a>
-          <a name='Completed Goals' onClick={handleClick} className='sans-pro-caps navbar-link' style={props.clickedLink === 'Completed Goals' ? { color: 'white', fontWeight: 'bold', textDecoration: 'none', fontWeight: '900', borderBottom: '2px solid white' } : { color: 'gray', fontWeight: '300', padding: '0 10px' }}>Completed</a>
-          <a name='E-book' onClick={handleClick} className='sans-pro-caps navbar-link' style={props.clickedLink === 'E-book' ? { color: 'white', fontWeight: 'bold', textDecoration: 'none', fontWeight: '900', borderBottom: '2px solid white' } : { color: 'gray', fontWeight: '300', padding: '0 10px' }}>E-book</a>
-          {props.roleSelected === 'Instructor'
+          {props.roleSelected === 'Instructor' || props.roleSelected === 'Administrator'
             ?
             <a name='Reports' onClick={handleClick} className='sans-pro-caps navbar-link' style={props.clickedLink === 'Reports' ? { color: 'white', fontWeight: 'bold', textDecoration: 'none', fontWeight: '900', borderBottom: '2px solid white' } : { color: 'gray', fontWeight: '300', padding: '0 10px' }}>Reports</a>
             :
             null
           }
+          <a name='My Goals' onClick={handleClick} className='sans-pro-caps navbar-link' style={props.clickedLink === 'My Goals' ? { color: 'white', fontWeight: 'bold', textDecoration: 'none', fontWeight: '900', borderBottom: '2px solid white' } : { color: 'gray', fontWeight: '300', padding: '0 10px' }}>My Goals</a>
+          <a name='Completed Goals' onClick={handleClick} className='sans-pro-caps navbar-link' style={props.clickedLink === 'Completed Goals' ? { color: 'white', fontWeight: 'bold', textDecoration: 'none', fontWeight: '900', borderBottom: '2px solid white' } : { color: 'gray', fontWeight: '300', padding: '0 10px' }}>Completed</a>
+          <a name='E-book' onClick={handleClick} className='sans-pro-caps navbar-link' style={props.clickedLink === 'E-book' ? { color: 'white', fontWeight: 'bold', textDecoration: 'none', fontWeight: '900', borderBottom: '2px solid white' } : { color: 'gray', fontWeight: '300', padding: '0 10px' }}>E-book</a>
         </Nav>
       }
       <span style={styles.instructorSwitch}>

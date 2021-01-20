@@ -19,7 +19,7 @@ function App(props) {
   return (
     <div style={{ fontFamily: 'Source Sans Pro, sans-serif' }}>
       <NavBar clickedLink={clickedLink} setClickedLink={setClickedLink} roleSelected={roleSelected} setRoleSelected={setRoleSelected} />
-      <Main clickedLink={clickedLink} setClickedLink={setClickedLink} />
+      <Main clickedLink={clickedLink} setClickedLink={setClickedLink} roleSelected={roleSelected} />
       {/* <Goals clickedLink={clickedLink} setClickedLink={setClickedLink} /> */}
       <Reports clickedLink={clickedLink} setClickedLink={setClickedLink} />
       <Ebook clickedLink={clickedLink} setClickedLink={setClickedLink} />
