@@ -42,7 +42,11 @@ function RosterReport(props) {
 
   const sortStrengths = (arr, scaleIndex, scoreType, scoreTypeAlt) => {
 
-    const scoreTypeConfirmed = scoreTypeAlt ? scoreTypeAlt : scoreType
+    const scoreTypeConfirmed = scoreType === 'percentileScoreChange' ?
+      'percentileScoreCurrent' :
+      scoreTypeAlt ?
+        scoreTypeAlt :
+        scoreType
     console.log(scoreTypeConfirmed);
     // sort the percentile array into descending order so that top strengths will appear first
     const descendingArr = sortValuesDescending(arr, scaleIndex, scoreTypeConfirmed);

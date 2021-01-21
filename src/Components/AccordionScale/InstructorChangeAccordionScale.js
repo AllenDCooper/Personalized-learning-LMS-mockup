@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Accordion, Spinner, ProgressBar, Row, Col, Button } from 'react-bootstrap';
+import { Card, Accordion, ProgressBar, Row, Col, Button } from 'react-bootstrap';
 import resources from '../../ACES_Assessment/resources';
 
 function InstructorChangeAccordionScale(props) {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Accordion, ProgressBar, Row, Col, Button, Dropdown } from 'react-bootstrap';
+import { Card, Accordion, ProgressBar, Row, Col, Button } from 'react-bootstrap';
 
 const RosterAccordionScale = (props) => {
 
