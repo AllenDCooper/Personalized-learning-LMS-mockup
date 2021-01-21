@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 
 // importing react-boostrap styles
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Accordion, Card, Spinner, Button, Col, Row } from 'react-bootstrap';
+import { Container, Accordion, Card, Button } from 'react-bootstrap';
 
 // importing components
 import ModalAssessment from '../Components/ModalAssessment/ModalAssessment';
-import AccordionUnit from '../Components/AccordionUnit/AccordionUnit';
+// import AccordionUnit from '../Components/AccordionUnit/AccordionUnit';
 import Scorecard from '../Components/Scorecard/Scorecard';
-import Header from '../Components/Header/Header';
+// import Header from '../Components/Header/Header';
 import CompletedGoalsContainer from '../Components/CompletedGoals/CompletedGoalsContainer';
 import GoalsContainer from '../Components/Goals/GoalsContainer';
 
@@ -16,7 +16,7 @@ import GoalsContainer from '../Components/Goals/GoalsContainer';
 import normTable from '../ACES_Assessment/normTable.js';
 import itemsArr from '../ACES_Assessment/itemsArr';
 import scales from '../ACES_Assessment/scales';
-import InstructorScorecard from '../Components/Scorecard/InstructorScorecard';
+// import InstructorScorecard from '../Components/Scorecard/InstructorScorecard';
 
 class Main extends Component {
 
@@ -376,110 +376,83 @@ class Main extends Component {
         <div style={this.props.clickedLink === "ACES" ?
           { display: 'initial', backgroundColor: '#f3f3f3', minHeight: '740px' } :
           { display: 'none', backgroundColor: '#f3f3f3', minHeight: '740px' }}>
-          {this.props.roleSelected === 'Instructor' ?
-            <Container>
-              <div className='tab-title-container'>
-                <h4 className='tab-title'>
-                  My Class's Strengths Report
-                </h4>
-              </div>
-              <br></br>
-              <div>
-                <InstructorScorecard scoreType={'initialScores'} scoreCohort={'classScores'} cohortName={'Class'} />
-              </div>
-            </Container>
-            :
-            this.props.roleSelected === 'Administrator' ?
-              <Container>
-                <div className='tab-title-container'>
-                  <h4 className='tab-title'>
-                    My Institution's Strengths Report
+          <Container>
+            <div className='tab-title-container'>
+              <h4 className='tab-title'>
+                My Strengths Report
               </h4>
+              {!this.state.takenAssessment && !this.state.spinnerOn ?
+                <div className='tab-description'>
+                  <p>Start by taking the ACES self-assessment to obtain your Strengths Report. </p>
                 </div>
-                <br></br>
-                <div>
-                  <InstructorScorecard scoreType={'initialScores'} scoreCohort={'institutionalScores'} cohortName={'Institution'} />
-                </div>
-              </Container>
-              :
-              <Container>
-                <div className='tab-title-container'>
-                  <h4 className='tab-title'>
-                    My Strengths Report
-              </h4>
-                  {!this.state.takenAssessment && !this.state.spinnerOn ?
-                    <div className='tab-description'>
-                      <p>Start by taking the ACES self-assessment to obtain your Strengths Report. </p>
-                    </div>
-                    :
-                    null
-                  }
-                  {this.state.takenAssessment && !this.state.spinnerOn ?
-                    window.innerWidth <= 740 ?
-                      <div className='reset-button-mobile'>
-                        <Button variant="outline-dark" onClick={this.handleReset}>Reset</Button>
-                        <Button style={{ marginLeft: '10px' }} onClick={this.handleButtonGoals}>Go to Goals</Button>
-                      </div>
-                      :
-                      <div className='reset-button'>
-                        <Button variant="outline-dark" onClick={this.handleReset}>Reset</Button>
-                        <Button style={{ marginLeft: '10px' }} onClick={this.handleButtonGoals}>Go to Goals</Button>
-                      </div>
-                    :
-                    null
-                  }
-                </div>
-                <br></br>
-                <div>
-                  <Scorecard spinnerOn={this.state.spinnerOn} strengthsArr={this.state.strengthsArr} goalsArr={this.state.goalsArr} />
-                  <section>
-                    <Accordion>
-                      {this.state.takenAssessment ? null :
-                        <Card style={{ marginBottom: "30px" }}>
-                          <Accordion.Toggle as={Card.Header} style={{ marginBottom: "0px" }} eventKey="0">
-                            Self-Assessment (Initial)
+                :
+                null
+              }
+              {this.state.takenAssessment && !this.state.spinnerOn ?
+                window.innerWidth <= 740 ?
+                  <div className='reset-button-mobile'>
+                    <Button variant="outline-dark" onClick={this.handleReset}>Reset</Button>
+                    <Button style={{ marginLeft: '10px' }} onClick={this.handleButtonGoals}>Go to Goals</Button>
+                  </div>
+                  :
+                  <div className='reset-button'>
+                    <Button variant="outline-dark" onClick={this.handleReset}>Reset</Button>
+                    <Button style={{ marginLeft: '10px' }} onClick={this.handleButtonGoals}>Go to Goals</Button>
+                  </div>
+                :
+                null
+              }
+            </div>
+            <br></br>
+            <div>
+              <Scorecard spinnerOn={this.state.spinnerOn} strengthsArr={this.state.strengthsArr} goalsArr={this.state.goalsArr} />
+              <section>
+                <Accordion>
+                  {this.state.takenAssessment ? null :
+                    <Card style={{ marginBottom: "30px" }}>
+                      <Accordion.Toggle as={Card.Header} style={{ marginBottom: "0px" }} eventKey="0">
+                        Self-Assessment (Initial)
                           </Accordion.Toggle>
-                          <Accordion.Collapse eventKey="0">
-                            <div>
-                              <ModalAssessment updateScore={this.updateScore} submitScore={this.submitScore} randomScore={this.randomScore} />
-                            </div>
-                          </Accordion.Collapse>
-                        </Card>
-                      }
-                    </Accordion>
-                  </section>
-                </div>
-              </Container>
-          }
+                      <Accordion.Collapse eventKey="0">
+                        <div>
+                          <ModalAssessment updateScore={this.updateScore} submitScore={this.submitScore} randomScore={this.randomScore} />
+                        </div>
+                      </Accordion.Collapse>
+                    </Card>
+                  }
+                </Accordion>
+              </section>
+            </div>
+          </Container>
         </div>
 
         <div style={this.props.clickedLink === "My Goals" ?
           { display: 'initial', backgroundColor: '#f3f3f3', minHeight: '740px' } :
           { display: 'none', backgroundColor: '#f3f3f3', minHeight: '740px' }}>
-            <GoalsContainer
-              setClickedLink={this.props.setClickedLink}
-              takenAssessment={this.state.takenAssessment}
-              saveCompletedGoal={this.state.saveCompletedGoal}
-              updateScore={this.updateScore}
-              submitScore={this.submitScore}
-              roleSelected={this.props.roleSelected}
-              adaptiveLearningOn={this.state.adaptiveLearningOn}
-              spinnerOn={this.state.spinnerOn}
-              goalsToCompleteArr={this.state.goalsToCompleteArr}
-              numUnits={this.numUnitsToDisplay(this.state.goalsToCompleteArr)}
-            />
+          <GoalsContainer
+            setClickedLink={this.props.setClickedLink}
+            takenAssessment={this.state.takenAssessment}
+            saveCompletedGoal={this.state.saveCompletedGoal}
+            updateScore={this.updateScore}
+            submitScore={this.submitScore}
+            roleSelected={this.props.roleSelected}
+            adaptiveLearningOn={this.state.adaptiveLearningOn}
+            spinnerOn={this.state.spinnerOn}
+            goalsToCompleteArr={this.state.goalsToCompleteArr}
+            numUnits={this.numUnitsToDisplay(this.state.goalsToCompleteArr)}
+          />
         </div>
 
         <div style={this.props.clickedLink === "Completed Goals" ?
           { display: 'initial', backgroundColor: '#f3f3f3', minHeight: '740px' } :
           { display: 'none', backgroundColor: '#f3f3f3', minHeight: '740px' }}>
-            <CompletedGoalsContainer
-              completedGoalsArr={this.state.completedGoalsArr}
-              takenAssessment={this.state.takenAssessment}
-              saveCompletedGoal={this.saveCompletedGoal}
-              role={'Instructor'}
-              spinnerOn={this.state.spinnerOn}
-            />
+          <CompletedGoalsContainer
+            completedGoalsArr={this.state.completedGoalsArr}
+            takenAssessment={this.state.takenAssessment}
+            saveCompletedGoal={this.saveCompletedGoal}
+            role={'Instructor'}
+            spinnerOn={this.state.spinnerOn}
+          />
         </div>
 
       </div >

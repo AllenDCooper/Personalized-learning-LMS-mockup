@@ -13,7 +13,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Nav, Form, Row, Col } from 'react-bootstrap';
 
 function Reports(props) {
-  console.log(userModelSeed)
+  // console.log(userModelSeed)
 
   const styles = {
     strengthsSwitch: {
@@ -75,7 +75,7 @@ function Reports(props) {
   }
 
   return (
-    <div style={props.clickedLink === "Reports" ? { display: 'initial', backgroundColor: '#f3f3f3', minHeight: '740px' } : { display: 'none', backgroundColor: '#f3f3f3', minHeight: '740px' }}>
+    <div style={props.clickedLink === "ACES Reports" ? { display: 'initial', backgroundColor: '#f3f3f3', minHeight: '740px' } : { display: 'none', backgroundColor: '#f3f3f3', minHeight: '740px' }}>
       <Container>
         <div className='tab-title-container'>
           <h1 className="tab-title">ACES Instructor Reports</h1>

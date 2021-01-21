@@ -3,7 +3,6 @@ import './App.css';
 
 // importing react-boostrap styles
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Accordion, Card, Spinner } from 'react-bootstrap';
 
 // importing components
 import Main from './Views/Main';

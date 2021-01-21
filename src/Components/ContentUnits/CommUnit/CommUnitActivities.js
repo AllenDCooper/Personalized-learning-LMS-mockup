@@ -6,7 +6,7 @@ const CommUnitActivities = {
       { activityName: "Activity 3 (LearningCurve)", completed: false, activityContent: null, activityType: 'learningcurve' },
       { activityName: "Activity 4 (Quiz)", completed: false, activityContent: null, activityType: 'quiz' },
     ],
-Instructor: [
+  Instructor: [
     { activityName: "Lesson Plan", completed: false, activityContent: null, activityType: 'lesson' },
     { activityName: "Slides", completed: false, activityContent: null, activityType: 'slides' },
   ]

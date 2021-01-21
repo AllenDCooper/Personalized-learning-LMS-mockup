@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Card, Accordion, ProgressBar, Row, Col, Button, Form } from 'react-bootstrap';
+import React from 'react';
+import { Card, Accordion, ProgressBar, Row, Col, Button } from 'react-bootstrap';
 import './ClassReport.css';
 import InstructorAccordionScale from '../AccordionScale/InstructorAccordionScale'
 
@@ -65,7 +65,6 @@ function ClassReport(props) {
         strengthsArr[2].Growth_Areas = arr3
       }
     })
-    console.log(`strengthsArr: ${JSON.stringify(strengthsArr)}`)
     return strengthsArr
   }
 

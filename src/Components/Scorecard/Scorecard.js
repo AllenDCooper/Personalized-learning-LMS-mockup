@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, Accordion, Spinner, ProgressBar, Row, Col, Button } from 'react-bootstrap';
+import { Card, Spinner } from 'react-bootstrap';
 import AccordionScale from '../AccordionScale/AccordionScale';
 
 class Scorecard extends Component {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Jumbotron, Button, Form, Row, Col } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 
 class Header extends Component {
 

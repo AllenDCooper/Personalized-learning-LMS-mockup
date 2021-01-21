@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 // importing react-boostrap styles
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Nav, Form, Accordion, Card, Spinner, Jumbotron } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 
 function Ebook(props) {
 
@@ -12,7 +12,7 @@ function Ebook(props) {
         <div className='tab-title-container'>
           <h1 className="tab-title">E-Book</h1>
         </div>
-        <img className='report-img' src={`${process.env.PUBLIC_URL}/images/ebook.PNG`} />
+        <img className='report-img' src={`${process.env.PUBLIC_URL}/images/ebook.PNG`} alt='report' />
       </Container>
     </div>
   )

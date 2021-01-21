@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Card, Accordion, Spinner, ProgressBar, Row, Col, Button } from 'react-bootstrap';
+import React from 'react';
+import { Card } from 'react-bootstrap';
 import InstructorAccordionScale from '../AccordionScale/InstructorAccordionScale';
 import reportsDataArr from '../../Data/classModelSeed';
 

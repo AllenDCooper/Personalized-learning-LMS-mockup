@@ -1,6 +1,5 @@
 import React from 'react';
-import { Container, Accordion, Card, Spinner, Button, Col, Row } from 'react-bootstrap';
-import AccordionUnit from '../AccordionUnit/AccordionUnit';
+import { Container, Col, Row } from 'react-bootstrap';
 import CompletedGoals from '../CompletedGoals/CompletedGoals';
 
 const CompletedGoalsContainer = (props) => {

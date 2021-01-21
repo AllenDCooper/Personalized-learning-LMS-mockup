@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import { Card, Accordion, ProgressBar, Row, Col, Button, Form } from 'react-bootstrap';
+import React from 'react';
+import { Card, Accordion, ProgressBar, Row, Col, Button } from 'react-bootstrap';
 import './ClassReport.css';
 import InstructorComparisonAccordionScale from '../AccordionScale/InstructorComparisonAccordionScale';
 

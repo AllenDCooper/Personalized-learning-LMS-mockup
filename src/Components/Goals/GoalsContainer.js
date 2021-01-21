@@ -6,6 +6,8 @@ import Header from '../Header/Header';
 
 const GoalsContainer = (props) => {
 
+  console.log(props)
+
   // helper function that will conditionally return components, and will be called in the render
   const renderAssignedGoals = (adaptiveLearningOn, takenAssessment) => {
     // displays three goal content units after assessment is taken

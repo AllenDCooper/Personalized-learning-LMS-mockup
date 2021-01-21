@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Navbar, Nav, Dropdown, Form } from 'react-bootstrap';
+import React from 'react';
+import { Navbar, Nav, Dropdown } from 'react-bootstrap';
 import './NavBar.css'
 
 function NavBar(props) {
@@ -17,7 +17,6 @@ function NavBar(props) {
       color: 'white',
       fontWeight: 'bold',
       textDecoration: 'none',
-      fontWeight: '900',
       borderBottom: '2px solid white',
       borderRight: 'none',
       borderLeft: 'none',
@@ -53,6 +52,17 @@ function NavBar(props) {
     dropdownRoleItem: {
       textAlign: 'right',
       padding: '4px 12px 4px 0px'
+    },
+    selectedMenuLink: {
+      color: 'white',
+      fontWeight: 'bold',
+      textDecoration: 'none',
+      borderBottom: '2px solid white'
+    },
+    menuLink: {
+      color: 'gray',
+      fontWeight: '300',
+      padding: '0 10px'
     }
   }
   const handleClick = (event) => {
@@ -62,13 +72,19 @@ function NavBar(props) {
     console.log(props.clickedLink);
   }
 
-  let menuItemsArr = [
-    'ACES',
-    'My Goals',
-    'Completed Goals',
-    'E-book',
-    'Reports'
-  ]
+  let menuItemsArr = props.roleSelected === 'Instructor' || props.roleSelected === 'Administrator'
+    ? [
+      'ACES Reports',
+      'My Goals',
+      'Completed Goals',
+      'E-book'
+    ] :
+    [
+      'ACES',
+      'My Goals',
+      'Completed Goals',
+      'E-book'
+    ]
 
   let roleArr = [
     'Student',
@@ -79,7 +95,7 @@ function NavBar(props) {
   const handleRoleSelect = (event) => {
     props.setRoleSelected(event.target.name)
     if (event.target.name === "Instructor" || event.target.name === "Administrator") {
-      props.setClickedLink('ACES')
+      props.setClickedLink('ACES Reports')
     } else if (event.target.name === "Student") {
       props.setClickedLink('ACES')
     }
@@ -110,16 +126,15 @@ function NavBar(props) {
         </Nav>
         :
         <Nav style={{ margin: '0 auto', paddingTop: '40px', height: '72px', transform: 'translate(-140px, 0px)' }}>
-          <a name='ACES' onClick={handleClick} className='sans-pro-caps navbar-link' style={props.clickedLink === 'ACES' ? { color: 'white', fontWeight: 'bold', textDecoration: 'none', fontWeight: '900', borderBottom: '2px solid white' } : { color: 'gray', fontWeight: '300', padding: '0 10px' }}>ACES</a>
           {props.roleSelected === 'Instructor' || props.roleSelected === 'Administrator'
             ?
-            <a name='Reports' onClick={handleClick} className='sans-pro-caps navbar-link' style={props.clickedLink === 'Reports' ? { color: 'white', fontWeight: 'bold', textDecoration: 'none', fontWeight: '900', borderBottom: '2px solid white' } : { color: 'gray', fontWeight: '300', padding: '0 10px' }}>Reports</a>
+            <a name='ACES Reports' onClick={handleClick} className='sans-pro-caps navbar-link' style={props.clickedLink === 'ACES Reports' ? styles.selectedMenuLink : styles.menuLink}>ACES Reports</a>
             :
-            null
+            <a name='ACES' onClick={handleClick} className='sans-pro-caps navbar-link' style={props.clickedLink === 'ACES' ? styles.selectedMenuLink : styles.menuLink}>ACES</a>
           }
-          <a name='My Goals' onClick={handleClick} className='sans-pro-caps navbar-link' style={props.clickedLink === 'My Goals' ? { color: 'white', fontWeight: 'bold', textDecoration: 'none', fontWeight: '900', borderBottom: '2px solid white' } : { color: 'gray', fontWeight: '300', padding: '0 10px' }}>My Goals</a>
-          <a name='Completed Goals' onClick={handleClick} className='sans-pro-caps navbar-link' style={props.clickedLink === 'Completed Goals' ? { color: 'white', fontWeight: 'bold', textDecoration: 'none', fontWeight: '900', borderBottom: '2px solid white' } : { color: 'gray', fontWeight: '300', padding: '0 10px' }}>Completed</a>
-          <a name='E-book' onClick={handleClick} className='sans-pro-caps navbar-link' style={props.clickedLink === 'E-book' ? { color: 'white', fontWeight: 'bold', textDecoration: 'none', fontWeight: '900', borderBottom: '2px solid white' } : { color: 'gray', fontWeight: '300', padding: '0 10px' }}>E-book</a>
+          <a name='My Goals' onClick={handleClick} className='sans-pro-caps navbar-link' style={props.clickedLink === 'My Goals' ? styles.selectedMenuLink : styles.menuLink}>My Goals</a>
+          <a name='Completed Goals' onClick={handleClick} className='sans-pro-caps navbar-link' style={props.clickedLink === 'Completed Goals' ? styles.selectedMenuLink : styles.menuLink}>Completed</a>
+          <a name='E-book' onClick={handleClick} className='sans-pro-caps navbar-link' style={props.clickedLink === 'E-book' ? styles.selectedMenuLink : styles.menuLink}>E-book</a>
         </Nav>
       }
       <span style={styles.instructorSwitch}>
