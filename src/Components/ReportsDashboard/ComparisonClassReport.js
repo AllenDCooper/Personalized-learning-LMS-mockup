@@ -85,7 +85,7 @@ function ComparisonClassReport(props) {
         <Accordion>
           <Card style={styles.strengthsCard}>
             <Card.Body style={styles.strengthsCardBody} >
-              <h5 className='strengths-header'>My {props.cohortName}'s Strengths</h5>
+              <h5 className='strengths-header'>{props.cohortName} Strengths</h5>
               <div style={{ margin: '20px 0px' }}>
                 {strengthsArr[0].Strengths.length === 0 ? <li>[empty]</li> : (
                   strengthsArr[0].Strengths.map((scale, index) => (
@@ -93,7 +93,7 @@ function ComparisonClassReport(props) {
                   ))
                 )}
               </div>
-              <h5 className='strengths-header'>My {props.cohortName}'s Developing Strengths</h5>
+              <h5 className='strengths-header'>{props.cohortName} Developing Strengths</h5>
               <div style={{ margin: '20px 0px' }}>
                 {strengthsArr[1].Developing_Strengths.length === 0 ? <li>[empty]</li> : (
                   strengthsArr[1].Developing_Strengths.map((scale, index) => (
@@ -101,7 +101,7 @@ function ComparisonClassReport(props) {
                   ))
                 )}
               </div>
-              <h5 className='strengths-header'>My {props.cohortName}'s Growth Areas</h5>
+              <h5 className='strengths-header'>{props.cohortName} Growth Areas</h5>
               <div style={{ margin: '20px 0px' }}>
                 {strengthsArr[2].Growth_Areas.length === 0 ? <li>[empty]</li> : (
                   strengthsArr[2].Growth_Areas.map((scale, index) => (

@@ -13,7 +13,7 @@ const RosterAccordionScale = (props) => {
             </Col>
             <Col xs={12} md={8} style={{ margin: 'auto' }}>
               <ProgressBar style={{ position: 'relative' }}>
-                <ProgressBar now={props.userScore.scores[props.index][props.scoreType]} label={`${props.userScore.scores[props.index][props.scoreType]}%`} style={props.userScore.scores[props.index][props.scoreType] < 0 ? { backgroundColor: 'red' } : {}} />
+                <ProgressBar now={Math.abs(props.userScore.scores[props.index][props.scoreType])} label={`${props.userScore.scores[props.index][props.scoreType]}%`} style={props.userScore.scores[props.index][props.scoreType] < 0 ? { backgroundColor: 'red' } : {}} />
               </ProgressBar>
             </Col>
             {props.scoreTypeAlt ?
@@ -22,7 +22,7 @@ const RosterAccordionScale = (props) => {
                 </Col>
                 <Col xs={12} md={8} style={{ margin: 'auto' }}>
                   <ProgressBar style={{ position: 'relative' }}>
-                    <ProgressBar animated now={props.userScore.scores[props.index][props.scoreTypeAlt]} label={`${props.userScore.scores[props.index][props.scoreTypeAlt]}%`} />
+                    <ProgressBar animated now={Math.abs(props.userScore.scores[props.index][props.scoreTypeAlt])} label={`${props.userScore.scores[props.index][props.scoreTypeAlt]}Math.abs(%`} />
                   </ProgressBar>
                 </Col>
               </>

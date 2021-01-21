@@ -60,7 +60,7 @@ const InstructorScorecard = props => {
   return (
     <div>
       {/* <h4 className='tab-title'>
-            My Strengths Report
+            Strengths Report
           </h4> */}
       <div style={{ marginBottom: "30px" }} >
         <p>
@@ -68,7 +68,7 @@ const InstructorScorecard = props => {
               </p>
         <Card>
           <Card.Body>
-            <h5 className='strengths-header'>My {props.cohortName}'s Strengths</h5>
+            <h5 className='strengths-header'>{props.cohortName} Strengths</h5>
             <div style={{ margin: '20px 0px' }}>
               {strengthsArr[0].Strengths.length === 0 ? <li>[empty]</li> : (
                 strengthsArr[0].Strengths.map((scale, index) => (
@@ -76,7 +76,7 @@ const InstructorScorecard = props => {
                 ))
               )}
             </div>
-            <h5 className='strengths-header'>My {props.cohortName}'s Developing Strengths</h5>
+            <h5 className='strengths-header'>{props.cohortName} Developing Strengths</h5>
             <div style={{ margin: '20px 0px' }}>
               {strengthsArr[1].Developing_Strengths.length === 0 ? <li>[empty]</li> : (
                 strengthsArr[1].Developing_Strengths.map((scale, index) => (
@@ -84,7 +84,7 @@ const InstructorScorecard = props => {
                 ))
               )}
             </div>
-            <h5 className='strengths-header'>My {props.cohortName}'s Growth Areas</h5>
+            <h5 className='strengths-header'>{props.cohortName} Growth Areas</h5>
             <div style={{ margin: '20px 0px' }}>
               {strengthsArr[2].Growth_Areas.length === 0 ? <li>[empty]</li> : (
                 strengthsArr[2].Growth_Areas.map((scale, index) => (

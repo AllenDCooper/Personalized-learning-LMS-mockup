@@ -46,29 +46,29 @@ function Reports(props) {
   const getReport = (reportName) => {
     switch (reportName) {
       case 'initial_class':
-        return <ClassReport reportsDataArr={reportsDataArr} scoreType={'initialScores'} scoreCohort={'classScores'} ReportDescription={ReportDescriptions['initial_class']} strengthsViewOn={strengthsViewOn} />
+        return <ClassReport reportsDataArr={reportsDataArr} scoreType={'initialScores'} scoreCohort={'classScores'} ReportDescription={ReportDescriptions['initial_class']} strengthsViewOn={strengthsViewOn} cohortName={'Class'} />
       case 'initial_roster':
-        return <RosterReport userModelSeed={userModelSeed} scoreType={'percentileScoreInitial'} scoreCohort={'classScores'} ReportDescription={ReportDescriptions['initial_roster']}  strengthsViewOn={strengthsViewOn}/>
+        return <RosterReport userModelSeed={userModelSeed} scoreType={'percentileScoreInitial'} scoreCohort={'classScores'} ReportDescription={ReportDescriptions['initial_roster']}  strengthsViewOn={strengthsViewOn} cohortName={"Students with"}/>
       case 'initial_institutional':
-        return <ClassReport reportsDataArr={reportsDataArr} scoreType={'initialScores'} scoreCohort={'institutionalScores'} ReportDescription={ReportDescriptions['initial_institutional']} strengthsViewOn={strengthsViewOn} />
+        return <ClassReport reportsDataArr={reportsDataArr} scoreType={'initialScores'} scoreCohort={'institutionalScores'} ReportDescription={ReportDescriptions['initial_institutional']} strengthsViewOn={strengthsViewOn} cohortName={'Institutional'}/>
       case 'progress_class':
-        return <ClassReport reportsDataArr={reportsDataArr} scoreType={'progressScores'} scoreCohort={'classScores'} ReportDescription={ReportDescriptions['progress_class']} strengthsViewOn={strengthsViewOn} />
+        return <ClassReport reportsDataArr={reportsDataArr} scoreType={'progressScores'} scoreCohort={'classScores'} ReportDescription={ReportDescriptions['progress_class']} strengthsViewOn={strengthsViewOn} cohortName={'Class'}/>
       case 'progress_roster':
-        return <RosterReport userModelSeed={userModelSeed} scoreType={'percentileScoreCurrent'} scoreCohort={'classScores'} ReportDescription={ReportDescriptions['progress_roster']} strengthsViewOn={strengthsViewOn} />
+        return <RosterReport userModelSeed={userModelSeed} scoreType={'percentileScoreCurrent'} scoreCohort={'classScores'} ReportDescription={ReportDescriptions['progress_roster']} strengthsViewOn={strengthsViewOn} cohortName={"Students with"} />
       case 'progress_institutional':
-        return <ClassReport reportsDataArr={reportsDataArr} scoreType={'progressScores'} scoreCohort={'institutionalScores'} ReportDescription={ReportDescriptions['progress_institutional']} strengthsViewOn={strengthsViewOn} />
+        return <ClassReport reportsDataArr={reportsDataArr} scoreType={'progressScores'} scoreCohort={'institutionalScores'} ReportDescription={ReportDescriptions['progress_institutional']} strengthsViewOn={strengthsViewOn} cohortName={'Institutional'} />
       case 'comparison_class':
-        return <ComparisonClassReport reportsDataArr={reportsDataArr} scoreCohort={'classScores'} ReportDescription={ReportDescriptions['comparison_class']} strengthsViewOn={strengthsViewOn} />
+        return <ComparisonClassReport reportsDataArr={reportsDataArr} scoreCohort={'classScores'} ReportDescription={ReportDescriptions['comparison_class']} strengthsViewOn={strengthsViewOn} cohortName={'Class'} />
       case 'comparison_roster':
-        return <RosterReport userModelSeed={userModelSeed} scoreType={'percentileScoreInitial'} scoreTypeAlt={'percentileScoreCurrent'} ReportDescription={ReportDescriptions['comparison_roster']} strengthsViewOn={strengthsViewOn} />
+        return <RosterReport userModelSeed={userModelSeed} scoreType={'percentileScoreInitial'} scoreTypeAlt={'percentileScoreCurrent'} ReportDescription={ReportDescriptions['comparison_roster']} strengthsViewOn={strengthsViewOn} cohortName={"Students with"} />
       case 'comparison_institutional':
-        return <ComparisonClassReport reportsDataArr={reportsDataArr} scoreCohort={'institutionalScores'} ReportDescription={ReportDescriptions['comparison_institutional']} strengthsViewOn={strengthsViewOn} />
+        return <ComparisonClassReport reportsDataArr={reportsDataArr} scoreCohort={'institutionalScores'} ReportDescription={ReportDescriptions['comparison_institutional']} strengthsViewOn={strengthsViewOn} cohortName={'Institutional'} />
       case 'change_class':
-        return <ChangeClassReport reportsDataArr={reportsDataArr} scoreType={'changeScores'} scoreCohort={'classScores'} ReportDescription={ReportDescriptions['change_class']} strengthsViewOn={strengthsViewOn} />
+        return <ChangeClassReport reportsDataArr={reportsDataArr} scoreType={'changeScores'} scoreCohort={'classScores'} ReportDescription={ReportDescriptions['change_class']} strengthsViewOn={strengthsViewOn} cohortName={'Class'} />
       case 'change_roster':
-        return <RosterReport userModelSeed={userModelSeed} scoreType={'percentileScoreChange'} ReportDescription={ReportDescriptions['change_roster']} strengthsViewOn={strengthsViewOn} />
+        return <RosterReport userModelSeed={userModelSeed} scoreType={'percentileScoreChange'} ReportDescription={ReportDescriptions['change_roster']} strengthsViewOn={strengthsViewOn} cohortName={"Students with"} />
       case 'change_institutional':
-        return <ChangeClassReport reportsDataArr={reportsDataArr} scoreType={'changeScores'} scoreCohort={'institutionalScores'} ReportDescription={ReportDescriptions['change_institutional']} strengthsViewOn={strengthsViewOn} />
+        return <ChangeClassReport reportsDataArr={reportsDataArr} scoreType={'changeScores'} scoreCohort={'institutionalScores'} ReportDescription={ReportDescriptions['change_institutional']} strengthsViewOn={strengthsViewOn} cohortName={'Class'} />
       default:
         return null
     }
