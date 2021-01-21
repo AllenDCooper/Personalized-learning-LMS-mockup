@@ -75,7 +75,7 @@ function ClassReport(props) {
   return (
     <div>
       <Row>
-        <Col xs={12} md={10} >
+        <Col xs={12} md={12} >
           <div className='report-instructions'>
             {props.ReportDescription}
           </div>

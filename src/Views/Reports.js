@@ -64,11 +64,11 @@ function Reports(props) {
       case 'comparison_institutional':
         return <ComparisonClassReport reportsDataArr={reportsDataArr} scoreCohort={'institutionalScores'} ReportDescription={ReportDescriptions['comparison_institutional']} strengthsViewOn={strengthsViewOn} />
       case 'change_class':
-        return <ChangeClassReport reportsDataArr={reportsDataArr} scoreCohort={'classScores'} ReportDescription={ReportDescriptions['change_class']} strengthsViewOn={strengthsViewOn} />
+        return <ChangeClassReport reportsDataArr={reportsDataArr} scoreType={'changeScores'} scoreCohort={'classScores'} ReportDescription={ReportDescriptions['change_class']} strengthsViewOn={strengthsViewOn} />
       case 'change_roster':
         return <RosterReport userModelSeed={userModelSeed} scoreType={'percentileScoreChange'} ReportDescription={ReportDescriptions['change_roster']} strengthsViewOn={strengthsViewOn} />
       case 'change_institutional':
-        return <ChangeClassReport reportsDataArr={reportsDataArr} scoreCohort={'institutionalScores'} ReportDescription={ReportDescriptions['change_institutional']} strengthsViewOn={strengthsViewOn} />
+        return <ChangeClassReport reportsDataArr={reportsDataArr} scoreType={'changeScores'} scoreCohort={'institutionalScores'} ReportDescription={ReportDescriptions['change_institutional']} strengthsViewOn={strengthsViewOn} />
       default:
         return null
     }
