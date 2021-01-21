@@ -9,6 +9,8 @@ import ModalAssessment from '../Components/ModalAssessment/ModalAssessment';
 import AccordionUnit from '../Components/AccordionUnit/AccordionUnit';
 import Scorecard from '../Components/Scorecard/Scorecard';
 import Header from '../Components/Header/Header';
+import CompletedGoalsContainer from '../Components/CompletedGoals/CompletedGoalsContainer';
+import GoalsContainer from '../Components/Goals/GoalsContainer';
 
 // importing ACES Assessment
 import normTable from '../ACES_Assessment/normTable.js';
@@ -368,98 +370,12 @@ class Main extends Component {
     this.props.setClickedLink('My Goals')
   }
 
-  // helper function that will conditionally return components, and will be called in the render
-  renderAssignedGoals = (adaptiveLearningOn, takenAssessment) => {
-    // displays three goal content units after assessment is taken
-    if (adaptiveLearningOn && takenAssessment) {
-      return (
-        <div>
-          {/* <Scorecard spinnerOn={this.state.spinnerOn} strengthsArr={this.state.strengthsArr} goalsArr={this.state.goalsArr} /> */}
-          <section>
-            <Accordion>
-              {/* <h4 style={{ paddingLeft: "20px" }}>
-                My Goals
-              </h4> */}
-              {!this.state.spinnerOn ?
-                this.state.goalsToDisplayArr.map(item => (
-                  <AccordionUnit setClickedLink={this.props.setClickedLink} takenAssessment={this.state.takenAssessment} score={item} saveCompletedGoal={this.saveCompletedGoal} updateScore={this.updateScore} submitScore={this.submitScore} />
-                ))
-                :
-                <div>
-                  <Spinner animation="grow" role="status" variant="primary" style={{ marginLeft: "20px" }}>
-                    <span className="sr-only">Loading...</span>
-                  </Spinner>
-                  <span style={{ marginLeft: "10px" }}>Generating your goals...</span>
-                </div>
-              }
-            </Accordion>
-          </section>
-        </div>
-      )
-    }
-    else if (takenAssessment) {
-      return (
-        <div>
-          <section>
-            <Accordion>
-              <>
-                {this.state.spinnerOn
-                  ?
-                  <div>
-                    <Spinner animation="grow" role="status" variant="primary" style={{ marginLeft: "20px" }}>
-                      <span className="sr-only">Loading...</span>
-                    </Spinner>
-                    <span style={{ marginLeft: "10px" }}>Updating your goals...</span>
-                  </div>
-                  :
-                  this.state.goalsToCompleteArr.map(item => (
-                    <AccordionUnit setClickedLink={this.props.setClickedLink} takenAssessment={this.state.takenAssessment} score={item} saveCompletedGoal={this.saveCompletedGoal} updateScore={this.updateScore} submitScore={this.submitScore} />
-                  ))}
-              </>
-            </Accordion>
-          </section>
-        </div>
-      )
-    } else {
-      return (
-        <div>
-          <section>
-            You have no current goals.
-        </section>
-        </div>
-      )
-    }
-  }
-
-  renderCompletedGoals = () => {
-    return (
-      this.state.completedGoalsArr.length > 0 ?
-        <>
-          {!this.state.spinnerOn ?
-            <Accordion>
-              {this.state.completedGoalsArr.map(item => (
-                <AccordionUnit takenAssessment={this.state.takenAssessment} score={item} saveCompletedGoal={this.saveCompletedGoal} />
-              ))}
-            </Accordion>
-            :
-            <div>
-              <Spinner animation="grow" role="status" variant="primary" style={{ marginLeft: "20px" }}>
-                <span className="sr-only">Loading...</span>
-              </Spinner>
-              <span style={{ marginLeft: "10px" }}>Updating your goals...</span>
-            </div>
-          }
-        </>
-        :
-        <p>You have not completed any goals.</p>
-    )
-  }
-
-  // calls renderAssignedGoals helper function to display appropriate components
   render() {
     return (
       <div>
-        <div style={this.props.clickedLink === "ACES" ? { display: 'initial', backgroundColor: '#f3f3f3', minHeight: '740px' } : { display: 'none', backgroundColor: '#f3f3f3', minHeight: '740px' }}>
+        <div style={this.props.clickedLink === "ACES" ?
+          { display: 'initial', backgroundColor: '#f3f3f3', minHeight: '740px' } :
+          { display: 'none', backgroundColor: '#f3f3f3', minHeight: '740px' }}>
           {this.props.roleSelected === 'Instructor' ?
             <Container>
               <div className='tab-title-container'>
@@ -522,7 +438,7 @@ class Main extends Component {
                         <Card style={{ marginBottom: "30px" }}>
                           <Accordion.Toggle as={Card.Header} style={{ marginBottom: "0px" }} eventKey="0">
                             Self-Assessment (Initial)
-                  </Accordion.Toggle>
+                          </Accordion.Toggle>
                           <Accordion.Collapse eventKey="0">
                             <div>
                               <ModalAssessment updateScore={this.updateScore} submitScore={this.submitScore} randomScore={this.randomScore} />
@@ -537,38 +453,35 @@ class Main extends Component {
           }
         </div>
 
-        <div style={this.props.clickedLink === "My Goals" ? { display: 'initial', backgroundColor: '#f3f3f3', minHeight: '740px' } : { display: 'none', backgroundColor: '#f3f3f3', minHeight: '740px' }}>
-          <Container>
-            <Row className='tab-title-container'>
-              <Col>
-                <h4 className='tab-title'>
-                  My Goals
-              </h4>
-              </Col>
-              {this.state.takenAssessment ?
-                <Col>
-                  <Header handleChange={this.handleChange} numUnits={this.numUnitsToDisplay(this.state.goalsToCompleteArr)} numGoalsToDisplay={this.state.numGoalsToDisplay} handleAdaptiveLearningChange={this.handleAdaptiveLearningChange} adaptiveLearningOn={this.state.adaptiveLearningOn} />
-                </Col>
-                :
-                null
-              }
-            </Row>
-            {this.renderAssignedGoals(this.state.adaptiveLearningOn, this.state.takenAssessment)}
-          </Container>
+        <div style={this.props.clickedLink === "My Goals" ?
+          { display: 'initial', backgroundColor: '#f3f3f3', minHeight: '740px' } :
+          { display: 'none', backgroundColor: '#f3f3f3', minHeight: '740px' }}>
+            <GoalsContainer
+              setClickedLink={this.props.setClickedLink}
+              takenAssessment={this.state.takenAssessment}
+              saveCompletedGoal={this.state.saveCompletedGoal}
+              updateScore={this.updateScore}
+              submitScore={this.submitScore}
+              roleSelected={this.props.roleSelected}
+              adaptiveLearningOn={this.state.adaptiveLearningOn}
+              spinnerOn={this.state.spinnerOn}
+              goalsToCompleteArr={this.state.goalsToCompleteArr}
+              numUnits={this.numUnitsToDisplay(this.state.goalsToCompleteArr)}
+            />
         </div>
 
-        <div style={this.props.clickedLink === "Completed Goals" ? { display: 'initial', backgroundColor: '#f3f3f3', minHeight: '740px' } : { display: 'none', backgroundColor: '#f3f3f3', minHeight: '740px' }}>
-          <Container>
-            <Row className='tab-title-container'>
-              <Col>
-                <h4 className='tab-title'>
-                  Completed Goals
-              </h4>
-              </Col>
-            </Row>
-            {this.renderCompletedGoals()}
-          </Container>
+        <div style={this.props.clickedLink === "Completed Goals" ?
+          { display: 'initial', backgroundColor: '#f3f3f3', minHeight: '740px' } :
+          { display: 'none', backgroundColor: '#f3f3f3', minHeight: '740px' }}>
+            <CompletedGoalsContainer
+              completedGoalsArr={this.state.completedGoalsArr}
+              takenAssessment={this.state.takenAssessment}
+              saveCompletedGoal={this.saveCompletedGoal}
+              role={'Instructor'}
+              spinnerOn={this.state.spinnerOn}
+            />
         </div>
+
       </div >
     )
   }

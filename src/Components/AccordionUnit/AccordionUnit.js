@@ -42,7 +42,7 @@ class AccordionUnit extends Component {
         );
       case "Information Literacy and Communication":
         return (
-          <CommUnit setClickedLink={this.props.setClickedLink} score={score} index={9} saveCompletedGoal={this.props.saveCompletedGoal} updateScore={this.props.updateScore} submitScore={this.props.submitScore} takenAssessment={this.props.takenAssessment} />
+          <CommUnit setClickedLink={this.props.setClickedLink} score={score} index={9} saveCompletedGoal={this.props.saveCompletedGoal} updateScore={this.props.updateScore} submitScore={this.props.submitScore} takenAssessment={this.props.takenAssessment} role={this.props.role} />
         )
       case "Connecting with Others":
         return (

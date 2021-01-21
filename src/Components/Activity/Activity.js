@@ -40,7 +40,14 @@ function Activity(props) {
         </span>
       );
       default: 
-      return(null);
+      return (
+        <span>
+        <Form.Check style={{ display: 'inline-block', marginLeft: '20px' }} type="checkbox" checked={props.completed} onChange={props.onChangeFunction}/>
+        <a className='activity-link' href={`${process.env.PUBLIC_URL}/#`} target='_blank'>
+          {`${props.activity.activityName} ${(props.activity.completed ? "Completed" : "")}`}
+        </a>
+      </span>
+      );
   }
 }
 

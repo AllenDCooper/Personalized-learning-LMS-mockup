@@ -5,11 +5,19 @@ import CommUnitActivities from './CommUnitActivities';
 class CommUnit extends Component {
 
   state = {
-    activitiesArr: CommUnitActivities,
-    numActivitiesToDo: CommUnitActivities.length,
+    activitiesArr: [],
+    numActivitiesToDo: 0,
     numActivitiesCompleted: 0,
     allActivitiesComplete: false,
     unitCompleted: false
+  }
+
+  componentDidMount = () => {
+    console.log('comm unit mounted')
+    this.setState({
+      activitiesArr: CommUnitActivities[this.props.role],
+      numActivitiesToDo: CommUnitActivities[this.props.role].length,
+    })
   }
 
   closeActivity = () => {
@@ -43,9 +51,9 @@ class CommUnit extends Component {
   }
 
   render() {
-    console.log(this.props.score)
+    console.log(this.props.role)
     return (
-      <ContentCard setClickedLink={this.props.setClickedLink} score={this.props.score} index={this.props.index} activitiesArr={this.state.activitiesArr} submitActivity={this.submitActivity} allActivitiesComplete={this.state.allActivitiesComplete} saveCompletedGoal={this.props.saveCompletedGoal} updateScore={this.props.updateScore} submitScore={this.props.submitScore} takenAssessment={this.props.takenAssessment} />
+      <ContentCard setClickedLink={this.props.setClickedLink} score={this.props.score} index={this.props.index} activitiesArr={CommUnitActivities[this.props.role]} submitActivity={this.submitActivity} allActivitiesComplete={this.state.allActivitiesComplete} saveCompletedGoal={this.props.saveCompletedGoal} updateScore={this.props.updateScore} submitScore={this.props.submitScore} takenAssessment={this.props.takenAssessment} />
     )
   }
 }

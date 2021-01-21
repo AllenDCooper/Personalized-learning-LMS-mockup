@@ -10,13 +10,28 @@ import ReportDescriptions from '../Components/ReportsDashboard/ReportDescription
 
 // importing react-boostrap styles
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Nav, Form } from 'react-bootstrap';
+import { Container, Nav, Form, Row, Col } from 'react-bootstrap';
 
 function Reports(props) {
   console.log(userModelSeed)
 
+  const styles = {
+    strengthsSwitch: {
+      paddingTop: '0px'
+    },
+    mobileStrengthsSwitch: {
+      paddingBottom: '20px',
+      textAlign: 'center'
+    }
+  }
+
   const [report, setReport] = useState("initial")
   const [view, setView] = useState("class")
+  const [strengthsViewOn, setStrengthsViewOn] = useState(false)
+
+  const handleClick = () => {
+    setStrengthsViewOn(!strengthsViewOn)
+  }
 
   const reportName = `${report}_${view}`
 
@@ -31,29 +46,29 @@ function Reports(props) {
   const getReport = (reportName) => {
     switch (reportName) {
       case 'initial_class':
-        return <ClassReport reportsDataArr={reportsDataArr} scoreType={'initialScores'} scoreCohort={'classScores'} ReportDescription={ReportDescriptions['initial_class']} />
+        return <ClassReport reportsDataArr={reportsDataArr} scoreType={'initialScores'} scoreCohort={'classScores'} ReportDescription={ReportDescriptions['initial_class']} strengthsViewOn={strengthsViewOn} />
       case 'initial_roster':
-        return <RosterReport userModelSeed={userModelSeed} scoreType={'percentileScoreInitial'} scoreCohort={'classScores'} ReportDescription={ReportDescriptions['initial_roster']} />
+        return <RosterReport userModelSeed={userModelSeed} scoreType={'percentileScoreInitial'} scoreCohort={'classScores'} ReportDescription={ReportDescriptions['initial_roster']}  strengthsViewOn={strengthsViewOn}/>
       case 'initial_institutional':
-        return <ClassReport reportsDataArr={reportsDataArr} scoreType={'initialScores'} scoreCohort={'institutionalScores'} ReportDescription={ReportDescriptions['initial_institutional']} />
+        return <ClassReport reportsDataArr={reportsDataArr} scoreType={'initialScores'} scoreCohort={'institutionalScores'} ReportDescription={ReportDescriptions['initial_institutional']} strengthsViewOn={strengthsViewOn} />
       case 'progress_class':
-        return <ClassReport reportsDataArr={reportsDataArr} scoreType={'progressScores'} scoreCohort={'classScores'} ReportDescription={ReportDescriptions['progress_class']} />
+        return <ClassReport reportsDataArr={reportsDataArr} scoreType={'progressScores'} scoreCohort={'classScores'} ReportDescription={ReportDescriptions['progress_class']} strengthsViewOn={strengthsViewOn} />
       case 'progress_roster':
-        return <RosterReport userModelSeed={userModelSeed} scoreType={'percentileScoreCurrent'} scoreCohort={'classScores'} ReportDescription={ReportDescriptions['progress_roster']} />
+        return <RosterReport userModelSeed={userModelSeed} scoreType={'percentileScoreCurrent'} scoreCohort={'classScores'} ReportDescription={ReportDescriptions['progress_roster']} strengthsViewOn={strengthsViewOn} />
       case 'progress_institutional':
-        return <ClassReport reportsDataArr={reportsDataArr} scoreType={'progressScores'} scoreCohort={'institutionalScores'} ReportDescription={ReportDescriptions['progress_institutional']} />
+        return <ClassReport reportsDataArr={reportsDataArr} scoreType={'progressScores'} scoreCohort={'institutionalScores'} ReportDescription={ReportDescriptions['progress_institutional']} strengthsViewOn={strengthsViewOn} />
       case 'comparison_class':
-        return <ComparisonClassReport reportsDataArr={reportsDataArr} scoreCohort={'classScores'} ReportDescription={ReportDescriptions['comparison_class']} />
+        return <ComparisonClassReport reportsDataArr={reportsDataArr} scoreCohort={'classScores'} ReportDescription={ReportDescriptions['comparison_class']} strengthsViewOn={strengthsViewOn} />
       case 'comparison_roster':
-        return <RosterReport userModelSeed={userModelSeed} scoreType={'percentileScoreInitial'} scoreTypeAlt={'percentileScoreCurrent'} ReportDescription={ReportDescriptions['comparison_roster']} />
+        return <RosterReport userModelSeed={userModelSeed} scoreType={'percentileScoreInitial'} scoreTypeAlt={'percentileScoreCurrent'} ReportDescription={ReportDescriptions['comparison_roster']} strengthsViewOn={strengthsViewOn} />
       case 'comparison_institutional':
-        return <ComparisonClassReport reportsDataArr={reportsDataArr} scoreCohort={'institutionalScores'} ReportDescription={ReportDescriptions['comparison_institutional']} />
+        return <ComparisonClassReport reportsDataArr={reportsDataArr} scoreCohort={'institutionalScores'} ReportDescription={ReportDescriptions['comparison_institutional']} strengthsViewOn={strengthsViewOn} />
       case 'change_class':
-        return <ChangeClassReport reportsDataArr={reportsDataArr} scoreCohort={'classScores'} ReportDescription={ReportDescriptions['change_class']} />
+        return <ChangeClassReport reportsDataArr={reportsDataArr} scoreCohort={'classScores'} ReportDescription={ReportDescriptions['change_class']} strengthsViewOn={strengthsViewOn} />
       case 'change_roster':
-        return <RosterReport userModelSeed={userModelSeed} scoreType={'percentileScoreChange'} ReportDescription={ReportDescriptions['change_roster']} />
+        return <RosterReport userModelSeed={userModelSeed} scoreType={'percentileScoreChange'} ReportDescription={ReportDescriptions['change_roster']} strengthsViewOn={strengthsViewOn} />
       case 'change_institutional':
-        return <ChangeClassReport reportsDataArr={reportsDataArr} scoreCohort={'institutionalScores'} ReportDescription={ReportDescriptions['change_institutional']} />
+        return <ChangeClassReport reportsDataArr={reportsDataArr} scoreCohort={'institutionalScores'} ReportDescription={ReportDescriptions['change_institutional']} strengthsViewOn={strengthsViewOn} />
       default:
         return null
     }
@@ -83,11 +98,26 @@ function Reports(props) {
         </div>
         <div className='reports-container'>
           <div className='reports-view'>
-            <Form>
-              <Form.Check onClick={handleViewClick} inline label="Class" type='radio' id='class' name='view' defaultChecked />
-              <Form.Check onClick={handleViewClick} inline label="Roster" type='radio' id='roster' name='view' />
-              <Form.Check onClick={handleViewClick} inline label="Institutional" type='radio' id='institutional' name='view' />
-            </Form>
+            <Row>
+              <Col xs={12} md={10} >
+                <Form>
+                  <Form.Check onClick={handleViewClick} inline label="Class" type='radio' id='class' name='view' defaultChecked />
+                  <Form.Check onClick={handleViewClick} inline label="Roster" type='radio' id='roster' name='view' />
+                  <Form.Check onClick={handleViewClick} inline label="Institutional" type='radio' id='institutional' name='view' />
+                </Form>
+              </Col>
+              <Col xs={12} md={2} >
+                <Form>
+                  <Form.Check
+                    type="switch"
+                    id="strengths-switch"
+                    label="Sort Strengths"
+                    style={window.innerWidth <= 740 ? styles.mobileStrengthsSwitch : styles.strengthsSwitch}
+                    onClick={handleClick}
+                  />
+                </Form>
+              </Col>
+            </Row>
           </div>
           <div className='reports-view-title'>
             <h5 className='reports-view-heading'>{`${report} ${view} Report`}</h5>
