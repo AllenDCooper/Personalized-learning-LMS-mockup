@@ -5,8 +5,8 @@ import NoteTakingUnitActivities from './NoteTakingUnitActivities';
 class NoteTakingUnit extends Component {
 
   state = {
-    activitiesArr: NoteTakingUnitActivities,
-    numActivitiesToDo: NoteTakingUnitActivities.length,
+    activitiesArr: NoteTakingUnitActivities[this.props.role],
+    numActivitiesToDo: NoteTakingUnitActivities[this.props.role].length,
     numActivitiesCompleted: 0,
     allActivitiesComplete: false,
     unitCompleted: false
@@ -45,7 +45,7 @@ class NoteTakingUnit extends Component {
   render() {
     console.log(this.props.score)
     return (
-      <ContentCard setClickedLink={this.props.setClickedLink} score={this.props.score} index={this.props.index} activitiesArr={this.state.activitiesArr} submitActivity={this.submitActivity} allActivitiesComplete={this.state.allActivitiesComplete} saveCompletedGoal={this.props.saveCompletedGoal} updateScore={this.props.updateScore} submitScore={this.props.submitScore} takenAssessment={this.props.takenAssessment} />
+      <ContentCard setClickedLink={this.props.setClickedLink} score={this.props.score} index={this.props.index} activitiesArr={this.state.activitiesArr} submitActivity={this.submitActivity} allActivitiesComplete={this.state.allActivitiesComplete} saveCompletedGoal={this.props.saveCompletedGoal} updateScore={this.props.updateScore} submitScore={this.props.submitScore} takenAssessment={this.props.takenAssessment} role={this.props.role} />
     )
   }
 }

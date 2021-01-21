@@ -79,7 +79,9 @@ class ContentCard extends Component {
   }
 
   render() {
-    console.log(this.props.activitiesArr);
+
+    console.log(this.props);
+
     return (
       <Card className='hover-pointer'>
         <Accordion.Toggle as={Card.Body} eventKey={this.props.index} onClick={this.toggleShow} >

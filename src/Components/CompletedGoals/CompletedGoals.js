@@ -7,10 +7,10 @@ const CompletedGoals = (props) => {
   return (
     props.completedGoalsArr.length > 0 ?
       <>
-        {!this.state.spinnerOn ?
+        {!props.spinnerOn ?
           <Accordion>
-            {this.state.completedGoalsArr.map(item => (
-              <AccordionUnit takenAssessment={this.state.takenAssessment} score={item} saveCompletedGoal={this.saveCompletedGoal} role={this.props.roleSelected} />
+            {props.completedGoalsArr.map(item => (
+              <AccordionUnit setClickedLink={props.setClickedLink} takenAssessment={props.takenAssessment} score={item} saveCompletedGoal={props.saveCompletedGoal} updateScore={props.updateScore} submitScore={props.submitScore} role={props.role} />
             ))}
           </Accordion>
           :

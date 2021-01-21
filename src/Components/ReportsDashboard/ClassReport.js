@@ -38,7 +38,6 @@ function ClassReport(props) {
   const sortStrengths = (arr) => {
     // sort the percentile array into descending order so that top strengths will appear first
     const descendingArr = sortValuesDescending(arr);
-    console.log(`descendingArr: ${descendingArr}`);
 
     // instantiate an array to hold the 3 tiers of skill
     const strengthsArr = [{ "Strengths": [] }, { "Developing_Strengths": [] }, { "Growth_Areas": [] }]

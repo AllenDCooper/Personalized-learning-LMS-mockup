@@ -13,7 +13,7 @@ const CompletedGoalsContainer = (props) => {
           </h4>
         </Col>
       </Row>
-      <CompletedGoals completedGoalsArr={props.completedGoalsArr} takenAssessment={props.takenAssessment} saveCompletedGoal={props.saveCompletedGoal} role={props.roleSelected} spinnerOn={props.spinnerOn} />
+      <CompletedGoals completedGoalsArr={props.completedGoalsArr} takenAssessment={props.takenAssessment} saveCompletedGoal={props.saveCompletedGoal} role={props.role} spinnerOn={props.spinnerOn} />
     </Container>
   )
 }

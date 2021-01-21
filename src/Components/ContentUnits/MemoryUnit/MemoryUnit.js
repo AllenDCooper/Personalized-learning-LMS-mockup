@@ -5,8 +5,8 @@ import MemoryUnitActivities from './MemoryUnitActivities';
 class MemoryUnit extends Component {
 
   state = {
-    activitiesArr: MemoryUnitActivities,
-    numActivitiesToDo: MemoryUnitActivities.length,
+    activitiesArr: MemoryUnitActivities[this.props.role],
+    numActivitiesToDo: MemoryUnitActivities[this.props.role].length,
     numActivitiesCompleted: 0,
     allActivitiesComplete: false,
     unitCompleted: false
@@ -45,7 +45,7 @@ class MemoryUnit extends Component {
   render() {
     console.log(this.props.score)
     return (
-      <ContentCard setClickedLink={this.props.setClickedLink} score={this.props.score} index={this.props.index} activitiesArr={this.state.activitiesArr} submitActivity={this.submitActivity} allActivitiesComplete={this.state.allActivitiesComplete} saveCompletedGoal={this.props.saveCompletedGoal} updateScore={this.props.updateScore} submitScore={this.props.submitScore} takenAssessment={this.props.takenAssessment} />
+      <ContentCard setClickedLink={this.props.setClickedLink} score={this.props.score} index={this.props.index} activitiesArr={this.state.activitiesArr} submitActivity={this.submitActivity} allActivitiesComplete={this.state.allActivitiesComplete} saveCompletedGoal={this.props.saveCompletedGoal} updateScore={this.props.updateScore} submitScore={this.props.submitScore} takenAssessment={this.props.takenAssessment} role={this.props.role} />
     )
   }
 }

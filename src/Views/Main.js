@@ -437,8 +437,11 @@ class Main extends Component {
             submitScore={this.submitScore}
             roleSelected={this.props.roleSelected}
             adaptiveLearningOn={this.state.adaptiveLearningOn}
+            handleAdaptiveLearningChange={this.handleAdaptiveLearningChange}
             spinnerOn={this.state.spinnerOn}
             goalsToCompleteArr={this.state.goalsToCompleteArr}
+            goalsToDisplayArr={this.state.goalsToDisplayArr}
+            handleChange={this.handleChange}
             numUnits={this.numUnitsToDisplay(this.state.goalsToCompleteArr)}
           />
         </div>
