@@ -95,9 +95,9 @@ class ContentCard extends Component {
               <Card.Body style={{ borderBottom: "1px solid #ededed", paddingLeft: "2rem" }}>
                 <Form.Group controlId={`formBasicCheckbox-${index}`}>
                   {item.completed ? (
-                      <Activity activity={item} completed={true}/>
+                    <Activity activity={item} completed={true} />
                   ) : (
-                    <Activity activity={item} completed={false} onChangeFunction={() => this.props.submitActivity(index)} />
+                      <Activity activity={item} completed={false} onChangeFunction={() => this.props.submitActivity(index)} />
                     )}
                 </Form.Group>
               </Card.Body>
@@ -125,8 +125,13 @@ class ContentCard extends Component {
                 </Card.Body>
             )
               : null}
-            {this.state.switchChecked ? (
-              <ModalReassessment setClickedLink={this.props.setClickedLink} updateScore={this.props.updateScore} scaleName={this.props.score.name} submitScore={this.props.submitScore} saveCompletedGoal={this.props.saveCompletedGoal} score={this.props.score} />) : null}
+            {this.state.switchChecked ?
+              this.props.role === 'Student' ?
+                (
+                  <ModalReassessment setClickedLink={this.props.setClickedLink} updateScore={this.props.updateScore} scaleName={this.props.score.name} submitScore={this.props.submitScore} saveCompletedGoal={this.props.saveCompletedGoal} score={this.props.score} />)
+                :
+                null
+              : null}
           </div>
         </Accordion.Collapse>
       </Card >

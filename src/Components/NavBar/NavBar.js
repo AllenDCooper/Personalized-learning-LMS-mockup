@@ -75,8 +75,6 @@ function NavBar(props) {
   let menuItemsArr = props.roleSelected === 'Instructor' || props.roleSelected === 'Administrator'
     ? [
       'ACES Reports',
-      'My Goals',
-      'Completed Goals',
       'E-book'
     ] :
     [
@@ -128,13 +126,18 @@ function NavBar(props) {
         <Nav style={{ margin: '0 auto', paddingTop: '40px', height: '72px', transform: 'translate(-140px, 0px)' }}>
           {props.roleSelected === 'Instructor' || props.roleSelected === 'Administrator'
             ?
+            <>
             <a name='ACES Reports' onClick={handleClick} className='sans-pro-caps navbar-link' style={props.clickedLink === 'ACES Reports' ? styles.selectedMenuLink : styles.menuLink}>ACES Reports</a>
+            <a name='E-book' onClick={handleClick} className='sans-pro-caps navbar-link' style={props.clickedLink === 'E-book' ? styles.selectedMenuLink : styles.menuLink}>E-book</a>
+            </>
             :
+            <>
             <a name='ACES' onClick={handleClick} className='sans-pro-caps navbar-link' style={props.clickedLink === 'ACES' ? styles.selectedMenuLink : styles.menuLink}>ACES</a>
+            <a name='My Goals' onClick={handleClick} className='sans-pro-caps navbar-link' style={props.clickedLink === 'My Goals' ? styles.selectedMenuLink : styles.menuLink}>My Goals</a>
+            <a name='Completed Goals' onClick={handleClick} className='sans-pro-caps navbar-link' style={props.clickedLink === 'Completed Goals' ? styles.selectedMenuLink : styles.menuLink}>Completed</a>
+            <a name='E-book' onClick={handleClick} className='sans-pro-caps navbar-link' style={props.clickedLink === 'E-book' ? styles.selectedMenuLink : styles.menuLink}>E-book</a>
+            </>
           }
-          <a name='My Goals' onClick={handleClick} className='sans-pro-caps navbar-link' style={props.clickedLink === 'My Goals' ? styles.selectedMenuLink : styles.menuLink}>My Goals</a>
-          <a name='Completed Goals' onClick={handleClick} className='sans-pro-caps navbar-link' style={props.clickedLink === 'Completed Goals' ? styles.selectedMenuLink : styles.menuLink}>Completed</a>
-          <a name='E-book' onClick={handleClick} className='sans-pro-caps navbar-link' style={props.clickedLink === 'E-book' ? styles.selectedMenuLink : styles.menuLink}>E-book</a>
         </Nav>
       }
       <span style={styles.instructorSwitch}>
