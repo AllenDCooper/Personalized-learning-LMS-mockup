@@ -43,19 +43,20 @@ const createScoreArr = (scaleArr) => {
 
 const createSeedData = (numUsersToCreate) => {
   let seedDataArr = []
+  let classNum = 0
   for (let i = 0; i < numUsersToCreate; i++) {
     const seedUserData = createScoreArr(scales);
     const userName = `user-${i}`
-    let thisClass = false;
-    if (i < 20) {
-      thisClass = true;
+    if (i % 20 === 0) {
+      classNum++
     }
-    const newUser = {userName: userName, scores: seedUserData, inClass: thisClass}
+    const newUser = {userName: userName, scores: seedUserData, classID: classNum}
     seedDataArr.push(newUser)
   }
   return seedDataArr
 }
 
 const userModelSeed = createSeedData(100)
+console.log(userModelSeed);
 
 export default userModelSeed;

@@ -57,7 +57,7 @@ function RosterReport(props) {
 
     // map descending array, sorting out into 3 tiers and pushing into appropriate object in strengthsArr
     descendingArr.forEach((userScore, index) => {
-      if (userScore.inClass) {
+      if (userScore.classID === 1) {
         if (userScore.scores[scaleIndex][scoreTypeConfirmed] > 75) {
           const arrCopy1 = strengthsArr[0].Strengths
           let arr1 = []
@@ -148,7 +148,7 @@ function RosterReport(props) {
         :
         scales.map((scale, index) => (
           props.userModelSeed.map(userScore => (
-            userScore.inClass ?
+            userScore.classID === 1 ?
               <Accordion style={scale.name === scaleShowName ? { display: 'inherit' } : { display: 'none' }}>
                 <Card style={{ border: 'none' }}>
                   <Accordion.Toggle as={Button} variant="link" eventKey={index} style={{ width: '100%', boxShadow: 'none', padding: '0' }}>

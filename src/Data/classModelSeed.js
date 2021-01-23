@@ -33,7 +33,7 @@ const updateReportsObj = (reportsObj, userName, rawScore, percentScore) => {
 
 const updateInitialAndProgressObjects = (seedData, reportsDataArr) => {
   seedData.forEach(userScore => {
-    const { inClass, userName, scores } = userScore;
+    const { classID, userName, scores } = userScore;
     // scores = [
     //   {
     //     scaleName: '',
@@ -55,7 +55,7 @@ const updateInitialAndProgressObjects = (seedData, reportsDataArr) => {
       updateReportsObj(institutionalInitScoreObj, userName, scoreObj.rawScoreInitial, scoreObj.percentileScoreInitial)
       updateReportsObj(institutionalProgScoreObj, userName, scoreObj.rawScoreProgress, scoreObj.percentileScoreCurrent)
 
-      if (inClass) {
+      if (classID === 1) {
         updateReportsObj(classInitScoreObj, userName, scoreObj.rawScoreInitial, scoreObj.percentileScoreInitial)
         updateReportsObj(classProgScoreObj, userName, scoreObj.rawScoreProgress, scoreObj.percentileScoreCurrent)
       }

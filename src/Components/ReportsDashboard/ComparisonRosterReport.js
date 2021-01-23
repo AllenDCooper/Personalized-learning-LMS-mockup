@@ -45,7 +45,7 @@ function ComparisonRosterReport(props) {
       </div>
       {scales.map((scale, index) => (
         props.userModelSeed.map(userScore => (
-          userScore.inClass ?
+          userScore.classID === 1 ?
             <Accordion style={scale.scaleName === scaleShowName ? { display: 'inherit' } : { display: 'none' }}>
               <Card style={{ border: 'none' }}>
                 <Accordion.Toggle as={Button} variant="link" eventKey={index} style={{ width: '100%', boxShadow: 'none', padding: '0' }}>
