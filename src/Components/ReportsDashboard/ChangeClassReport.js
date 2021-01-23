@@ -24,7 +24,7 @@ function ChangeClassReport(props) {
   const sortValuesDescending = (arr) => {
     console.log(arr);
     arr.sort(function (a, b) {
-      return b.progressScores[props.scoreCohort].highScoreCountPercent - a.progressScores[props.scoreCohort].highScoreCountPercent
+      return b.progressScores[props.scoreCohort][0].highScoreCountPercent - a.progressScores[props.scoreCohort][0].highScoreCountPercent
     })
     let newArr = []
     for (let i = 0; i < arr.length; i++) {
@@ -44,13 +44,13 @@ function ChangeClassReport(props) {
 
     // map descending array, sorting out into 3 tiers and pushing into appropriate object in strengthsArr
     descendingArr.forEach((element, index) => {
-      if (element.progressScores[props.scoreCohort].highScoreCountPercent > 30) {
+      if (element.progressScores[props.scoreCohort][0].highScoreCountPercent > 30) {
         const arrCopy1 = strengthsArr[0].Strengths
         let arr1 = []
         arrCopy1 === undefined ? arr1 = [] : arr1 = [...arrCopy1]
         arr1.push(element)
         strengthsArr[0].Strengths = arr1
-      } else if (element.progressScores[props.scoreCohort].highScoreCountPercent <= 30 && element.progressScores[props.scoreCohort].highScoreCountPercent > 20) {
+      } else if (element.progressScores[props.scoreCohort][0].highScoreCountPercent <= 30 && element.progressScores[props.scoreCohort][0].highScoreCountPercent > 20) {
         const arrCopy2 = strengthsArr[1].Developing_Strengths
         let arr2 = []
         arrCopy2 === undefined ? arr2 = [] : arr2 = [...arrCopy2]
@@ -122,7 +122,7 @@ function ChangeClassReport(props) {
                   </Col>
                   <Col xs={12} md={8} style={{ margin: 'auto' }}>
                     <ProgressBar style={{ position: 'relative' }}>
-                      <ProgressBar now={scale.changeScores[props.scoreCohort].rawScoreAvgChangePercent} label={`${scale.changeScores[props.scoreCohort].rawScoreAvgChangePercent}%`} style={scale.changeScores[props.scoreCohort].rawScoreAvgChangePercent < 0 ? { backgroundColor: 'red' } : {}} />
+                      <ProgressBar now={scale.changeScores[props.scoreCohort][0].rawScoreAvgChangePercent} label={`${scale.changeScores[props.scoreCohort][0].rawScoreAvgChangePercent}%`} style={scale.changeScores[props.scoreCohort][0].rawScoreAvgChangePercent < 0 ? { backgroundColor: 'red' } : {}} />
                     </ProgressBar>
                   </Col>
                 </Row>

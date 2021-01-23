@@ -25,7 +25,7 @@ function ComparisonClassReport(props) {
   const sortValuesDescending = (arr) => {
     console.log(arr);
     arr.sort(function (a, b) {
-      return b.progressScores[props.scoreCohort].highScoreCountPercent - a.progressScores[props.scoreCohort].highScoreCountPercent
+      return b.progressScores[props.scoreCohort][0].highScoreCountPercent - a.progressScores[props.scoreCohort][0].highScoreCountPercent
     })
     let newArr = []
     for (let i = 0; i < arr.length; i++) {
@@ -45,13 +45,13 @@ function ComparisonClassReport(props) {
 
     // map descending array, sorting out into 3 tiers and pushing into appropriate object in strengthsArr
     descendingArr.forEach((element, index) => {
-      if (element.progressScores[props.scoreCohort].highScoreCountPercent > 30) {
+      if (element.progressScores[props.scoreCohort][0].highScoreCountPercent > 30) {
         const arrCopy1 = strengthsArr[0].Strengths
         let arr1 = []
         arrCopy1 === undefined ? arr1 = [] : arr1 = [...arrCopy1]
         arr1.push(element)
         strengthsArr[0].Strengths = arr1
-      } else if (element.progressScores[props.scoreCohort].highScoreCountPercent <= 30 && element.progressScores[props.scoreCohort].highScoreCountPercent > 20) {
+      } else if (element.progressScores[props.scoreCohort][0].highScoreCountPercent <= 30 && element.progressScores[props.scoreCohort][0].highScoreCountPercent > 20) {
         const arrCopy2 = strengthsArr[1].Developing_Strengths
         let arr2 = []
         arrCopy2 === undefined ? arr2 = [] : arr2 = [...arrCopy2]
@@ -124,9 +124,9 @@ function ComparisonClassReport(props) {
                 <Col xs={12} md={8} style={{ margin: 'auto' }}>
                   <ProgressBar style={{ position: 'relative' }}>
                     {/* <span style={{ textAlign: 'center', position: 'absolute', width: `${scale.percentileScoreCurrent}%`, left: '0px', color: 'white', lineHeight: '1.25' }}>{`${props.scale.percentileScoreCurrent}%`}</span> */}
-                    <ProgressBar now={scale.initialScores[props.scoreCohort].lowScoreCountPercent} label={`${scale.initialScores[props.scoreCohort].lowScoreCountPercent}%`} style={{ backgroundColor: '#4da3ff' }} />
-                    <ProgressBar now={scale.initialScores[props.scoreCohort].moderateScoreCountPercent} label={`${scale.initialScores[props.scoreCohort].moderateScoreCountPercent}%`} />
-                    <ProgressBar now={scale.initialScores[props.scoreCohort].highScoreCountPercent} label={`${scale.initialScores[props.scoreCohort].highScoreCountPercent}%`} style={{ backgroundColor: '#0056b3' }} />
+                    <ProgressBar now={scale.initialScores[props.scoreCohort][0].lowScoreCountPercent} label={`${scale.initialScores[props.scoreCohort][0].lowScoreCountPercent}%`} style={{ backgroundColor: '#4da3ff' }} />
+                    <ProgressBar now={scale.initialScores[props.scoreCohort][0].moderateScoreCountPercent} label={`${scale.initialScores[props.scoreCohort][0].moderateScoreCountPercent}%`} />
+                    <ProgressBar now={scale.initialScores[props.scoreCohort][0].highScoreCountPercent} label={`${scale.initialScores[props.scoreCohort][0].highScoreCountPercent}%`} style={{ backgroundColor: '#0056b3' }} />
                   </ProgressBar>
                 </Col>
                 <Col xs={12} md={4} style={{ textAlign: 'right' }}>
@@ -135,9 +135,9 @@ function ComparisonClassReport(props) {
                 <Col xs={12} md={8} style={{ margin: 'auto' }}>
                   <ProgressBar style={{ position: 'relative' }}>
                     {/* <span style={{ textAlign: 'center', position: 'absolute', width: `${scaleObj.percentileScoreCurrent}%`, left: '0px', color: 'white', lineHeight: '1.25' }}>{`${props.scaleObj.percentileScoreCurrent}%`}</span> */}
-                    <ProgressBar animated now={scale.progressScores[props.scoreCohort].lowScoreCountPercent} label={`${scale.progressScores[props.scoreCohort].lowScoreCountPercent}%`} style={{ backgroundColor: '#4da3ff' }} />
-                    <ProgressBar animated now={scale.progressScores[props.scoreCohort].moderateScoreCountPercent} label={`${scale.progressScores[props.scoreCohort].moderateScoreCountPercent}%`} />
-                    <ProgressBar animated now={scale.progressScores[props.scoreCohort].highScoreCountPercent} label={`${scale.progressScores[props.scoreCohort].highScoreCountPercent}%`} style={{ backgroundColor: '#0056b3' }} />
+                    <ProgressBar animated now={scale.progressScores[props.scoreCohort][0].lowScoreCountPercent} label={`${scale.progressScores[props.scoreCohort][0].lowScoreCountPercent}%`} style={{ backgroundColor: '#4da3ff' }} />
+                    <ProgressBar animated now={scale.progressScores[props.scoreCohort][0].moderateScoreCountPercent} label={`${scale.progressScores[props.scoreCohort][0].moderateScoreCountPercent}%`} />
+                    <ProgressBar animated now={scale.progressScores[props.scoreCohort][0].highScoreCountPercent} label={`${scale.progressScores[props.scoreCohort][0].highScoreCountPercent}%`} style={{ backgroundColor: '#0056b3' }} />
                   </ProgressBar>
                 </Col>
               </Row>

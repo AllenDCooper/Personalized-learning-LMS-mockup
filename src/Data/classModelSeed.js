@@ -6,7 +6,7 @@ let reportsDataArrTemplate = scales.map(scale => reportsObjConstructor(scale.nam
 
 const updateReportsObj = (reportsObj, userName, rawScore, percentScore) => {
 
-  // push user into userScore array
+  // push user into userScore arra
   reportsObj.userScores.push({
     userName: userName,
     rawScore: rawScore,
@@ -46,8 +46,8 @@ const updateInitialAndProgressObjects = (seedData, reportsDataArr) => {
     // ]
     scores.forEach((scoreObj, index) => {
       // add initial score to low, moderate or high bucket
-      const institutionalInitScoreObj = reportsDataArr[index].initialScores.institutionalScores
-      const institutionalProgScoreObj = reportsDataArr[index].progressScores.institutionalScores
+      const institutionalInitScoreObj = reportsDataArr[index].initialScores.institutionalScores[0]
+      const institutionalProgScoreObj = reportsDataArr[index].progressScores.institutionalScores[0]
       const classInitScoreObj = reportsDataArr[index].initialScores.classScores
       const classProgScoreObj = reportsDataArr[index].progressScores.classScores
 
@@ -55,10 +55,44 @@ const updateInitialAndProgressObjects = (seedData, reportsDataArr) => {
       updateReportsObj(institutionalInitScoreObj, userName, scoreObj.rawScoreInitial, scoreObj.percentileScoreInitial)
       updateReportsObj(institutionalProgScoreObj, userName, scoreObj.rawScoreProgress, scoreObj.percentileScoreCurrent)
 
-      if (classID === 1) {
-        updateReportsObj(classInitScoreObj, userName, scoreObj.rawScoreInitial, scoreObj.percentileScoreInitial)
-        updateReportsObj(classProgScoreObj, userName, scoreObj.rawScoreProgress, scoreObj.percentileScoreCurrent)
+      if (!classInitScoreObj[classID - 1]) {
+        classInitScoreObj.push({
+          classID: classID,
+          lowScoreCount: 0,
+          // countPercents are used to populate the class report
+          lowScoreCountPercent: 0,
+          moderateScoreCount: 0,
+          moderateScoreCountPercent: 0,
+          highScoreCount: 0,
+          highScoreCountPercent: 0,
+          totalScoreCount: 0,
+          rawScoreTotal: 0,
+          // rawScoreAvg is used to calculate the change
+          rawScoreAvg: 0,
+          // user scores for progress ROSTER REPORT
+          userScores: []
+        })
       }
+      if (!classProgScoreObj[classID - 1]) {
+        classProgScoreObj.push({
+          classID: classID,
+          lowScoreCount: 0,
+          // countPercents are used to populate the class report
+          lowScoreCountPercent: 0,
+          moderateScoreCount: 0,
+          moderateScoreCountPercent: 0,
+          highScoreCount: 0,
+          highScoreCountPercent: 0,
+          totalScoreCount: 0,
+          rawScoreTotal: 0,
+          // rawScoreAvg is used to calculate the change
+          rawScoreAvg: 0,
+          // user scores for progress ROSTER REPORT
+          userScores: []
+        })
+      }
+      updateReportsObj(classInitScoreObj[classID - 1], userName, scoreObj.rawScoreInitial, scoreObj.percentileScoreInitial)
+      updateReportsObj(classProgScoreObj[classID - 1], userName, scoreObj.rawScoreProgress, scoreObj.percentileScoreCurrent)
     })
   })
   return reportsDataArr
@@ -67,25 +101,28 @@ const updateInitialAndProgressObjects = (seedData, reportsDataArr) => {
 const updateChangeObject = (reportsDataArr) => {
   reportsDataArr.forEach(scale => {
     // calculate class change scores
-    const classRawScoreAvgChange = (scale.progressScores.classScores.rawScoreAvg - scale.initialScores.classScores.rawScoreAvg).toFixed(2)
-    const classRawScoreAvgChangePercent = (classRawScoreAvgChange / scale.initialScores.classScores.rawScoreAvg * 100).toFixed(1)
-    // calculate institutional change scores
-    const institutionalRawScoreAvgChange = (scale.progressScores.institutionalScores.rawScoreAvg  - scale.initialScores.institutionalScores.rawScoreAvg).toFixed(2)
-    const institutionalRawScoreAvgChangePercent = (institutionalRawScoreAvgChange / scale.initialScores.institutionalScores.rawScoreAvg * 100).toFixed(1)
-    // update change object
-    scale.changeScores = {
-      classScores: {
+    scale.initialScores.classScores.forEach((classScoreObj, index) => {
+      const classRawScoreAvgChange = (scale.progressScores.classScores[index].rawScoreAvg - scale.initialScores.classScores[index].rawScoreAvg).toFixed(2)
+      const classRawScoreAvgChangePercent = (classRawScoreAvgChange / scale.initialScores.classScores[index].rawScoreAvg * 100).toFixed(1)
+      scale.changeScores.classScores.push({
+        classID: index + 1,
         rawScoreAvgChange: classRawScoreAvgChange,
         rawScoreAvgChangePercent: classRawScoreAvgChangePercent
-      },
-      institutionalScores: {
+      })
+    })
+
+    const institutionalRawScoreAvgChange = (scale.progressScores.institutionalScores[0].rawScoreAvg - scale.initialScores.institutionalScores[0].rawScoreAvg).toFixed(2)
+    const institutionalRawScoreAvgChangePercent = (institutionalRawScoreAvgChange / scale.initialScores.institutionalScores[0].rawScoreAvg * 100).toFixed(1)
+    // update change object
+    scale.changeScores.institutionalScores.push(
+      {
         rawScoreAvgChange: institutionalRawScoreAvgChange,
         rawScoreAvgChangePercent: institutionalRawScoreAvgChangePercent
       }
-    }
+    )
   })
-  // console.log(JSON.stringify(reportsDataArr));
-  return reportsDataArr;
+// console.log(JSON.stringify(reportsDataArr));
+return reportsDataArr;
 }
 
 const BuildSeedModel = (seedData, reportsDataArr) => {

@@ -7,6 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 // importing components
 import Main from './Views/Main';
 import Reports from './Views/Reports';
+import AdminReports from './Views/AdminReports';
 import Ebook from './Views/Ebook';
 import NavBar from './Components/NavBar/NavBar';
 
@@ -20,7 +21,11 @@ function App(props) {
       <NavBar clickedLink={clickedLink} setClickedLink={setClickedLink} roleSelected={roleSelected} setRoleSelected={setRoleSelected} />
       <Main clickedLink={clickedLink} setClickedLink={setClickedLink} roleSelected={roleSelected} />
       {/* <Goals clickedLink={clickedLink} setClickedLink={setClickedLink} /> */}
+      {roleSelected === 'Administrator' ? 
+      <AdminReports clickedLink={clickedLink} setClickedLink={setClickedLink} />
+      :
       <Reports clickedLink={clickedLink} setClickedLink={setClickedLink} />
+  }
       <Ebook clickedLink={clickedLink} setClickedLink={setClickedLink} />
     </div>
   )

@@ -4,7 +4,7 @@ import './ClassReport.css';
 import scales from '../../ACES_Assessment/scales.js';
 import RosterAccordionScale from '../AccordionScale/RosterAccordionScale';
 
-function RosterReport(props) {
+function CourseReport(props) {
   console.log(props)
 
   const styles = {
@@ -36,7 +36,7 @@ function RosterReport(props) {
     for (let i = 0; i < userArr.length; i++) {
       newArr.push(userArr[i])
     }
-    // console.log(newArr)
+    console.log(newArr)
     return newArr
   }
 
@@ -50,7 +50,7 @@ function RosterReport(props) {
     console.log(scoreTypeConfirmed);
     // sort the percentile array into descending order so that top strengths will appear first
     const descendingArr = sortValuesDescending(arr, scaleIndex, scoreTypeConfirmed);
-    // console.log(`descendingArr: ${descendingArr}`);
+    console.log(`descendingArr: ${descendingArr}`);
 
     // instantiate an array to hold the 3 tiers of skill
     const strengthsArr = [{ "Strengths": [] }, { "Developing_Strengths": [] }, { "Growth_Areas": [] }]
@@ -79,7 +79,7 @@ function RosterReport(props) {
         }
       }
     })
-    // console.log(`strengthsArr: ${JSON.stringify(strengthsArr)}`)
+    console.log(`strengthsArr: ${JSON.stringify(strengthsArr)}`)
     return strengthsArr
   }
 
@@ -186,4 +186,4 @@ function RosterReport(props) {
   )
 }
 
-export default RosterReport;
+export default CourseReport;
