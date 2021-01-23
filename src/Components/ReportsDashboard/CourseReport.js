@@ -106,7 +106,7 @@ function CourseReport(props) {
       </div>
       {props.reportsDataArr.map((scale, index) => (
         <Accordion style={scale.scaleName === scaleShowName ? { display: 'inherit' } : { display: 'none' }}>
-          {scale[props.scoreType][props.scoreCohort].map(classScore => (
+          {scale[props.scoreType][props.scoreCohort].map((classScore, classIndex) => (
             <Card style={{ border: 'none' }}>
               <Accordion.Toggle as={Button} variant="link" eventKey={index} style={{ width: '100%', boxShadow: 'none', padding: '0' }}>
                 <Row className={props.scoreTypeAlt ? 'comparison-progress-row' : null}>
@@ -115,11 +115,25 @@ function CourseReport(props) {
                   </Col>
                   <Col xs={12} md={8} style={{ margin: 'auto' }}>
                     <ProgressBar style={{ position: 'relative' }}>
-                        <ProgressBar now={classScore.lowScoreCountPercent} label={`${classScore.lowScoreCountPercent}%`} style={{ backgroundColor: '#4da3ff' }} />
-                        <ProgressBar now={classScore.moderateScoreCountPercent} label={`${classScore.moderateScoreCountPercent}%`} />
-                        <ProgressBar now={classScore.highScoreCountPercent} label={`${classScore.highScoreCountPercent}%`} style={{ backgroundColor: '#0056b3' }} />
+                      <ProgressBar now={classScore.lowScoreCountPercent} label={`${classScore.lowScoreCountPercent}%`} style={{ backgroundColor: '#4da3ff' }} />
+                      <ProgressBar now={classScore.moderateScoreCountPercent} label={`${classScore.moderateScoreCountPercent}%`} />
+                      <ProgressBar now={classScore.highScoreCountPercent} label={`${classScore.highScoreCountPercent}%`} style={{ backgroundColor: '#0056b3' }} />
                     </ProgressBar>
                   </Col>
+                  {props.scoreTypeAlt ?
+                    <>
+                      <Col xs={12} md={4} style={window.innerWidth <= 740 ? styles.scaleTitleMobile : styles.scaleTitle}>
+                      </Col>
+                      <Col xs={12} md={8} style={{ margin: 'auto' }}>
+                        <ProgressBar style={{ position: 'relative' }}>
+                          <ProgressBar animated now={scale[props.scoreTypeAlt][props.scoreCohort][classIndex].lowScoreCountPercent} label={`${scale[props.scoreTypeAlt][props.scoreCohort][classIndex].lowScoreCountPercent}%`} style={{ backgroundColor: '#4da3ff' }} />
+                          <ProgressBar animated now={scale[props.scoreTypeAlt][props.scoreCohort][classIndex].moderateScoreCountPercent} label={`${scale[props.scoreTypeAlt][props.scoreCohort][classIndex].moderateScoreCountPercent}%`} />
+                          <ProgressBar animated now={scale[props.scoreTypeAlt][props.scoreCohort][classIndex].highScoreCountPercent} label={`${scale[props.scoreTypeAlt][props.scoreCohort][classIndex].highScoreCountPercent}%`} style={{ backgroundColor: '#0056b3' }} />
+                        </ProgressBar>
+                      </Col>
+                    </>
+                    :
+                    null}
                 </Row>
               </Accordion.Toggle>
             </Card>

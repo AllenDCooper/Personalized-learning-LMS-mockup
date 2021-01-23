@@ -49,23 +49,27 @@ function Reports(props) {
       case 'initial_class':
         return <ClassReport reportsDataArr={reportsDataArr} scoreType={'initialScores'} scoreCohort={'classScores'} ReportDescription={ReportDescriptions['initial_class']} strengthsViewOn={strengthsViewOn} cohortName={'Class'} />
       case 'initial_roster':
-        return <RosterReport userModelSeed={userModelSeed} scoreType={'percentileScoreInitial'} scoreCohort={'classScores'} ReportDescription={ReportDescriptions['initial_roster']}  strengthsViewOn={strengthsViewOn} cohortName={"Students with"}/>
+        return <RosterReport userModelSeed={userModelSeed} scoreType={'percentileScoreInitial'} scoreCohort={'classScores'} ReportDescription={ReportDescriptions['initial_roster']} strengthsViewOn={strengthsViewOn} cohortName={"Students with"} />
       case 'initial_institutional':
-        return <ClassReport reportsDataArr={reportsDataArr} scoreType={'initialScores'} scoreCohort={'institutionalScores'} ReportDescription={ReportDescriptions['initial_institutional']} strengthsViewOn={strengthsViewOn} cohortName={'Institutional'}/>
+        return <ClassReport reportsDataArr={reportsDataArr} scoreType={'initialScores'} scoreCohort={'institutionalScores'} ReportDescription={ReportDescriptions['initial_institutional']} strengthsViewOn={strengthsViewOn} cohortName={'Institutional'} />
       case 'initial_course':
-        return <CourseReport reportsDataArr={reportsDataArr} scoreType={'initialScores'} scoreCohort={'classScores'} ReportDescription={ReportDescriptions['initial_class']} strengthsViewOn={strengthsViewOn} cohortName={'Class'}/>
-        case 'progress_class':
-        return <ClassReport reportsDataArr={reportsDataArr} scoreType={'progressScores'} scoreCohort={'classScores'} ReportDescription={ReportDescriptions['progress_class']} strengthsViewOn={strengthsViewOn} cohortName={'Class'}/>
+        return <CourseReport reportsDataArr={reportsDataArr} scoreType={'initialScores'} scoreCohort={'classScores'} ReportDescription={ReportDescriptions['initial_class']} strengthsViewOn={strengthsViewOn} cohortName={'Class'} />
+      case 'progress_class':
+        return <ClassReport reportsDataArr={reportsDataArr} scoreType={'progressScores'} scoreCohort={'classScores'} ReportDescription={ReportDescriptions['progress_class']} strengthsViewOn={strengthsViewOn} cohortName={'Class'} />
       case 'progress_roster':
         return <RosterReport userModelSeed={userModelSeed} scoreType={'percentileScoreCurrent'} scoreCohort={'classScores'} ReportDescription={ReportDescriptions['progress_roster']} strengthsViewOn={strengthsViewOn} cohortName={"Students with"} />
       case 'progress_institutional':
         return <ClassReport reportsDataArr={reportsDataArr} scoreType={'progressScores'} scoreCohort={'institutionalScores'} ReportDescription={ReportDescriptions['progress_institutional']} strengthsViewOn={strengthsViewOn} cohortName={'Institutional'} />
+      case 'progress_course':
+        return <CourseReport reportsDataArr={reportsDataArr} scoreType={'progressScores'} scoreCohort={'classScores'} ReportDescription={ReportDescriptions['progress_class']} strengthsViewOn={strengthsViewOn} cohortName={'Class'} />
       case 'comparison_class':
         return <ComparisonClassReport reportsDataArr={reportsDataArr} scoreCohort={'classScores'} ReportDescription={ReportDescriptions['comparison_class']} strengthsViewOn={strengthsViewOn} cohortName={'Class'} />
       case 'comparison_roster':
         return <RosterReport userModelSeed={userModelSeed} scoreType={'percentileScoreInitial'} scoreTypeAlt={'percentileScoreCurrent'} ReportDescription={ReportDescriptions['comparison_roster']} strengthsViewOn={strengthsViewOn} cohortName={"Students with"} />
       case 'comparison_institutional':
         return <ComparisonClassReport reportsDataArr={reportsDataArr} scoreCohort={'institutionalScores'} ReportDescription={ReportDescriptions['comparison_institutional']} strengthsViewOn={strengthsViewOn} cohortName={'Institutional'} />
+      case 'comparison_course':
+        return <CourseReport reportsDataArr={reportsDataArr} scoreType={'initialScores'} scoreTypeAlt={'progressScores'} scoreCohort={'classScores'} ReportDescription={ReportDescriptions['comparison_course']} strengthsViewOn={strengthsViewOn} cohortName={'Class'} />
       case 'change_class':
         return <ChangeClassReport reportsDataArr={reportsDataArr} scoreType={'changeScores'} scoreCohort={'classScores'} ReportDescription={ReportDescriptions['change_class']} strengthsViewOn={strengthsViewOn} cohortName={'Class'} />
       case 'change_roster':
@@ -81,7 +85,7 @@ function Reports(props) {
     <div style={props.clickedLink === "ACES Reports" ? { display: 'initial', backgroundColor: '#f3f3f3', minHeight: '740px' } : { display: 'none', backgroundColor: '#f3f3f3', minHeight: '740px' }}>
       <Container>
         <div className='tab-title-container'>
-          <h1 className="tab-title">ACES Instructor Reports</h1>
+          <h1 className="tab-title">{props.roleSelected === "Instructor" ? "ACES Instructor Reports" : "ACES Institutional Reports"}</h1>
         </div>
         <div>
           <Nav variant="tabs" defaultActiveKey="link-1" >
@@ -104,8 +108,14 @@ function Reports(props) {
             <Row>
               <Col xs={12} md={10} >
                 <Form>
-                  <Form.Check onClick={handleViewClick} inline label="Class" type='radio' id='class' name='view' defaultChecked />
-                  <Form.Check onClick={handleViewClick} inline label="Roster" type='radio' id='roster' name='view' />
+                  {props.roleSelected === "Instructor" ?
+                    <>
+                      <Form.Check onClick={handleViewClick} inline label="Class" type='radio' id='class' name='view' defaultChecked />
+                      <Form.Check onClick={handleViewClick} inline label="Roster" type='radio' id='roster' name='view' />
+                    </>
+                    :
+                    <Form.Check onClick={handleViewClick} inline label="Course" type='radio' id='course' name='view' />
+                  }
                   <Form.Check onClick={handleViewClick} inline label="Institutional" type='radio' id='institutional' name='view' />
                 </Form>
               </Col>
