@@ -5,6 +5,7 @@ import ComparisonClassReport from '../Components/ReportsDashboard/ComparisonClas
 import ChangeClassReport from '../Components/ReportsDashboard/ChangeClassReport';
 import RosterReport from '../Components/ReportsDashboard/RosterReport';
 import RosterComparisonReport from '../Components/ReportsDashboard/ComparisonRosterReport';
+import CourseReport from '../Components/ReportsDashboard/CourseReport'
 import reportsDataArr from '../Data/classModelSeed';
 import ReportDescriptions from '../Components/ReportsDashboard/ReportDescriptions';
 
@@ -51,7 +52,9 @@ function Reports(props) {
         return <RosterReport userModelSeed={userModelSeed} scoreType={'percentileScoreInitial'} scoreCohort={'classScores'} ReportDescription={ReportDescriptions['initial_roster']}  strengthsViewOn={strengthsViewOn} cohortName={"Students with"}/>
       case 'initial_institutional':
         return <ClassReport reportsDataArr={reportsDataArr} scoreType={'initialScores'} scoreCohort={'institutionalScores'} ReportDescription={ReportDescriptions['initial_institutional']} strengthsViewOn={strengthsViewOn} cohortName={'Institutional'}/>
-      case 'progress_class':
+      case 'initial_course':
+        return <CourseReport reportsDataArr={reportsDataArr} scoreType={'initialScores'} scoreCohort={'classScores'} ReportDescription={ReportDescriptions['initial_class']} strengthsViewOn={strengthsViewOn} cohortName={'Class'}/>
+        case 'progress_class':
         return <ClassReport reportsDataArr={reportsDataArr} scoreType={'progressScores'} scoreCohort={'classScores'} ReportDescription={ReportDescriptions['progress_class']} strengthsViewOn={strengthsViewOn} cohortName={'Class'}/>
       case 'progress_roster':
         return <RosterReport userModelSeed={userModelSeed} scoreType={'percentileScoreCurrent'} scoreCohort={'classScores'} ReportDescription={ReportDescriptions['progress_roster']} strengthsViewOn={strengthsViewOn} cohortName={"Students with"} />

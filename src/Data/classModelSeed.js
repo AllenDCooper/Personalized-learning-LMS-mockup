@@ -95,6 +95,7 @@ const updateInitialAndProgressObjects = (seedData, reportsDataArr) => {
       updateReportsObj(classProgScoreObj[classID - 1], userName, scoreObj.rawScoreProgress, scoreObj.percentileScoreCurrent)
     })
   })
+  console.log(reportsDataArr);
   return reportsDataArr
 }
 

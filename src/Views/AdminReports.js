@@ -51,7 +51,7 @@ function AdminReports(props) {
       case 'initial_roster':
         return <RosterReport userModelSeed={userModelSeed} scoreType={'percentileScoreInitial'} scoreCohort={'classScores'} ReportDescription={ReportDescriptions['initial_roster']} strengthsViewOn={strengthsViewOn} cohortName={"Students with"} />
       case 'initial_course':
-        return <CourseReport userModelSeed={userModelSeed} scoreType={'percentileScoreInitial'} scoreCohort={'classScores'} ReportDescription={ReportDescriptions['initial_roster']} strengthsViewOn={strengthsViewOn} cohortName={"Students with"} />
+        return <CourseReport reportsDataArr={reportsDataArr} scoreType={'initialScores'} scoreCohort={'classScores'} ReportDescription={ReportDescriptions['initial_class']} strengthsViewOn={strengthsViewOn} cohortName={'Class'}/>
       case 'initial_institutional':
         return <ClassReport reportsDataArr={reportsDataArr} scoreType={'initialScores'} scoreCohort={'institutionalScores'} ReportDescription={ReportDescriptions['initial_institutional']} strengthsViewOn={strengthsViewOn} cohortName={'Institutional'} />
       case 'progress_class':
