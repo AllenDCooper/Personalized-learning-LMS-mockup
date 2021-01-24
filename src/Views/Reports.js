@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import userModelSeed from '../Data/userModelSeed.js';
 import ClassReport from '../Components/ReportsDashboard/ClassReport';
 import ComparisonClassReport from '../Components/ReportsDashboard/ComparisonClassReport';
@@ -15,7 +15,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Nav, Form, Row, Col } from 'react-bootstrap';
 
 function Reports(props) {
-  // console.log(userModelSeed)
+  console.log('render')
 
   const styles = {
     strengthsSwitch: {
@@ -27,9 +27,16 @@ function Reports(props) {
     }
   }
 
+  const defaultView = props.roleSelected === "Instructor" ? "class" : props.roleSelected === "Admininstrator" ? "course" : null
+  console.log(defaultView);
+
   const [report, setReport] = useState("initial")
-  const [view, setView] = useState("class")
+  const [view, setView] = useState(defaultView)
   const [strengthsViewOn, setStrengthsViewOn] = useState(false)
+
+  useEffect(() => {
+    setView(props.roleSelected === 'Instructor' ? 'class' : props.roleSelected === "Administrator" ? 'course' : null);
+  });
 
   const handleClick = () => {
     setStrengthsViewOn(!strengthsViewOn)
@@ -117,7 +124,7 @@ function Reports(props) {
                       <Form.Check onClick={handleViewClick} inline label="Roster" type='radio' id='roster' name='view' />
                     </>
                     :
-                    <Form.Check onClick={handleViewClick} inline label="Course" type='radio' id='course' name='view' />
+                    <Form.Check onClick={handleViewClick} inline label="Course" type='radio' id='course' name='view' defaultChecked/>
                   }
                   <Form.Check onClick={handleViewClick} inline label="Institutional" type='radio' id='institutional' name='view' />
                 </Form>

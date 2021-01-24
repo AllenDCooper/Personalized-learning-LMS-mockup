@@ -15,6 +15,7 @@ function App(props) {
   const [clickedLink, setClickedLink] = useState('ACES');
   const [roleSelected, setRoleSelected] = useState('Student');
 
+
   return (
     <div style={{ fontFamily: 'Source Sans Pro, sans-serif' }}>
       <NavBar clickedLink={clickedLink} setClickedLink={setClickedLink} roleSelected={roleSelected} setRoleSelected={setRoleSelected} />
