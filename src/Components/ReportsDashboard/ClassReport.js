@@ -22,10 +22,10 @@ function ClassReport(props) {
   }
 
   // sort function that takes an array and will return new array with items in order from largest to smallest
-  const sortValuesDescending = (arr) => {
+  const sortValuesDescending = (arr, scoreType) => {
     console.log(arr);
     arr.sort(function (a, b) {
-      return b[props.scoreType][props.scoreCohort][0].highScoreCountPercent - a[props.scoreType][props.scoreCohort][0].highScoreCountPercent
+      return b[scoreType][props.scoreCohort][0].highScoreCountPercent - a[scoreType][props.scoreCohort][0].highScoreCountPercent
     })
     let newArr = []
     for (let i = 0; i < arr.length; i++) {
@@ -35,22 +35,22 @@ function ClassReport(props) {
     return newArr
   }
 
-  const sortStrengths = (arr) => {
+  const sortStrengths = (arr, scoreType) => {
     // sort the percentile array into descending order so that top strengths will appear first
-    const descendingArr = sortValuesDescending(arr);
+    const descendingArr = sortValuesDescending(arr, scoreType);
 
     // instantiate an array to hold the 3 tiers of skill
     const strengthsArr = [{ "Strengths": [] }, { "Developing_Strengths": [] }, { "Growth_Areas": [] }]
 
     // map descending array, sorting out into 3 tiers and pushing into appropriate object in strengthsArr
     descendingArr.forEach((element, index) => {
-      if (element[props.scoreType][props.scoreCohort][0].highScoreCountPercent > 30) {
+      if (element[scoreType][props.scoreCohort][0].highScoreCountPercent > 30) {
         const arrCopy1 = strengthsArr[0].Strengths
         let arr1 = []
         arrCopy1 === undefined ? arr1 = [] : arr1 = [...arrCopy1]
         arr1.push(element)
         strengthsArr[0].Strengths = arr1
-      } else if (element[props.scoreType][props.scoreCohort][0].highScoreCountPercent <= 30 && element[props.scoreType][props.scoreCohort][0].highScoreCountPercent > 20) {
+      } else if (element[scoreType][props.scoreCohort][0].highScoreCountPercent <= 30 && element[scoreType][props.scoreCohort][0].highScoreCountPercent > 20) {
         const arrCopy2 = strengthsArr[1].Developing_Strengths
         let arr2 = []
         arrCopy2 === undefined ? arr2 = [] : arr2 = [...arrCopy2]
@@ -67,7 +67,8 @@ function ClassReport(props) {
     return strengthsArr
   }
 
-  const strengthsArr = sortStrengths([...props.reportsDataArr])
+  const scoreType = props.scoreType === 'changeScores' ? 'progressScores' : props.scoreType
+  const strengthsArr = sortStrengths([...props.reportsDataArr], scoreType)
   console.log(strengthsArr)
 
   return (
@@ -87,7 +88,7 @@ function ClassReport(props) {
               <div style={{ margin: '20px 0px' }}>
                 {strengthsArr[0].Strengths.length === 0 ? <li>[empty]</li> : (
                   strengthsArr[0].Strengths.map((scale, index) => (
-                    <InstructorAccordionScale scale={scale} index={index} scoreType={props.scoreType} scoreCohort={props.scoreCohort} level={'high'} />
+                      <InstructorAccordionScale scale={scale} index={index} scoreType={props.scoreType} scoreCohort={props.scoreCohort} level={'high'} />
                   ))
                 )}
               </div>
@@ -120,11 +121,17 @@ function ClassReport(props) {
                     <span style={{ fontWeight: "400" }}>{scale.scaleName}</span>
                   </Col>
                   <Col xs={12} md={8} style={{ margin: 'auto' }}>
-                    <ProgressBar style={{ position: 'relative' }}>
-                      <ProgressBar now={scale[props.scoreType][props.scoreCohort][0].lowScoreCountPercent} label={`${scale[props.scoreType][props.scoreCohort][0].lowScoreCountPercent}%`} style={{ backgroundColor: '#4da3ff' }} />
-                      <ProgressBar now={scale[props.scoreType][props.scoreCohort][0].moderateScoreCountPercent} label={`${scale[props.scoreType][props.scoreCohort][0].moderateScoreCountPercent}%`} />
-                      <ProgressBar now={scale[props.scoreType][props.scoreCohort][0].highScoreCountPercent} label={`${scale[props.scoreType][props.scoreCohort][0].highScoreCountPercent}%`} style={{ backgroundColor: '#0056b3' }} />
-                    </ProgressBar>
+                    {props.scoreType === "changeScores" ?
+                      <ProgressBar style={{ position: 'relative' }}>
+                        <ProgressBar now={scale.changeScores[props.scoreCohort][0].rawScoreAvgChangePercent} label={`${scale.changeScores[props.scoreCohort][0].rawScoreAvgChangePercent}%`} style={scale.changeScores[props.scoreCohort][0].rawScoreAvgChangePercent < 0 ? { backgroundColor: 'red' } : {}} />
+                      </ProgressBar>
+                      :
+                      <ProgressBar style={{ position: 'relative' }}>
+                        <ProgressBar now={scale[props.scoreType][props.scoreCohort][0].lowScoreCountPercent} label={`${scale[props.scoreType][props.scoreCohort][0].lowScoreCountPercent}%`} style={{ backgroundColor: '#4da3ff' }} />
+                        <ProgressBar now={scale[props.scoreType][props.scoreCohort][0].moderateScoreCountPercent} label={`${scale[props.scoreType][props.scoreCohort][0].moderateScoreCountPercent}%`} />
+                        <ProgressBar now={scale[props.scoreType][props.scoreCohort][0].highScoreCountPercent} label={`${scale[props.scoreType][props.scoreCohort][0].highScoreCountPercent}%`} style={{ backgroundColor: '#0056b3' }} />
+                      </ProgressBar>
+                    }
                   </Col>
                 </Row>
               </Accordion.Toggle>

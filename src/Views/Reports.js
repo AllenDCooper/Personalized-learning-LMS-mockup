@@ -80,11 +80,11 @@ function Reports(props) {
       case 'comparison_course':
         return <CourseReport reportsDataArr={reportsDataArr} scoreType={'initialScores'} scoreTypeAlt={'progressScores'} scoreCohort={'classScores'} ReportDescription={ReportDescriptions['comparison_course']} strengthsViewOn={strengthsViewOn} cohortName={'Class'} />
       case 'change_class':
-        return <ChangeClassReport reportsDataArr={reportsDataArr} scoreType={'changeScores'} scoreCohort={'classScores'} ReportDescription={ReportDescriptions['change_class']} strengthsViewOn={strengthsViewOn} cohortName={'Class'} />
+        return <ClassReport reportsDataArr={reportsDataArr} scoreType={'changeScores'} scoreCohort={'classScores'} ReportDescription={ReportDescriptions['change_class']} strengthsViewOn={strengthsViewOn} cohortName={'Class'} />
       case 'change_roster':
         return <RosterReport userModelSeed={userModelSeed} scoreType={'percentileScoreChange'} ReportDescription={ReportDescriptions['change_roster']} strengthsViewOn={strengthsViewOn} cohortName={"Students with"} />
       case 'change_institutional':
-        return <ChangeClassReport reportsDataArr={reportsDataArr} scoreType={'changeScores'} scoreCohort={'institutionalScores'} ReportDescription={ReportDescriptions['change_institutional']} strengthsViewOn={strengthsViewOn} cohortName={'Class'} />
+        return <ClassReport reportsDataArr={reportsDataArr} scoreType={'changeScores'} scoreCohort={'institutionalScores'} ReportDescription={ReportDescriptions['change_institutional']} strengthsViewOn={strengthsViewOn} cohortName={'Institutional'} />
       case 'change_course':
         return <CourseReport reportsDataArr={reportsDataArr} scoreType={'changeScores'} scoreCohort={'classScores'} ReportDescription={ReportDescriptions['change_class']} strengthsViewOn={strengthsViewOn} cohortName={'Class'} />
       default:
