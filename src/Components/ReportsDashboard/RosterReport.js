@@ -167,7 +167,7 @@ function RosterReport(props) {
                           </Col>
                           <Col xs={12} md={8} style={{ margin: 'auto' }}>
                             <ProgressBar style={{ position: 'relative' }}>
-                              <ProgressBar animated now={userScore.scores[index][props.scoreTypeAlt]} label={`${userScore.scores[index][props.scoreType]}%`} />
+                              <ProgressBar animated now={userScore.scores[index][props.scoreTypeAlt]} label={`${userScore.scores[index][props.scoreTypeAlt]}%`} />
                             </ProgressBar>
                           </Col>
                         </>

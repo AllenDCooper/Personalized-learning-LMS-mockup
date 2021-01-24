@@ -22,7 +22,7 @@ const RosterAccordionScale = (props) => {
                 </Col>
                 <Col xs={12} md={8} style={{ margin: 'auto' }}>
                   <ProgressBar style={{ position: 'relative' }}>
-                    <ProgressBar animated now={Math.abs(props.userScore.scores[props.index][props.scoreTypeAlt])} label={`${props.userScore.scores[props.index][props.scoreTypeAlt]}Math.abs(%`} />
+                    <ProgressBar animated now={Math.abs(props.userScore.scores[props.index][props.scoreTypeAlt])} label={`${props.userScore.scores[props.index][props.scoreTypeAlt]}%`} />
                   </ProgressBar>
                 </Col>
               </>

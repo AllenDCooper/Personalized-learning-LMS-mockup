@@ -26,9 +26,9 @@ function InstructorComparisonAccordionScale(props) {
             </Col>
             <Col xs={12} md={8} style={{ margin: 'auto' }}>
               <ProgressBar style={{ position: 'relative' }}>
-                <ProgressBar now={props.scale.initialScores[props.scoreCohort].lowScoreCountPercent} label={`${props.scale.initialScores[props.scoreCohort].lowScoreCountPercent}%`} style={{ backgroundColor: '#4da3ff' }} />
-                <ProgressBar now={props.scale.initialScores[props.scoreCohort].moderateScoreCountPercent} label={`${props.scale.initialScores[props.scoreCohort].moderateScoreCountPercent}%`} />
-                <ProgressBar now={props.scale.initialScores[props.scoreCohort].highScoreCountPercent} label={`${props.scale.initialScores[props.scoreCohort].highScoreCountPercent}%`} style={{ backgroundColor: '#0056b3' }} />
+                <ProgressBar now={props.scale.initialScores[props.scoreCohort][0].lowScoreCountPercent} label={`${props.scale.initialScores[props.scoreCohort][0].lowScoreCountPercent}%`} style={{ backgroundColor: '#4da3ff' }} />
+                <ProgressBar now={props.scale.initialScores[props.scoreCohort][0].moderateScoreCountPercent} label={`${props.scale.initialScores[props.scoreCohort][0].moderateScoreCountPercent}%`} />
+                <ProgressBar now={props.scale.initialScores[props.scoreCohort][0].highScoreCountPercent} label={`${props.scale.initialScores[props.scoreCohort][0].highScoreCountPercent}%`} style={{ backgroundColor: '#0056b3' }} />
               </ProgressBar>
             </Col>
             <Col xs={12} md={4} style={{ textAlign: 'right' }}>
@@ -36,9 +36,9 @@ function InstructorComparisonAccordionScale(props) {
             </Col>
             <Col xs={12} md={8} style={{ margin: 'auto' }}>
               <ProgressBar style={{ position: 'relative' }}>
-                <ProgressBar animated now={props.scale.progressScores[props.scoreCohort].lowScoreCountPercent} label={`${props.scale.progressScores[props.scoreCohort].lowScoreCountPercent}%`} style={{ backgroundColor: '#4da3ff' }} />
-                <ProgressBar animated now={props.scale.progressScores[props.scoreCohort].moderateScoreCountPercent} label={`${props.scale.progressScores[props.scoreCohort].moderateScoreCountPercent}%`} />
-                <ProgressBar animated now={props.scale.progressScores[props.scoreCohort].highScoreCountPercent} label={`${props.scale.progressScores[props.scoreCohort].highScoreCountPercent}%`} style={{ backgroundColor: '#0056b3' }} />
+                <ProgressBar animated now={props.scale.progressScores[props.scoreCohort][0].lowScoreCountPercent} label={`${props.scale.progressScores[props.scoreCohort][0].lowScoreCountPercent}%`} style={{ backgroundColor: '#4da3ff' }} />
+                <ProgressBar animated now={props.scale.progressScores[props.scoreCohort][0].moderateScoreCountPercent} label={`${props.scale.progressScores[props.scoreCohort][0].moderateScoreCountPercent}%`} />
+                <ProgressBar animated now={props.scale.progressScores[props.scoreCohort][0].highScoreCountPercent} label={`${props.scale.progressScores[props.scoreCohort][0].highScoreCountPercent}%`} style={{ backgroundColor: '#0056b3' }} />
               </ProgressBar>
             </Col>
           </Row>
