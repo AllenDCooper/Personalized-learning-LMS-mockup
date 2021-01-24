@@ -111,14 +111,21 @@ function CourseReport(props) {
               <Accordion.Toggle as={Button} variant="link" eventKey={index} style={{ width: '100%', boxShadow: 'none', padding: '0' }}>
                 <Row className={props.scoreTypeAlt ? 'comparison-progress-row' : null}>
                   <Col xs={12} md={4} style={window.innerWidth <= 740 ? styles.scaleTitleMobile : styles.scaleTitle}>
-                    <span style={{ fontWeight: "400" }}>{`Class-${classScore.classID}`}</span>
+                    <span style={{ fontWeight: "400" }}>{`Section-${classScore.classID}`}</span>
                   </Col>
                   <Col xs={12} md={8} style={{ margin: 'auto' }}>
-                    <ProgressBar style={{ position: 'relative' }}>
-                      <ProgressBar now={classScore.lowScoreCountPercent} label={`${classScore.lowScoreCountPercent}%`} style={{ backgroundColor: '#4da3ff' }} />
-                      <ProgressBar now={classScore.moderateScoreCountPercent} label={`${classScore.moderateScoreCountPercent}%`} />
-                      <ProgressBar now={classScore.highScoreCountPercent} label={`${classScore.highScoreCountPercent}%`} style={{ backgroundColor: '#0056b3' }} />
-                    </ProgressBar>
+                    {props.scoreType === 'changeScores' ?
+                      <ProgressBar style={{ position: 'relative' }}>
+                        <ProgressBar now={classScore.rawScoreAvgChangePercent} label={`${classScore.rawScoreAvgChangePercent}%`} style={classScore.rawScoreAvgChangePercent < 0 ? { backgroundColor: 'red' } : {}} />
+                      </ProgressBar>
+                      :
+                      <ProgressBar style={{ position: 'relative' }}>
+                        <ProgressBar now={classScore.lowScoreCountPercent} label={`${classScore.lowScoreCountPercent}%`} style={{ backgroundColor: '#4da3ff' }} />
+                        <ProgressBar now={classScore.moderateScoreCountPercent} label={`${classScore.moderateScoreCountPercent}%`} />
+                        <ProgressBar now={classScore.highScoreCountPercent} label={`${classScore.highScoreCountPercent}%`} style={{ backgroundColor: '#0056b3' }} />
+                      </ProgressBar>
+                    }
+
                   </Col>
                   {props.scoreTypeAlt ?
                     <>

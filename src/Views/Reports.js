@@ -5,7 +5,8 @@ import ComparisonClassReport from '../Components/ReportsDashboard/ComparisonClas
 import ChangeClassReport from '../Components/ReportsDashboard/ChangeClassReport';
 import RosterReport from '../Components/ReportsDashboard/RosterReport';
 import RosterComparisonReport from '../Components/ReportsDashboard/ComparisonRosterReport';
-import CourseReport from '../Components/ReportsDashboard/CourseReport'
+import CourseReport from '../Components/ReportsDashboard/CourseReport';
+// import ChangeCourseReport from '../Components/ReportsDashboard/ChangeCourseReport';
 import reportsDataArr from '../Data/classModelSeed';
 import ReportDescriptions from '../Components/ReportsDashboard/ReportDescriptions';
 
@@ -76,6 +77,8 @@ function Reports(props) {
         return <RosterReport userModelSeed={userModelSeed} scoreType={'percentileScoreChange'} ReportDescription={ReportDescriptions['change_roster']} strengthsViewOn={strengthsViewOn} cohortName={"Students with"} />
       case 'change_institutional':
         return <ChangeClassReport reportsDataArr={reportsDataArr} scoreType={'changeScores'} scoreCohort={'institutionalScores'} ReportDescription={ReportDescriptions['change_institutional']} strengthsViewOn={strengthsViewOn} cohortName={'Class'} />
+      case 'change_course':
+        return <CourseReport reportsDataArr={reportsDataArr} scoreType={'changeScores'} scoreCohort={'classScores'} ReportDescription={ReportDescriptions['change_class']} strengthsViewOn={strengthsViewOn} cohortName={'Class'} />
       default:
         return null
     }
