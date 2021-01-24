@@ -15,7 +15,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Nav, Form, Row, Col } from 'react-bootstrap';
 
 function Reports(props) {
-  console.log('render')
 
   const styles = {
     strengthsSwitch: {
@@ -27,15 +26,17 @@ function Reports(props) {
     }
   }
 
-  const defaultView = props.roleSelected === "Instructor" ? "class" : props.roleSelected === "Admininstrator" ? "course" : null
-  console.log(defaultView);
-
   const [report, setReport] = useState("initial")
-  const [view, setView] = useState(defaultView)
+  const [view, setView] = useState('class')
   const [strengthsViewOn, setStrengthsViewOn] = useState(false)
 
   useEffect(() => {
-    setView(props.roleSelected === 'Instructor' ? 'class' : props.roleSelected === "Administrator" ? 'course' : null);
+    if(props.roleSelected === "Instructor" && view === "course") {
+      setView("class")
+    }
+    if(props.roleSelected === "Administrator" && view === "class") {
+      setView("course")
+    }
   });
 
   const handleClick = () => {
@@ -124,7 +125,7 @@ function Reports(props) {
                       <Form.Check onClick={handleViewClick} inline label="Roster" type='radio' id='roster' name='view' />
                     </>
                     :
-                    <Form.Check onClick={handleViewClick} inline label="Course" type='radio' id='course' name='view' defaultChecked/>
+                    <Form.Check onClick={handleViewClick} inline label="Course" type='radio' id='course' name='view' defaultChecked />
                   }
                   <Form.Check onClick={handleViewClick} inline label="Institutional" type='radio' id='institutional' name='view' />
                 </Form>

@@ -26,9 +26,9 @@ function InstructorAccordionScale(props) {
             </Col>
             <Col xs={12} md={8} style={{ margin: 'auto' }}>
               <ProgressBar style={{ position: 'relative' }}>
-                <ProgressBar now={props.scale[props.scoreType][props.scoreCohort].lowScoreCountPercent} label={`${props.scale[props.scoreType][props.scoreCohort].lowScoreCountPercent}%`} style={{ backgroundColor: '#4da3ff' }} />
-                <ProgressBar now={props.scale[props.scoreType][props.scoreCohort].moderateScoreCountPercent} label={`${props.scale[props.scoreType][props.scoreCohort].moderateScoreCountPercent}%`} />
-                <ProgressBar now={props.scale[props.scoreType][props.scoreCohort].highScoreCountPercent} label={`${props.scale[props.scoreType][props.scoreCohort].highScoreCountPercent}%`} style={{ backgroundColor: '#0056b3' }} />
+                <ProgressBar now={props.scale[props.scoreType][props.scoreCohort][0].lowScoreCountPercent} label={`${props.scale[props.scoreType][props.scoreCohort][0].lowScoreCountPercent}%`} style={{ backgroundColor: '#4da3ff' }} />
+                <ProgressBar now={props.scale[props.scoreType][props.scoreCohort][0].moderateScoreCountPercent} label={`${props.scale[props.scoreType][props.scoreCohort][0].moderateScoreCountPercent}%`} />
+                <ProgressBar now={props.scale[props.scoreType][props.scoreCohort][0].highScoreCountPercent} label={`${props.scale[props.scoreType][props.scoreCohort][0].highScoreCountPercent}%`} style={{ backgroundColor: '#0056b3' }} />
               </ProgressBar>
             </Col>
           </Row>

@@ -22,7 +22,7 @@ function ChangeClassReport(props) {
   }
   // sort function that takes an array and will return new array with items in order from largest to smallest
   const sortValuesDescending = (arr) => {
-    console.log(arr);
+    // console.log(arr);
     arr.sort(function (a, b) {
       return b.progressScores[props.scoreCohort][0].highScoreCountPercent - a.progressScores[props.scoreCohort][0].highScoreCountPercent
     })
@@ -30,14 +30,14 @@ function ChangeClassReport(props) {
     for (let i = 0; i < arr.length; i++) {
       newArr.push(arr[i])
     }
-    console.log(newArr)
+    // console.log(newArr)
     return newArr
   }
 
   const sortStrengths = (arr) => {
     // sort the percentile array into descending order so that top strengths will appear first
     const descendingArr = sortValuesDescending(arr);
-    console.log(`descendingArr: ${descendingArr}`);
+    // console.log(`descendingArr: ${descendingArr}`);
 
     // instantiate an array to hold the 3 tiers of skill
     const strengthsArr = [{ "Strengths": [] }, { "Developing_Strengths": [] }, { "Growth_Areas": [] }]
@@ -64,7 +64,7 @@ function ChangeClassReport(props) {
         strengthsArr[2].Growth_Areas = arr3
       }
     })
-    console.log(`strengthsArr: ${JSON.stringify(strengthsArr)}`)
+    // console.log(`strengthsArr: ${JSON.stringify(strengthsArr)}`)
     return strengthsArr
   }
 
